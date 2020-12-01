@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Placas radiograficas</ion-title>    
+  </ion-toolbar>
+</ion-header>
+  
+  
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let servicio of listaServicios" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/imgs/icono_radiografia.jpg">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{servicio.dataServicio.nombre}}</h2>
+              <p>Placa Ceradent</p>
+            </ion-label>
+
+            <ion-button [disabled]="servicio.data.imagenes_url === undefined || servicio.data.imagenes_url === null" color="dark" fill="clear" (click)="share (servicio)">
+              <ion-icon slot="icon-only" name="share-social"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <img-loader class="img-loader" *ngFor="let imagen of imagenesServicios.get (servicio.data.servicio)" [src]="imagen | async" (click)="visualizar (servicio)" (load)="onImageLoad ($event, servicio)"></img-loader>
+        </ion-card>
+      </ion-col>
+    </ion-row>  
+  </ion-grid>  
+</ion-content>

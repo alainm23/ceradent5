@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="primary">        
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="reserva_id === 'null'">
+      Registrar reserva
+    </ion-title>  
+
+    <ion-title *ngIf="reserva_id !== 'null'">
+      Editar reserva
+    </ion-title> 
+
+    <ion-buttons slot="secondary">
+      <ion-button [disabled]="validar_form ()" (click)="submit ()">
+        <ng-container *ngIf="reserva_id === 'null'">Guardar</ng-container>
+        <ng-container *ngIf="reserva_id !== 'null'">Actualizar</ng-container>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item class="ion-margin-top" lines="none">
+    <ion-avatar slot="start">
+      <img src="assets/imgs/icono_user_default.png">
+    </ion-avatar>
+
+    <ion-label *ngIf="cliente !== null">
+      <h2>{{ cliente?.nombres }}</h2>
+      <p>DNI: {{ cliente?.dni }}</p>
+    </ion-label>
+
+    <ion-label *ngIf="cliente === null">
+      <h2>Cliente no seleccionado</h2>
+    </ion-label>
+
+    <ion-button size="small" fill="outline" (click)="presentModal ()" shape="round" slot="end" [disabled]="reserva_id !== 'null'">
+      Buscar
+    </ion-button>
+  </ion-item>
+
+  <ion-list *ngFor="let categoria of servicios_categorias">
+    <ion-list-header color="light" lines="full">
+      <ion-item color="light" style="width: 100%;">  
+        <ion-label>{{ categoria.data.nombre }}</ion-label>
+      </ion-item>
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of categoria.servicios">
+      <ng-container *ngIf="item.mostrar_comanda === true">
+        <ion-label>{{ item.nombre }}</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="item.isChecked" (ionChange)="select_servicio (item)"></ion-checkbox>
+      </ng-container>
+    </ion-item>
+  </ion-list>
+
+  <!-- <div class="ion-text-center ion-margin-top">
+    <ion-button expand="block" shape="round">
+      Registrar
+    </ion-button>
+  </div> -->
+</ion-content>

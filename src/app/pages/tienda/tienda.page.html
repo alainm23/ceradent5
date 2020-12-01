@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Tienda</ion-title>
+
+    <ion-buttons slot="end" color="dark" (click)="goCarritoCompras ()">
+      <ion-button [disabled]="shopping_cart?.productos.length <= 0">
+        <ion-badge color="danger" *ngIf="shopping_cart?.productos.length > 0">
+          {{ shopping_cart?.productos.length }}
+        </ion-badge>
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar..." (ionInput)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+    <ion-item no-lines class="transparent">
+      <ion-label>Especialidad</ion-label>
+      <ion-select interface="popover" [(ngModel)]="especialidad" (ionChange)="onSelectChange($event)">
+        <ion-select-option *ngFor="let item of especialidades" [value]="item">
+          {{ item.nombre_categoria }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item no-lines class="transparent">
+        <ion-label>Marcas</ion-label>
+        <ion-select okText="Listo" cancelText="Cancelar" multiple="true" interface="popover" [(ngModel)]="marcas_selected" (ionChange)="changeMarcas($event)">
+          <ion-select-option [value]="0">
+            Todas
+          </ion-select-option>
+          <ion-select-option *ngFor="let item of marcas" [value]="item.id">
+            {{ item.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+  </ion-toolbar>
+  
+  <ion-grid *ngIf="is_loading === true" style="height: 100%; margin-bottom: 1rem">
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-grid *ngIf="is_loading === false">
+    <ion-row *ngIf="productos?.length > 0">
+      <ion-col *ngFor="let item of productos" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+        <ion-card style="box-shadow: none;" (click)="verProducto (item)">
+          <div class="tienda-img-preview">
+            <img [src]="getImage (item.img)">
+          </div>
+
+          <ion-item lines="none">
+            <ion-label>
+              <h2 class="producto-title">{{ item.nombre }}</h2>
+              <h3 class="margin-5">Desde {{ item.precio_minimo | currency:'S/. ' }}</h3>
+              <p class="ion-text-wrap margin-5">{{ item.descripcion }}</p>
+              <ion-row>
+                <ion-col size="6" offset="3" class="padding-top-1-5">
+                  <ion-button fill="outline" expand="block">Ver detalle</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row padding-top *ngIf="productos?.length > 0 === false">
+      <ion-item lines="none" class="ion-text-center">
+        <ion-label>
+          <h1>Pronto!!!</h1>
+          <p class="ion-text-wrap">Estamos trabajando para brindarte un mejor servicio, pronto podrás realizar compras en esta categoría.</p>
+          <br>
+          <ion-button fill="outline" (click)="ngOnInit ()">
+            Volver a cargar
+          </ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">        
+    <ion-title>
+      Seleccionar cliente
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="dismiss ()" fill="clear">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-no-padding ion-no-margin">
+  <ion-item>
+    <ion-searchbar mode="ios" [(ngModel)]="search_text" (keyup.enter)="search ()" placeholder="Buscar un paciente..."></ion-searchbar>
+    <ion-button fill="clear" (click)="search ()">
+      Buscar
+    </ion-button>
+  </ion-item>
+
+  <ion-item class="ion-margin-top" lines="none" (click)="registrar ()">
+    <ion-avatar slot="start">
+      <img src="assets/imgs/icono_user_default.png">
+    </ion-avatar>
+    
+    <ion-label>
+      <h2>Registrar nuevo paciente</h2>
+    </ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let item of items" class="ion-margin-top" lines="none" (click)="select (item)">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/icono_user_default.png">
+      </ion-avatar>
+      
+      <ion-label>
+        <h2>{{ item?.nombres }}</h2>
+        <p>DNI: {{ item?.dni }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

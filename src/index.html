@@ -21,6 +21,23 @@
 
 <body>
   <app-root></app-root>
+
+  <!-- Incluye el Checkout de Culqi en tu sitio web-->
+  <script src="https://checkout.culqi.com/js/v3"></script>
+  <script>
+      function culqi () {
+        if (Culqi.token) { 
+          // Get the token ID:
+
+          var token = Culqi.token.id;
+          var payment_event = new CustomEvent ('payment_event', { detail: token });
+          document.dispatchEvent (payment_event);
+        } else {
+          console.log (Culqi.error);
+          alert(Culqi.error.user_message);
+        }
+      };
+  </script>
 </body>
 
 </html>

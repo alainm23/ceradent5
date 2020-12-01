@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="white">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>
+      Pago
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="form">
+      <ion-card>
+        <ion-list>
+          <ion-list radio-group formControlName="tipo_de_pago" (ionChange)="checkForm ($event)">
+            <ion-item>
+              Tipo de pago
+            </ion-item>
+                
+            <ion-item>
+              <ion-radio item-start color="dark" [value]="1"></ion-radio>
+              <ion-label text-wrap>Tarjeta de credito</ion-label>
+            </ion-item>
+
+            <ion-item>
+              <ion-radio item-start color="dark" [value]="2"></ion-radio>
+              <ion-label>Contraentrega</ion-label>
+            </ion-item>
+          </ion-list>
+          
+          <ion-item>
+            <ion-label stacked color="dark">Dirección</ion-label>
+            <ion-input class="input-css" type="text" formControlName="direccion"></ion-input>
+          </ion-item>
+
+          <div style="margin-left: 1.6rem" *ngIf="form.controls.direccion.errors?.required">
+            <small class="text-danger">* Este campo es necesario</small>
+          </div>
+          
+          <ion-item>
+            <ion-label stacked color="dark">Observación</ion-label>
+            <ion-input class="input-css" type="text" formControlName="observacion"></ion-input>
+          </ion-item>
+
+          <ion-card color="danger-2" style="border-radius: 4px" *ngIf="show_alert">
+            <ion-card-content>
+              El total de su compra no supera el límite (S/. 100) para el envío gratuito, se le sumará S/. 5 por el servicio de envío.
+            </ion-card-content>
+          </ion-card>
+
+          <div class="conditions">
+            <ion-checkbox color="blue" formControlName="terms_conditions"></ion-checkbox>
+            Acepto los<span class="color-link" (click)="openTerminos ()"> términos & condiciones</span>
+          </div>
+          
+          <ion-item no-lines class="culqi-item">
+            <ion-icon class="culqi-icon" item-start name="lock"></ion-icon>
+            <span item-start>Pago seguro gracias a <span class="color-link" (click)="openURL ()">Culqi</span></span>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+      <!--div text-center padding-top>
+        <h3>Pago seguro con</h3>
+      </div>
+      <div text-center>
+        <img class="culqi-logo" src="https://www.culqi.com/wp-content/uploads/2018/10/culqi_color2.svg"/>
+      </div-->
+    </form>
+</ion-content>
+
+<ion-footer color="white" no-border> 
+  <ion-toolbar class="pay-toolbar" color="white" no-border>
+    <button color="pay_color" block ion-button [disabled]="!form.valid" (click)="openCulqi ()">
+      PAGAR: <b class="margin-left-1rem">{{ precio_total | currency:'S/. ' }}</b>
+    </button>
+  </ion-toolbar>
+</ion-footer>

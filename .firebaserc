@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ceradent-2f868": {
+      "hosting": {
+        "app": [
+          "ceradent-2f868"
+        ]
+      }
+    }
+  }
+}

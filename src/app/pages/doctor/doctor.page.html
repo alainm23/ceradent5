@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title *ngIf="origen!=''">
+      Pacientes
+    </ion-title>    
+    <ion-title *ngIf="origen==''">
+      Mis Pacientes
+    </ion-title>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>  
+      <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar paciente"></ion-searchbar>            
+      <ion-col *ngFor="let item of historialDoctor | orderBy:'fecha':true" size="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
+        <ion-card *ngIf="item.dataPlaca.monto_efectivo + item.dataPlaca.monto_tarjeta >= item.dataPlaca.monto || origen != ''">
+          <ion-item class="cancelado">
+            <ion-avatar slot="start">
+              <img src="assets/imgs/icono_user_default.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{item.dataPlaca.nombre_cliente}}</h2>
+              <p>{{mostrarFecha(item.dataPlaca.fecha)}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-row *ngIf="origen != ''">  
+            <ion-col class="ion-text-left">
+              <ion-button (click)="callDoctor(item.dataPlaca.doctor)" fill="clear" size="small" color="primary">  
+                <ion-icon slot="start" color="primary" name="call"></ion-icon>              
+                <div style="text-transform:none;">Llamar doctor</div>
+              </ion-button>
+            </ion-col>                                    
+            <ion-col class="ion-text-right">
+              <ion-button (click)="callCliente (item.dataPlaca.cliente)" *ngIf="item.dataPlaca.tipo_cliente=='adulto'" fill="clear" size="small" color="primary">
+                <ion-icon slot="start" color="primary" name="call"></ion-icon>
+                <div style="text-transform:none;">Llamar cliente</div>
+              </ion-button>
+
+              <ion-button (click)="mostrarTutores (item.dataPlaca.cliente)" *ngIf="item.dataPlaca.tipo_cliente=='menor'" fill="clear" size="small" color="primary">
+                <ion-icon slot="start" color="primary" name="call"></ion-icon>
+                <div style="text-transform:none;">Llamar padres</div>
+              </ion-button>
+            </ion-col>                  
+          </ion-row>  
+          <img *ngIf="item.dataPlaca.imagenes" (click)="mostrarPlacas(item.data.placa)" src="assets/imgs/radiografia.jpg"/>
+          <ion-card-content style="margin-top:1rem;">            
+            <p>Atendido en: <b>Ceradent</b> - {{item.dataPlaca.nombre_sucursal}}</p>
+            <p text-wrap><b>Placas:</b> {{item.dataPlaca.nombres_servicios}}</p>            
+          </ion-card-content>    
+          <ion-row> 
+            <ion-col *ngIf="item.dataPlaca.puntos_ganados>0 && item.dataPlaca.puntos_usados<=0">
+              <ion-button fill="clear" size="small" color="secondary">
+                <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+                <div >{{item.dataPlaca.puntos_ganados}} ptos</div>
+              </ion-button>
+            </ion-col>
+            <ion-col *ngIf="item.dataPlaca.puntos_usados>0">
+              <ion-button fill="clear" size="small" color="danger">
+                <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
+                <div >{{item.dataPlaca.puntos_usados}} ptos</div>
+              </ion-button>
+            </ion-col>           
+            <ion-col *ngIf="item.dataPlaca.imagenes" right class="ion-text-right">
+              <ion-button (click)="mostrarPlacas(item.data.placa)" fill="clear" size="small">
+                <ion-icon slot="start" name="albums"></ion-icon>
+                <div>ver Placas</div>
+              </ion-button>
+            </ion-col>            
+          </ion-row>  
+          <ion-row *ngIf="item.dataPlaca.descuento > 0">
+            <ion-col style="background-color:beige; padding:1rem;">
+              <p class="ion-text-wrap"><b>Descuento:</b> {{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
+            </ion-col>
+          </ion-row>    
+        </ion-card>
+      </ion-col>
+    </ion-row>  
+  </ion-grid>
+</ion-content>

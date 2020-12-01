@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "320283851351",
+    "firebase_url": "https://ceradent-2f868.firebaseio.com",
+    "project_id": "ceradent-2f868",
+    "storage_bucket": "ceradent-2f868.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320283851351:android:2dd267c6004da25566c112",
+        "android_client_info": {
+          "package_name": "com.pe.ceradentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320283851351-9gsojfqc9v9495gcabmni0n5m0t59sgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFWfonXhI9aK4V2gZWPk5H1gLcOLqfq4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320283851351-9gsojfqc9v9495gcabmni0n5m0t59sgi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "320283851351-999m99h69sd4go8gqv3v7mjfr6kh6ffi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.pe.ceradentapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

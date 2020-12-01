@@ -1,0 +1,81 @@
+<!-- Themes  register-flat-->
+<ion-content>
+  <ion-grid class="ion-no-padding" *ngIf="database.apple_test === false">
+    <ion-row header align-items-start align-items-stretch>
+      <ion-col size="10" offset="1" size-md="6" offset-md="3">
+        <img logo src="assets/imgs/logo-cerdent.png">
+      </ion-col>
+
+      <ion-col size="10" offset="1" size-md="6" offset-md="3">
+        <form class="ion-padding" [formGroup]="phoneForm">
+          <ion-row align-items-start>
+            <ion-col size="12">
+              <h1><strong>Bienvenido</strong>para ingresar identificate con tu numero de celular</h1>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="12">
+              <ion-item>
+                <ion-label item-start>+51</ion-label>
+                <ion-input formControlName="phoneNumber" clearInput type="tel" placeholder="984567213"></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col size="12">
+              <ion-col size="12" class="ion-no-padding">
+                <ion-button expand="full" class="ion-no-margin" [disabled]="!phoneForm.valid" full text-uppercase (click)="login ()">Continuar</ion-button>
+              </ion-col>
+              <div description text-center>
+                <ion-row>
+                  <ion-col size="12" class="ion-no-padding ion-no-margin">
+                    <p class="ion-no-padding ion-no-margin"><a style="font-size:1.2rem;" (click)="openExplicacion()">¿Porqué debo ingresar ni numero de celular?</a></p>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid no-padding *ngIf="database.apple_test === true">
+    <!-- logo -->
+    <ion-row header align-items-start align-items-stretch>
+      <ion-col col-10 offset-1 col-md-6 offset-md-3>
+        <img logo src="assets/imgs/logo-cerdent.png">
+      </ion-col>
+
+      <!-- Section form -->
+      <ion-col col-10 offset-1 col-md-6 offset-md-3>
+        <form padding>
+          <ion-row align-items-start>
+            <ion-col col-12>
+              <h1><strong>Bienvenido</strong>para ingresar identificate con tus datos</h1>
+            </ion-col>
+          </ion-row>
+          <!-- Input-field -->
+          <ion-row>
+            <ion-col col-12>
+              <!-- Login button -->
+              <form [formGroup]="codigoForm" (ngSubmit)="onSubmit()">
+                <ion-col col-12 no-padding>
+                  <ion-item  >
+                    <ion-input type="email" formControlName="email" placeholder="email"></ion-input>
+                  </ion-item>
+                  <ion-item >
+                    <ion-input type="password" formControlName="password" placeholder="password"></ion-input>
+                  </ion-item>
+                  <button no-margin ion-button full text-uppercase>Continuar</button>
+                </ion-col>
+              </form>
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+

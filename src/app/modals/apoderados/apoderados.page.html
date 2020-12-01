@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Apoderados</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button color="light" (click)="dismiss()" fill="clear">
+        Cerrar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+<ion-col *ngFor="let item of apoderados" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+  <ion-card>
+    <ion-item class="cancelado">
+      <ion-avatar item-start>            
+        <img src="assets/imgs/icono_user_default.png">
+      </ion-avatar>
+
+      <ion-label>
+        <h2>{{item.nombres}} {{item.apellidos}}</h2>
+        <p>{{item.telefono}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-row *ngIf="item.telefono!=''">                                            
+      <ion-col right text-right>
+        <ion-button (tap)="callPadre(item.telefono)" fill="clear" size="small" color="primary">
+          <ion-icon slot="start" color="primary" name="call"></ion-icon>
+          <div style="text-transform:none;">Llamar a {{item.nombres}}</div>
+        </ion-button>            
+      </ion-col>                  
+    </ion-row>
+    <ion-card-content>
+      <p text-wrap><b>email:</b> {{item.email}}</p>
+      <p text-wrap><b>DNI:</b> {{item.dni}}</p>        
+    </ion-card-content>
+  </ion-card>
+</ion-col>
+</ion-content>

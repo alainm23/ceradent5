@@ -1,0 +1,265 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@font-face {
+font-family: Poppins-Regular;
+src: url('../assets/fonts/poppins/Poppins-Regular.ttf'); 
+}
+
+@font-face {
+font-family: Poppins-Medium;
+src: url('../assets/fonts/poppins/Poppins-Medium.ttf'); 
+}
+
+@font-face {
+font-family: Poppins-Bold;
+src: url('../assets/fonts/poppins/Poppins-Bold.ttf'); 
+}
+
+@font-face {
+font-family: Poppins-SemiBold;
+src: url('../assets/fonts/poppins/Poppins-SemiBold.ttf'); 
+}
+
+@font-face {
+font-family: Montserrat-Bold;
+src: url('../assets/fonts/montserrat/Montserrat-Bold.ttf'); 
+}
+
+@font-face {
+font-family: Montserrat-SemiBold;
+src: url('../assets/fonts/montserrat/Montserrat-SemiBold.ttf'); 
+}
+
+@font-face {
+font-family: Montserrat-Regular;
+src: url('../assets/fonts/montserrat/Montserrat-Regular.ttf'); 
+}
+
+//   .toast-error{
+//     >div{ background-color: red!important; padding: 1%; border-radius: 19px 19px 19px 19px;
+//       -moz-border-radius: 19px 19px 19px 19px;
+//       -webkit-border-radius: 19px 19px 19px 19px;
+//       border: 0px solid #000000; border:solid #FFF 2px; }
+//   }
+//   .toast-success{
+//     >div{ background-color: green!important; padding: 1%; border-radius: 19px 19px 19px 19px;
+//       -moz-border-radius: 19px 19px 19px 19px;
+//       -webkit-border-radius: 19px 19px 19px 19px;
+//       border: 0px solid #000000; border:solid #FFF 2px;}
+//   }
+
+// Menu user profile
+.user-profile {
+.user-avatar {
+    width: 68px;
+    height: 68px;
+    display: inline-block;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10rem rgba(0,0,0,.25), 0 0 4rem rgba(255,255,255,.45);
+    img {
+    border-radius: 50%;
+    }
+}
+.toolbar-background {
+    // background-image: linear-gradient(135deg, color($colors, dark), color($colors, primary));
+}  
+}
+
+.user-list {
+.item {
+    &:last-child {
+    border-bottom: 0;
+    }
+    .item-inner {
+    border-color: rgba(86, 61, 124, .1);
+    }
+}
+}
+
+// Animate CSS
+.animated {
+animation-duration: 1s;
+animation-fill-mode: both;
+}
+
+.animated.infinite {
+animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+animation-duration: .75s;
+}
+
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+
+to {
+    opacity: 1;
+}
+}
+
+.fadeIn {
+animation-name: fadeIn;
+}
+
+@keyframes fadeInDown {
+from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+}
+
+to {
+    opacity: 1;
+    transform: none;
+}
+}
+
+.fadeInDown {
+animation-name: fadeInDown;
+}
+
+
+//others
+.no-margin {
+margin: 0;
+}
+
+.bold {
+font-weight: bold !important;
+}
+
+.text-white {
+color: #fff;
+}  
+
+.text-1x {
+font-size: 1em;
+}
+
+.full-width {
+width: 100% !important;
+}
+
+.common-bg {
+background-color: #FAFBFC;
+}
+
+.fondo{
+background-image: url('../assets/imgs/background.png');
+background-repeat: repeat;
+
+}
+
+//action sheet
+.action-sheet-md {
+text-align: center;
+}
+
+.action-sheet-md .action-sheet-wrapper {
+margin: constant(safe-area-inset-top) auto constant(safe-area-inset-bottom);
+margin: env(safe-area-inset-top) auto env(safe-area-inset-bottom);
+}
+
+.action-sheet-md .action-sheet-container {
+padding: 0 10px;
+}
+
+.action-sheet-md .action-sheet-group {
+border-radius: 13px;
+margin-bottom: 8px;
+background: #f9f9f9;
+}
+
+.action-sheet-md .action-sheet-group:first-child {
+margin-top: 10px;
+}
+
+.action-sheet-md .action-sheet-group:last-child {
+margin-bottom: 10px;
+}
+
+.action-sheet-md .action-sheet-title {
+padding: 1.5rem;
+text-align: center;
+border-radius: 0;
+border-bottom: 0.55px solid #d6d6da;
+font-size: 2rem;
+font-weight: 400;
+color: #8f8f8f;
+}
+
+.action-sheet-md .action-sheet-button {
+margin: 0;
+padding: 18px;
+min-height: 5.6rem;
+border-bottom: 0.55px solid #d6d6da;
+font-size: 1.8rem;
+color: #007aff;
+background: transparent;
+}
+
+.action-sheet-md .action-sheet-button:last-child {
+border-bottom-color: transparent;
+}
+
+.action-sheet-md .action-sheet-button.activated {
+margin-top: -0.55px;
+border-top: 0.55px solid #ebebeb;
+border-bottom-color: #ebebeb;
+background: #ebebeb;
+}
+
+.action-sheet-md .action-sheet-selected {
+font-weight: bold;
+background: #fff;
+}
+
+.action-sheet-md .action-sheet-destructive {
+color: #f53d3d;
+}
+
+.action-sheet-md .action-sheet-cancel {
+font-weight: 600;
+background: #fff;
+color: #f53d3d;
+}
+
+.imagen_hijo {
+height: 20rem;
+width: 20rem;
+border: 2px solid #009688;
+border-radius: 50%;
+display: inline-block; 
+}
+
+.imagen_hijo_observacion {
+height: 10rem;
+width: 10rem;
+border: 2px solid #009688;
+border-radius: 50%;
+display: inline-block; 
+}

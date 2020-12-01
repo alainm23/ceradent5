@@ -1,0 +1,87 @@
+.producto-slides {
+    height: 50%;
+  }
+
+  .swiper-pagination {
+    padding: 3px;
+    bottom:0px;
+    .swiper-pagination-bullet {
+      background: #FFF;
+      margin: 0 3px;
+    }
+  }
+
+  button {
+    ion-badge {
+      position: absolute;
+      top: -0.2rem;
+      right: -0.2rem;
+      opacity: 0.9;
+
+      & ~ ion-icon {
+        margin-right: 1.2rem;
+      }
+    }
+  }
+
+  .footer-background {
+    background-color: #fff;
+  }
+
+  .no-padding-left {
+    padding-left: 0px !important;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+  .no-padding {
+    padding: 0px !important;
+  }
+
+  .count-button {
+    background-color:#EAEEF2;
+    color: #333;
+    box-shadow: none;
+  }
+
+  .col-precio {
+    background-color: #488aff;
+  }
+
+  .col-agregar {
+    background-color: #C4C0FD;
+  }
+
+  ion-slide.swiper-slide {
+    align-items: flex-start;
+  }
+
+  .slide-zoom {
+    text-align: start !important;
+  }
+
+  .color-white {
+    color: #fff;
+  }
+
+  .color-red {
+    color: red;
+  }
+  
+  .position-bottom {
+    left: 0;
+    bottom: 0px;
+    right: 0;
+  }
+
+  .transparent {
+    background-color: transparent !important;
+  }
+
+  .title-font-size {
+    font-size: 2.2rem;
+  }
+
+  .price-font-size {
+    font-size: 2rem;
+  }

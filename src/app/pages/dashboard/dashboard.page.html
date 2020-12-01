@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+    <ion-grid>
+      <ion-row> 
+        <ion-col *ngIf="isDoctor" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+          <ion-card (click)="navegarDoctor()">
+            <img src="assets/imgs/doctorok.jpg"/>
+            <div class="card-title">Doctor</div>
+            <div class="card-subtitle">ver pacientes</div>
+          </ion-card>
+        </ion-col>
+        <ion-col *ngIf="isCliente" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+          <ion-card (click)="navegarCliente()">
+            <img src="assets/imgs/clientesok.jpg"/>
+            <div class="card-title">Cliente</div>
+            <div class="card-subtitle">ver placas</div>
+          </ion-card>
+        </ion-col>
+        <ion-col *ngIf="isGerente" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+          <ion-card (click)="navegarGerencia()">
+            <img src="assets/imgs/gerenciaok.jpg"/>
+            <div class="card-title">Gerencia</div>
+            <div class="card-subtitle">ver resumen</div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

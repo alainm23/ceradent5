@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Historial de compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid *ngIf="is_loading === true" style="height: 100%; margin-bottom: 1rem">
+    <ion-row class="ion-text-center" justify-content-center align-items-center style="height: 100%">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </ion-row>
+  </ion-grid>
+  
+  <div *ngIf="is_loading === false">
+    <ion-list *ngIf="historial?.length > 0 === true">
+      <ion-item *ngFor="let item of historial | orderBy: 'created_at' : true : false : false" (click)="verDetalle (item)">
+        <ion-label>
+          <h2>Total: {{ item?.acum_precio | currency:'S/. ' }}</h2>
+          <h3>Direccion: {{ item.direccion }}</h3>
+          <p>Fecha: {{ item.created_at }}</p>
+          <p *ngIf="item.tipo_pago === 2">Contraentrega</p>
+          <p *ngIf="item.tipo_pago === 1">Pagado</p>
+          <p *ngIf="item?.estado === 0">Estado: Pedido</p>
+          <p *ngIf="item?.estado === 1">Estado: Entregado</p>
+          <p *ngIf="item?.estado === 2">Estado: Anulado</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-grid *ngIf="historial?.length > 0 === false" style="height: 100%; margin-bottom: 1rem">
+      <ion-row class="ion-text-center" justify-content-center align-items-center style="height: 100%">
+        <ion-item lines="none" class="ion-text-center">
+          <ion-label>
+            <h1 class="ion-text-wrap">Aun no tienes compras realizadas</h1>
+            <p class="ion-text-wrap">Por que no realizas una compra ahora</p>
+          </ion-label>
+        </ion-item>
+
+        <ion-button ion-button fill="outline" class="margin-top" (click)="goShop ()">Ir a la tienda</ion-button>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

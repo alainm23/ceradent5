@@ -1,5 +1,7 @@
 {
   "name": "ceradent5",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

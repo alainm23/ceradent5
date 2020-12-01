@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Lista de Doctores
+    </ion-title>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>        
+      <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar por apellido"></ion-searchbar>        
+      <ion-col *ngFor="let item of listaDoctores | orderBy: 'nombres'" size="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
+        <ion-item (click)="openHistorialDoctor(item.data.id)">
+          <ion-avatar slot="start">
+            <img src="assets/imgs/icono_doctor.png">
+          </ion-avatar> 
+
+          <ion-label  class="ion-text-wrap">
+            <ion-text>
+              <h2>{{item.data.nombres}} {{item.data.apellidos}}</h2>
+            </ion-text>                 
+            <p style="color:#999999;">cel. {{item.data.telefono}}</p>
+            <p style="color:#999999;">email: {{item.data.email}}</p>
+            <p style="color:#999999;">Puntaje: {{item.data.puntaje}}</p>
+            <p style="color:#999999;" *ngIf="item.dataNumero!=undefined">Clientes derivados: {{item.dataNumero.nro_placas}}</p>
+            <p style="color:#999999;" *ngIf="item.dataNumero==undefined">Clientes derivados: 0</p>          
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>  
+  </ion-grid>
+</ion-content>

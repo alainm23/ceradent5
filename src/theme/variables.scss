@@ -76,6 +76,15 @@
   --ion-color-light-tint: #f5f6f9;
 }
 
+.ion-color-black {
+  --ion-color-base: #000000;
+  --ion-color-base-rgb: 0, 0, 0;
+  --ion-color-contrast: #fff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #000000;
+  --ion-color-tint: #191919;
+}
+  
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors

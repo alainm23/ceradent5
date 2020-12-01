@@ -1,0 +1,135 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Tu carrito de compras</ion-title>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="rol === 'Doctor'">
+    <ion-item lines="none" class="transparent">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/icono_user_default.png">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ persona?.nombres }}</h2>
+        <h2 slot="end">PTS {{ persona?.puntaje }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card class="border-radius-8" *ngFor="let item of shopping_cart.productos">
+      <ion-row>
+        <ion-col size="2">
+          <img class="border-radius-8" [src]="getImage (item?.imagen)">
+        </ion-col>
+        
+        <ion-col size="8">
+          <h2 class="ion-text-wrap ion-no-margin">{{ item?.nombre }}</h2>
+          <p class="ion-text-wrap ion-no-margin">{{ item?.detalle }}</p>
+          <p class="ion-text-wrap ion-no-margin">Precio uds.: {{ item?.precio | currency:'S/. ' }}</p>
+          <p class="color-red message ion-text-wrap ion-no-margin" *ngIf="item?.tipo_compra === 'pedido'">
+            * Tiempo de entrega de 2 a 5 días hábiles y puede incurrir en gastos adicionales de envío que se serán avisados previamente.
+          </p>
+        </ion-col>
+
+        <ion-col size="2" class="ion-align-self-start">
+          <ion-button fill="clear" color="danger" size="small" (click)="removeItem (item)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="rol === 'Doctor'">
+        <ion-col size="2">
+        </ion-col>
+            
+        <ion-col size="10" class="no-padding">
+          <ion-radio-group radio-group [(ngModel)]="item.tipo_pago" (ionChange)="updatePrecioTotal ()">
+            <ion-row>
+              <ion-col size="4">
+                <ion-item class="no-padding-left">
+                  <ion-radio value="directo" class="radio-no-margin" slot="start" color="dark"></ion-radio>
+                  <ion-label class="ion-text-wrap">{{ item?.precio | currency:'S/. ' }}</ion-label>
+                </ion-item>
+              </ion-col>
+
+              <ion-col size="8" *ngIf="item?.puntos !== null">
+                <ion-item class="no-padding-left">
+                  <ion-radio value="puntos" class="radio-no-margin" slot="start" color="dark"></ion-radio>
+                  <ion-label class="ion-text-wrap">{{ item?.precio - item?.puntos | currency:'S/. ' }} + PTS {{ item?.puntos }}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-radio-group>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="item?.tipo_pago === ''">
+
+      </ion-row>
+
+      <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+        <ion-col size="2" class="ion-align-self-center">
+          <h2 class="ion-text-center">Cant.</h2>
+        </ion-col>
+
+        <ion-col size="10" class="no-padding-left">
+          <ion-button size="small" fill="clear" class="count-button" (click)="updateCantidad (item, 'res')">
+            <ion-icon slot="icon-only" name="remove"></ion-icon>
+          </ion-button>
+
+          <ion-button fill="clear" color="dark">
+            {{ item?.cantidad }}
+          </ion-button>
+
+          <ion-button size="small" fill="clear" class="count-button" (click)="updateCantidad (item, 'sum')">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+
+          <ion-button fill="clear" color="dark" class="button-precio"> 
+            <div *ngIf="rol === 'Doctor' && item?.puntos !== null">
+              <h4 *ngIf="item.tipo_pago === 'puntos'">
+                {{ (item?.precio * item?.cantidad) - (item?.puntos * item?.cantidad) | currency:'S/. ' }}
+              </h4>
+              <h4 *ngIf="item.tipo_pago === 'directo'">
+                {{ item?.precio * item?.cantidad | currency:'S/. ' }}
+              </h4>
+              <div *ngIf="rol === 'Doctor'">
+                <h3 *ngIf="item.tipo_pago === 'puntos'">
+                  PTS {{ item?.puntos * item?.cantidad }}
+                </h3>
+                <h3 *ngIf="item.tipo_pago === 'directo'">
+                  PTS 0
+                </h3>
+              </div>
+              
+              <div *ngIf="rol === 'Cliente'">
+                {{ item?.precio * item?.cantidad | currency:'S/. ' }}
+              </div>
+            </div>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="ion-text-center pay-toolbar">
+    <ion-button color="pay_color" expand="block" class="ion-text-center pay-button" (click)="goFormularioPago ()">
+      Continuar al pago      
+      <ion-icon slot="end" name="arrow-forward"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-item color="primary" class="ion-text-center" lines="none">
+      <ion-label>
+        TOTAL A PAGAR: <b class="margin-left-1rem">{{ precio_total | currency:'S/. ' }}</b><b class="margin-left-1rem" *ngIf="rol === 'Doctor' || item?.puntos !== null">PTS {{ puntos_usados }}</b>
+      </ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,122 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Historial Cliente
+    </ion-title>    
+  </ion-toolbar>
+
+  <ion-toolbar color="primary">
+    <ion-row class="filters">
+      <ion-col class="col-with-arrow ion-no-padding" (click)="slidePrev()" size="1">
+        <ion-icon *ngIf="showLeftButton" name="arrow-back"></ion-icon>
+      </ion-col>
+      <ion-col class="ion-no-padding" size="10">
+        <ion-slides (ionSlideDidChange)="slideChanged ()" [options]="slideOpts">
+          <ion-slide *ngFor="let letraa of letras" (click)="filterData(letraa)">
+            <p style="font-size: 16px;" [class.selected]="letraSeleccionada === letraa">{{ letraa }}</p>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+      <ion-col class="ion-no-padding col-with-arrow" (click)="slideNext()" col="1">
+          <ion-icon *ngIf="showRightButton" name="arrow-forward"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-list *ngIf="listaClientes">
+      <ion-item>
+        <ion-searchbar (ionInput)="onInput($event)" style="width:100%; max-width:100%"></ion-searchbar>
+      </ion-item>
+      
+      <ion-item *ngFor="let cliente of listaClientes | orderBy: 'nombres'" (click)="seleccionarCliente(cliente.data.usuario)">
+        <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo=='adulto'">
+          <img src="assets/imgs/icono_user_default.png">
+        </ion-avatar>
+
+        <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo=='menor'">
+          <img src="assets/imgs/child-icon.png">
+        </ion-avatar>
+
+        <ion-label class="text-wrap">
+          <p text-wrap>{{cliente.dataCliente.nombres}} {{cliente.dataCliente.apellidos}}</p>
+          <p *ngIf="cliente.dataCliente.tipo=='adulto'">
+            Cel.: {{ cliente.dataCliente.telefono}}
+          </p>
+          <p *ngIf="cliente.dataCliente.tipo=='menor'">
+            DNI: {{ cliente.dataCliente.dni}}
+          </p>
+        </ion-label>
+      </ion-item>                
+    </ion-list>
+
+    <ion-card *ngIf="datosCliente">
+      <ion-row>
+        <ion-col size="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/imgs/icono_user_default.png">
+            </ion-avatar>
+            
+            <ion-label>
+              <h2 class="ion-text-wrap">{{datosCliente[0]?.nombres}} {{datosCliente[0].apellidos}}</h2>                    
+              <p style="color:#999999;">cel. {{datosCliente[0]?.telefono}}</p>
+              <p style="color:#999999;">email: {{datosCliente[0]?.email}}</p>
+              <p style="color:#999999;">DNI: {{datosCliente[0]?.dni}}</p>
+              <p style="color:#999999;" *ngIf="datosCliente[0]?.dataNumero!=undefined">#Veces atendido: {{datosCliente[0]?.dataNumero.nro_placas}}</p>
+              <p style="color:#999999;" *ngIf="datosCliente[0]?.dataNumero==undefined">#Veces atendido: 0</p>    
+            </ion-label>        
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+
+    <ion-row *ngIf="historialCliente">
+      <ion-col size="12" center text-center color="dark"><h2>Historial cliente</h2></ion-col>
+      <ion-col *ngFor="let item of historialCliente | async | orderBy:'fecha':true" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/imgs/icono_user_default.png">
+            </ion-avatar>
+            <ion-label>
+              <h2>{{item.nombre_cliente}}</h2>
+            <p>{{mostrarFecha(item.fecha)}}</p>
+            </ion-label>
+          </ion-item>
+          <img (tap)="mostrarPlacas(item.data.placa)" src="assets/imgs/radiografia.jpg"/>
+          <ion-card-content>
+            <p class="ion-text-wrap"><b>Doctor:</b> {{item.nombre_doctor}}  <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.puntos_ganados}} pts.</span>  <span *ngIf="item.puntos_usados>0" style="color:#f53d3d;">-{{item.puntos_usados}} pts.</span></p>
+            <p class="ion-text-wrap">Atendido en: <b>Ceradent</b> - {{item.nombre_sucursal}}</p>
+          </ion-card-content>    
+          <ion-row> 
+            <ion-col *ngIf="item.duplicado">
+              <button ion-button icon-start clear small color="dark">                
+                <div>Duplicado</div>
+              </button>
+            </ion-col>   
+            <ion-col *ngIf="item.descuento>0">
+              <button tooltip="Sustento descuento: {{item.motivo_descuento}}" positionV="top" arrow ion-button icon-start clear small color="danger">  
+                <ion-icon color="danger" name="arrow-round-down"></ion-icon>              
+                <div >- S/.{{item.descuento}}</div>
+              </button>
+            </ion-col>                       
+            <ion-col right text-right>
+              <button (tap)="mostrarPlacas(item.data.placa)" ion-button icon-start clear small>
+                <ion-icon name="albums"></ion-icon>
+                <div>ver Placas</div>
+              </button>
+            </ion-col>            
+          </ion-row>      
+        </ion-card>  
+      </ion-col>
+    </ion-row>    
+  </ion-grid>
+</ion-content>

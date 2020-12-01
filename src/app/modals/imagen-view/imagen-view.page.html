@@ -1,0 +1,33 @@
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button size="small" color="light" (click)="close ()">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-slides style="height: 100%;" [options]="slideOpts">
+    <ion-slide>
+      <img [style.filter]="'brightness('+ brightness +')' + 'contrast('+ contrast +')'" [src]="imagen">
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+<ion-footer color="black">
+  <ion-toolbar color="black" class="ion-no-border">
+    <ion-button color="light" fill="clear" (click)="present_popover ($event, 'sunny')">
+      <ion-icon slot="start" name="sunny"></ion-icon>
+      Brillo
+    </ion-button>
+
+    <ion-button color="light" fill="clear" (click)="present_popover ($event, 'contrast')">
+      <ion-icon slot="start" name="contrast"></ion-icon>
+      Contraste
+    </ion-button>
+
+    <ion-buttons *ngIf="brightness !== 1 || contrast !== 1" slot="end">
+      <ion-button (click)="reset ()" color="light" fill="clear">
+        <ion-icon slot="icon-only" style="transform: rotateY (180deg);" name="reload"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

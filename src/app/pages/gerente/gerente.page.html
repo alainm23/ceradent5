@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Gerencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>                 
+      <ion-col *ngFor="let item of listaSucursales | async" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="assets/imgs/icono_sucursal.png">
+            </ion-avatar>
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.data.nombre}}</h2>
+              <p>{{mes_mostrar}} {{anio_mostrar}}</p>
+            </ion-label>
+          </ion-item>  
+          <ion-card-content>
+            <p><b>Monto total vendido:</b> {{item.dataResumen?.monto_total_efectivo+item.dataResumen?.monto_total_tarjeta| currency:'S/. '}}</p>
+            <p><b>#Atenciones:</b> {{item.dataResumen?.ventas_totales}}</p>
+            <p><b>Puntos canjeados:</b> {{item.dataResumen?.canje_total}} pts.</p>
+            <p><b>Total descuentos:</b> {{item.dataResumen?.descuento_total | currency:'S/. '}}</p>
+          </ion-card-content>  
+          
+          <ion-item-group *ngFor="let servicio of resumenServicios.get (item.data.id); let i = index">
+            <ion-item-divider (click)="toggleSection(i, item.data.id)" color="light" [ngClass]="{'section-active': servicio.open, 'section': !servicio.open}">{{servicio.dataServicio.nombre}}
+              <ion-icon slot="start" name="caret-forward-outline" *ngIf="!servicio.open"></ion-icon>
+              <ion-icon slot="start" name="caret-down-outline" *ngIf="servicio.open"></ion-icon>
+            </ion-item-divider> 
+            <ion-card-content *ngIf="servicio.open" style="padding-top:1rem;">
+              <p><b>#Atenciones: </b>{{servicio.data.ventas_totales}}</p>
+              <p><b>Monto total atenciones: </b> {{servicio.data.monto_total | currency:'S/. '}}</p>
+              <p><b>#Duplicados: </b> {{servicio.data.duplicados_totales}}</p>
+              <p><b>Monto total duplicados: </b>{{servicio.data.monto_duplicados | currency:'S/. '}}</p>
+              <p><b>Descuentos: </b> {{servicio.data.descuento_total | currency:'S/. '}}</p> 
+            </ion-card-content>                       
+          </ion-item-group>  
+
+          <ion-row>                   
+            <ion-col class="ion-text-right">
+              <ion-button (click)="mostrarDetalle(item.data.id)" fill="clear" size="small">                
+                <div>ver reporte diario</div>
+              </ion-button>
+            </ion-col>
+          </ion-row>      
+        </ion-card>
+      </ion-col>
+    </ion-row>  
+  </ion-grid>
+</ion-content>

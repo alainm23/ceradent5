@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Mis placas
+    </ion-title>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-grid>
+    <ion-row>              
+      <ion-col *ngFor="let item of historialCliente | orderBy:'fecha':true" col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4>
+        <ion-card *ngIf="item.monto_efectivo+item.monto_tarjeta>=item.monto">
+          <ion-item class="cancelado">
+            <ion-avatar item-start>
+              <img src="assets/imgs/icono_user_default.png">
+            </ion-avatar>
+            <h2>{{item.nombre_cliente}}</h2>
+            <p>{{mostrarFecha(item.fecha)}}</p>
+          </ion-item>
+          <img *ngIf="item.imagenes"  (tap)="mostrarPlacas(item.data.placa)" src="assets/imgs/radiografia.jpg"/>
+          <ion-card-content style="margin-top:1rem;">
+            <p text-wrap><b>Doctor:</b> {{item.nombre_doctor}}</p>
+            <p text-wrap>Atendido en: <b>Ceradent</b> - {{item.nombre_sucursal}}</p>
+            <p text-wrap><b>Placas:</b> {{item.nombres_servicios}}</p>
+          </ion-card-content>    
+          <ion-row>  
+            <ion-col *ngIf="item.duplicado" left text-left>
+              <button ion-button icon-start clear small color="dark">                
+                <div>Duplicado</div>
+              </button>
+            </ion-col>           
+            <ion-col *ngIf="item.imagenes" right text-right>
+              <button (tap)="mostrarPlacas(item.data.placa)" ion-button icon-start clear small>
+                <ion-icon name="albums"></ion-icon>
+                <div>ver Placas</div>
+              </button>
+            </ion-col>            
+          </ion-row>      
+        </ion-card>
+      </ion-col>      
+    </ion-row>  
+  </ion-grid> -->
+</ion-content>

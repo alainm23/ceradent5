@@ -1,3 +1,114 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" type="overlay" menuId="menu" contentId="menu">
+    <ion-header>
+      <ion-toolbar class="user-profile">
+  
+      <ion-grid>
+          <ion-row>
+          <ion-col size="4">
+              <div class="user-avatar">
+                  <img src="assets/imgs/icono_user_default.png">
+              </div>
+          </ion-col>
+          <ion-col class="ion-padding-top" size="8">
+              <h2 ion-text class="no-margin bold text-white">
+              {{ (usuario | async)?.nombres}}
+              </h2>
+              <span ion-text color="light" *ngIf="permisos!=null">{{permisos.rol}}</span>&nbsp;<span ion-text color="light" *ngIf="permisos!=null && permisos.rol=='Doctor'">{{(usuario | async)?.puntaje}} pts.</span>
+          </ion-col>
+          </ion-row>
+  
+          <ion-row no-padding class="other-data">
+          <ion-col no-padding class="column">
+              <ion-button style="width:90%;" ion-button icon-left  small round color="dark" menuClose (click)="openCeradent()">
+              CERADENT
+              </ion-button>
+          </ion-col>
+          <ion-col no-padding class="column">
+              <ion-button style="width:90%;" ion-button icon-left small  round color="danger" menuClose (click)="logout()">
+              <ion-icon name="log-out"></ion-icon>
+              Salir
+              </ion-button>
+          </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-content>  
+      <ion-list class="user-list">
+        <ion-menu-toggle auto-hide="false">
+          <ion-item (click)="openInicio()">
+            <ion-icon slot="start" name="home" item-left color="primary"></ion-icon>
+            Inicio
+          </ion-item>
+        </ion-menu-toggle>
+        
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos.isdoctor == true || permisos.iscliente == true" (click)="openTienda()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Tienda
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos.isdoctor == true || permisos.iscliente == true" (click)="openHistorial()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Historial de compras
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.isdoctor==true" (click)="openDoctor()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Doctor - Mis pacientes
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.isdoctor==true" (click)="open_reservas ()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Doctor - Reservas
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.iscliente==true" (click)="openCliente()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Cliente - Mis placa
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.isgerente==true" (click)="openGerente ()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Gerencia
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.isgerente==true" (click)="openClientes ()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Clientes
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.isgerente==true" (click)="openDoctores()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Doctores
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item (click)="openAcerca ()">
+            <ion-icon slot="start" name="cart" item-left color="primary"></ion-icon>
+            Acerca de
+          </ion-item>   
+        </ion-menu-toggle>   
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="menu"></ion-router-outlet>
 </ion-app>

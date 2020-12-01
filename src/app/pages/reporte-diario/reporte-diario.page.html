@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar color="primary">        
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      Ventas {{montoVendido + montoSaldos | currency:'S/. '}}
+    </ion-title>      
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-row>
+      <ion-col class="ion-text-center" style="color:#FFF;">
+          Tarjeta: {{montoTarjetaVendido + montoTarjetaSaldo | currency:'S/. '}}
+      </ion-col>
+      
+      <ion-col class="ion-text-center" style="color:#FFF;">
+          Efectivo: {{montoEfectivoVendido + montoEfectivoSaldo | currency:'S/. '}}
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>        
+      <ion-col size="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
+        <ion-item>            
+          <ion-datetime displayFormat="MMMM DD, del YYYY" [(ngModel)]="fechaActual" (ionChange)="onSelectDate ()"
+          monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"     
+          monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Agos, Sep, Oct, Nov, Dic"
+          dayNames="domingo, lunes, martes, miercoles, jueves, viernes, sabado"
+          dayShortNames="dom, lun, mar, mie, jue, vie, sab"
+          cancelText="Cancelar" doneText="Listo"></ion-datetime>
+        </ion-item>
+      </ion-col>        
+      <ion-col size="12" size-sm="12" size-md="6" size-lg="3" size-xl="3">
+        <ion-item>            
+          <ion-select style="width:100%; max-width:100%;" [(ngModel)]="sucursal" (ionChange)="onSelectSucursal ()">
+            <ion-select-option *ngFor="let item of listaSucursales | async" [value]="item.id">{{item.data.nombre}}</ion-select-option>                                
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>              
+      <ion-col *ngFor="let item of ventasMensuales | orderBy: 'fecha' : true" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+        <ion-card>
+          <ion-item class="cancelado">
+            <ion-avatar slot="start">
+              <img *ngIf="item.dataPlaca.tipo_cliente=='menor'" src="assets/imgs/child-icon.png">
+              <img *ngIf="item.dataPlaca.tipo_cliente=='adulto'" src="assets/imgs/icono_user_default.png">
+            </ion-avatar>
+
+            <ion-label class="ion-text-wrap">
+              <h2>{{item.dataPlaca.nombre_cliente}}</h2>
+              <p>{{mostrarFecha(item.dataPlaca.fecha)}}</p> 
+            </ion-label>
+          </ion-item>
+          <ion-row>  
+            <ion-col class="ion-text-left">
+              <ion-button (click)="callDoctor(item.dataPlaca.doctor)" fill="clear" size="small" color="primary">  
+                <ion-icon slot="start" color="primary" name="call"></ion-icon>              
+                <div style="text-transform:none;">Llamar doctor</div>
+              </ion-button>
+            </ion-col>                                    
+            <ion-col class="ion-text-right">
+              <ion-button (click)="callCliente(item.dataPlaca.cliente)" *ngIf="item.dataPlaca.tipo_cliente=='adulto'" fill="clear" size="small" color="primary">
+                <ion-icon slot="start" color="primary" name="call"></ion-icon>
+                <div style="text-transform:none;">Llamar cliente</div>
+              </ion-button>
+              <ion-button (click)="mostrarTutores(item.dataPlaca.cliente)" *ngIf="item.dataPlaca.tipo_cliente=='menor'" fill="clear" size="small" color="primary">
+                <ion-icon slot="start" color="primary" name="call"></ion-icon>
+                <div style="text-transform:none;">Llamar padres</div>
+              </ion-button>
+            </ion-col>                  
+          </ion-row>  
+                      
+          <img *ngIf="item.dataPlaca.imagenes" (click)="mostrarPlacas(item.data.placa)" src="assets/imgs/radiografia.jpg"/>
+          <ion-card-content>
+            <p text-wrap><b>Doctor:</b> {{item.dataPlaca.nombre_doctor}} <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.dataPlaca.puntos_ganados}} pts.</span>  <span *ngIf="item.dataPlaca.puntos_usados>0" style="color:#f53d3d;">-{{item.dataPlaca.puntos_usados}} pts.</span></p>              
+            <p text-wrap><b>Placas:</b> {{item.dataPlaca.nombres_servicios}}</p>
+            <p text-wrap><b>Monto:</b> {{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" color="primary" (click)="openHistorial(item.data.placa)"></ion-icon></p>
+          </ion-card-content>    
+          <ion-row>  
+            <ion-col *ngIf="item.dataPlaca.duplicado">
+              <ion-button fill="clear" size="small" color="dark">                
+                <div>Duplicado</div>
+              </ion-button>
+            </ion-col>   
+            <ion-col *ngIf="item.dataPlaca.monto_efectivo+item.dataPlaca.monto_tarjeta<item.dataPlaca.monto">
+              <ion-button fill="clear" size="small" color="danger">                                 
+                <div style="text-transform:none;">Debe {{item.dataPlaca.monto-item.dataPlaca.monto_efectivo-item.dataPlaca.monto_tarjeta | currency:'S/. '}}</div>
+              </ion-button>
+            </ion-col>                       
+            <ion-col *ngIf="item.dataPlaca.imagenes" class="ion-text-right">
+              <ion-button (click)="mostrarPlacas(item.data.placa)" fill="clear" size="small">
+                <ion-icon slot="start" name="albums"></ion-icon>
+                <div>ver Placas</div>
+              </ion-button>
+            </ion-col>                  
+          </ion-row>  
+          <ion-row *ngIf="item.dataPlaca.descuento>0">
+            <ion-col style="background-color:beige; padding:1rem;">
+              <p class="ion-text-wrap"><b>Descuento:</b> {{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
+            </ion-col>
+          </ion-row>            
+        </ion-card>
+      </ion-col>
+
+
+      <ion-col *ngFor="let item of saldosMensuales | orderBy: 'fecha' : true" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+          <ion-card>
+            <ion-item class="cancelado">
+              <ion-avatar slot="start">
+                  <img *ngIf="item.dataPlaca.tipo_cliente=='menor'" src="assets/imgs/child-icon.png">
+                  <img *ngIf="item.dataPlaca.tipo_cliente=='adulto'" src="assets/imgs/icono_user_default.png">
+              </ion-avatar>
+              <h2>{{item.dataPlaca.nombre_cliente}}</h2>
+              <p>{{mostrarFecha(item.dataPlaca.fecha)}}</p>
+            </ion-item>
+            <ion-row>  
+              <ion-col class="ion-text-left">
+                <button (click)="callDoctor(item.dataPlaca.doctor)" fill="clear" size="small" color="primary">  
+                  <ion-icon slot="start" color="primary" name="call"></ion-icon>              
+                  <div style="text-transform:none;">Llamar doctor</div>
+                </button>
+              </ion-col>                                    
+              <ion-col class="ion-text-right">
+                <ion-button (click)="callCliente(item.dataPlaca.cliente)" *ngIf="item.dataPlaca.tipo_cliente=='adulto'" fill="clear" size="small" color="primary">
+                  <ion-icon slot="start" color="primary" name="call"></ion-icon>
+                  <div style="text-transform:none;">Llamar cliente</div>
+                </ion-button>
+                <ion-button (click)="mostrarTutores(item.dataPlaca.cliente)" *ngIf="item.dataPlaca.tipo_cliente=='menor'" fill="clear" size="small" color="primary">
+                  <ion-icon slot="start" color="primary" name="call"></ion-icon>
+                  <div style="text-transform:none;">Llamar padres</div>
+                </ion-button>
+              </ion-col>                  
+            </ion-row> 
+            <img *ngIf="item.dataPlaca.imagenes" (click)="mostrarPlacas(item.placa)" src="assets/imgs/radiografia.jpg"/>
+            <ion-card-content>
+              <p text-wrap><b>Doctor:</b> {{item.dataPlaca.nombre_doctor}} <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.dataPlaca.puntos_ganados}} pts.</span>  <span *ngIf="item.dataPlaca.puntos_usados>0" style="color:#f53d3d;">-{{item.dataPlaca.puntos_usados}} pts.</span></p>                
+              <p text-wrap><b>Placas:</b> {{item.dataPlaca.nombres_servicios}}</p>
+              <p text-wrap><b>Saldo:</b> {{item.dataPlaca.efectivo + item.dataPlaca.tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard" color="primary" (click)="openHistorial(item.placa)"></ion-icon></p>
+            </ion-card-content>    
+            <ion-row>  
+              <ion-col *ngIf="item.dataPlaca.duplicado">
+                <button fill="clear" size="small" color="dark">                
+                  <div>Duplicado</div>
+                </button>
+              </ion-col>   
+              <ion-col *ngIf="item.dataPlaca.monto_efectivo+item.dataPlaca.monto_tarjeta<item.dataPlaca.monto">
+                <ion-button fill="clear" size="small" color="danger">  
+                  <ion-icon slot="start" color="danger" name="cash"></ion-icon>              
+                  <div >{{item.dataPlaca.monto-item.dataPlaca.monto_efectivo-item.dataPlaca.monto_tarjeta | currency:'S/. '}}</div>
+                </ion-button>
+              </ion-col>                       
+              <ion-col *ngIf="item.dataPlaca.imagenes" right text-right>
+                <ion-button (click)="mostrarPlacas(item.placa)" fill="clear" size="small">
+                  <ion-icon slot="start" name="albums"></ion-icon>
+                  <div>ver Placas</div>
+                </ion-button>
+              </ion-col>                  
+            </ion-row>               
+            <ion-row *ngIf="item.dataPlaca.descuento>0">
+              <ion-col style="background-color:beige; padding:1rem;">
+                <p class="ion-text-wrap"><b>Descuento:</b> {{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
+              </ion-col>
+            </ion-row>     
+          </ion-card>
+      </ion-col>
+    </ion-row>       
+  </ion-grid>
+</ion-content>

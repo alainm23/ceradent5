@@ -1,0 +1,160 @@
+<ion-header>
+  <ion-toolbar color="white">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ especialidad?.nombre_categoria }}
+    </ion-title>
+
+    <ion-buttons slot="end" color="dark" (click)="goCarritoCompras ()">
+      <ion-button [disabled]="shopping_cart?.productos.length <= 0">
+        <ion-badge color="danger" *ngIf="shopping_cart?.productos.length > 0">
+          {{ shopping_cart?.productos.length }}
+        </ion-badge>
+        <ion-icon slot="icon-only" name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-bottom">
+  <ion-slides pager class="producto-slides">
+    <ion-slide>
+      <img [src]="getImage (item?.img)">
+    </ion-slide>
+    <ion-slide *ngFor="let item of item_detalle?.galeriafotos">
+      <img [src]="getImageGaleria (item.img)">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-grid *ngIf="is_loading === true" style="height: 100%; margin-bottom: 1rem">
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="is_loading === false" class="ion-no-padding ion-no-margin">
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-label>
+            <h2 class="ion-text-wrap title-font-size"><b>{{ item_detalle?.nombre }}</b></h2>
+            <h4 class="ion-text-wrap">{{ item_detalle?.descripcion }}</h4>
+
+            <h1 class="price-font-size ion-padding-top ion-text-center">
+              <b>{{ item_detalle?.precio_minimo | currency:'S/. ' }}</b>
+            </h1>
+            <h2 class="ion-text-center" *ngIf="(puntos_tope !== 0 || puntos_tope !== null) && rol === 'Doctor'">
+              {{ item_detalle?.precio_minimo - puntos_tope | currency:'S/. ' }} usando {{ puntos_tope }} PTS
+            </h2>
+            <p class="ion-text-center" >{{ item_detalle?.presentacion }}</p>
+          </ion-label>
+        </ion-item>
+
+
+        <ion-radio-group radio-group *ngIf="visible_op_01" [(ngModel)]="tipo_value" (ionChange)="varificarTipo ($event.detail.value)">
+          <ion-list-header>
+            <ion-label>Tipo</ion-label>
+          </ion-list-header>
+          
+          <ion-item *ngFor="let tipo of item_detalle?.tipos">
+            <ion-radio slot="start" color="dark" [value]="tipo"></ion-radio>
+            <ion-label>{{ tipo.nombre_tipo }}</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <ion-radio-group radio-group *ngIf="visible_op_02" [(ngModel)]="carac_value" (ionChange)="varificarCarac ($event.detail.value)">
+          <ion-list-header>
+            <ion-label>Caracteristicas</ion-label>
+          </ion-list-header>
+          
+          <ion-item *ngFor="let carac of caractetisticas">
+            <ion-radio slot="start" color="dark" [value]="carac"></ion-radio>
+            <ion-label>{{ carac.nombre_carac }}</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <ion-radio-group radio-group *ngIf="visible_op_03" [(ngModel)]="media_value" (ionChange)="varificarMedidas ($event.detail.value)">
+          <ion-list-header>
+            <ion-label>Medidas</ion-label>
+          </ion-list-header>
+          
+          <ion-item *ngFor="let media of medidas">
+            <ion-radio slot="start" color="dark" [value]="media"></ion-radio>
+            <ion-label>{{ media.nombre_medida }}</ion-label>
+          </ion-item>
+        </ion-radio-group>
+
+        <ion-item lines="none">
+          <ion-label>
+            <h2>Stock: {{ get_stock (stock) }}</h2>
+            <h3 class="color-red ion-text-wrap " *ngIf="stock <= 0">
+              Stock agotado, puede solicitar este producto a pedido con un tiempo de entrega de 2 a 5 dias hábiles.
+              Agrege la cantidad deseada a su carrito de compra.
+            </h3>
+          </ion-label>
+        </ion-item>
+        
+        <ion-list>
+          <ion-item (click)="ver_detalle_button ()">
+            <ion-icon slot="start" [name]="icon_arrow_1"></ion-icon>
+            <span>Detalle</span>
+          </ion-item>
+
+          <ion-item lines="none" *ngIf="ver_detalles">
+            <div class="ion-text-wrap" [innerHTML]="getDescriptionFormat (item_detalle?.detalle_extendido)"></div>
+          </ion-item>
+
+          <ion-item lines="none" (click)="ver_terminos_button ()">
+            <ion-icon slot="start" [name]="icon_arrow_2"></ion-icon>
+            <span>Terminos</span>
+          </ion-item>
+          
+          <ion-item class="ion-text-wrap" *ngIf="ver_terminos">
+            {{ item_detalle?.envios }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer *ngIf="is_loading === false">
+  <ion-toolbar>
+      <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%">
+        <ion-col size="12" class="ion-text-center">
+          <ion-button fill="clear" color="dark" class="button-precio ion-no-padding"> 
+            Cant.
+          </ion-button>
+              
+          <ion-button size="small" (click)="updateCant ('res')" class="count-button">
+            <ion-icon name="remove"></ion-icon>
+          </ion-button>
+            
+          <ion-button size="small" fill="clear" color="dark">
+            <b>{{ cantidad }}</b>
+          </ion-button>
+            
+          <ion-button size="small" (click)="updateCant ('sum')" class="count-button">
+            <ion-icon name="add"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+  </ion-toolbar>
+  <ion-toolbar class="col-precio ion-no-padding ion-no-margin">
+      <ion-row class="col-precio ion-no-padding ion-no-margin ion-align-items-center">
+        <ion-col size="10">
+          <div class="ion-text-center">
+            <h6 class="color-white ion-no-margin ion-no-padding">TOTAL: <b class="margin-left-1rem">{{ item_detalle?.precio_minimo * cantidad | currency:'S/. ' }}</b></h6>
+            <small class="color-white">{{ item_detalle?.presentacion }}</small>
+          </div>
+        </ion-col>
+      
+        <ion-col size="2" class="col-agregar ion-align-self-center ion-text-center " (click)="buy ()">
+          <img class="ion-text-center" src="assets/imgs/icono_carrito.png"/>
+        </ion-col>
+      </ion-row>
+  </ion-toolbar>
+</ion-footer>

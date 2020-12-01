@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">        
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Reservas
+    </ion-title>  
+    
+    <ion-buttons slot="secondary">
+      <ion-button (click)="registrar ()">
+        Registrar
+        <ion-icon slot="end" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of items" (click)="ver (item)">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/icono_user_default.png">
+      </ion-avatar>
+  
+      <ion-label>
+        <h2><b>Paciente: {{ item.cliente_nombres }}</b></h2>
+        <h4>DNI: {{ item.cliente_dni }}</h4>
+        <h4>Servicios: {{ item.servicios.length }}</h4>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
