@@ -102,7 +102,15 @@ const routes: Routes = [
   {
     path: 'range',
     loadChildren: () => import('./popovers/range/range.module').then( m => m.RangePageModule)
+  },  {
+    path: 'datos-paciente',
+    loadChildren: () => import('./datos-paciente/datos-paciente.module').then( m => m.DatosPacientePageModule)
   },
+  {
+    path: 'datos-orden',
+    loadChildren: () => import('./datos-orden/datos-orden.module').then( m => m.DatosOrdenPageModule)
+  },
+
 ];
 
 @NgModule({
