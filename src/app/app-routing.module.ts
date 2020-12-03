@@ -110,6 +110,10 @@ const routes: Routes = [
     path: 'datos-orden',
     loadChildren: () => import('./datos-orden/datos-orden.module').then( m => m.DatosOrdenPageModule)
   },
+  {
+    path: 'gracias',
+    loadChildren: () => import('./gracias/gracias.module').then( m => m.GraciasPageModule)
+  },
 
 ];
 
