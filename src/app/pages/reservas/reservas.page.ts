@@ -35,7 +35,8 @@ export class ReservasPage implements OnInit {
   }
 
   registrar () {
-    this.navCtrl.navigateForward (['agregar-editar-reserva', this.codigo, 'null']);
+    // this.navCtrl.navigateForward (['agregar-editar-reserva', this.codigo, 'null']);
+    this.navCtrl.navigateForward (['datos-paciente', this.codigo]);
   }
 
   ver (item: any) {

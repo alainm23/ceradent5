@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from 'src/app/services/database.service';
+const algoliasearch = require ('algoliasearch');
 
 @Component({
   selector: 'app-doctores',
@@ -13,33 +14,43 @@ export class DoctoresPage implements OnInit {
   listaDoctores:any;
   listaDoctores_bak:any;
 
+  client: any;
+  index: any;
   constructor(
     public navCtrl: NavController, 
     public database: DatabaseService,
     public loadingCtrl: LoadingController) {
   }
 
-  async ngOnInit(){
-    let loading = await this.loadingCtrl.create({
-      message: "Cargando..."            
-    })
+  async ngOnInit() {
+    this.client = algoliasearch ("S9Z0BUVW9R", "34d4989ee34f43acce877f2d15c61611");
+    this.index = this.client.initIndex ("Doctores");
+
+    // let loading = await this.loadingCtrl.create ({
+    //   message: "Cargando..."            
+    // })
     
-    loading.present().then(()=>{
-      this.subscription=this.database.getDoctores ().subscribe (data=>{    
-        loading.dismiss().then(()=>{
-          this.listaDoctores=data;
-          this.listaDoctores_bak=data; 
-        })     
-      }); 
-    })   
+    // loading.present().then(()=>{
+    //   this.subscription=this.database.getDoctores ().subscribe (data=>{    
+    //     loading.dismiss().then(()=>{
+    //       this.listaDoctores=data;
+    //       this.listaDoctores_bak=data; 
+    //     })     
+    //   }); 
+    // });
   }
 
-  onInput($event){
-    this.listaDoctores = this.listaDoctores_bak;
+  onInput ($event){
     let q = $event.target.value;
     if (q != "") {
-      this.listaDoctores = this.listaDoctores.filter ( item => {
-        return (item.apellidos.toLowerCase().indexOf (q.toLowerCase()) > -1) 
+      this.index
+      .search(q)
+      .then(({ hits }) => {
+        console.log (hits);
+        this.listaDoctores = hits;
+      })
+      .catch(err => {
+        console.log (err);
       });
     }   
   }

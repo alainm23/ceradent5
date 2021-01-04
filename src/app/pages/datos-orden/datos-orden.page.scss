@@ -180,9 +180,6 @@
                 {
                     width: 34px;
                     height: 34px;
-                    --background: #FFFFFF;
-                    --background-activated: #FDCC28;
-                    --color-activated: #FFFFFF;
                     --border-color: #707070;
                     --border-style: solid;
                     --border-width: 1px;
@@ -192,11 +189,6 @@
                     font-size: 13px;
                     --border-radius: 0px;
                     margin: 0px;
-                }
-                .btn-number:hover
-                {
-                    --background: #FDCC28;
-                    --color: #FFFFFF;
                 }
             }
             .div-btn-left

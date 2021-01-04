@@ -8,48 +8,55 @@
   <ion-card class="card-header">
     <h1 class="ion-text-center titulo-header">Datos del paciente</h1>
   </ion-card>
+
   <ion-card class="card-form">
-    <p class="titulos-campo">Datos personales</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit ()">
+      <p class="titulos-campo">Datos personales</p>
     <ion-item class="item-input" lines="none">
-      <ion-input placeholder="Nombre del paciente" class="input-form" type="text"></ion-input>
+      <ion-input placeholder="Nombre del paciente" formControlName="nombres" class="input-form" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item class="item-input" lines="none">
+      <ion-input placeholder="DNI" formControlName="dni" class="input-form" type="number"></ion-input>
     </ion-item>
     <div class="div-flex-campo">
-      <ion-item class="item-input item-rigth item-igual-fomr" lines="none">
+      <!-- <ion-item class="item-input item-rigth item-igual-fomr" lines="none">
         <ion-select placeholder="Documento" class="select-fomr">
-          <ion-select-option value="f">Female</ion-select-option>
-          <ion-select-option value="m">Male</ion-select-option>
+          <ion-select-option value="f">DNI</ion-select-option>
+          <ion-select-option value="m">CE</ion-select-option>
         </ion-select>
-      </ion-item>
-      <ion-item class="item-input item-left item-igual-fomr" lines="none">
+      </ion-item> -->
+      <!-- <ion-item class="item-input item-left item-igual-fomr" lines="none">
         <ion-input placeholder="Número" class="input-form" type="number"></ion-input>
-      </ion-item>
+      </ion-item> -->
     </div>
-    <ion-item class="item-input" lines="none">
+    <!-- <ion-item class="item-input" lines="none">
       <ion-select placeholder="Documento" class="select-fomr">
         <ion-select-option value="f">Female</ion-select-option>
         <ion-select-option value="m">Male</ion-select-option>
       </ion-select>
-    </ion-item>
-    <ion-item class="item-input" lines="none">
+    </ion-item> -->
+    <!-- <ion-item class="item-input" lines="none">
       <ion-datetime displayFormat="MM DD YY" placeholder="Fecha de nacimiento" mode="ios" class="input-datetime"></ion-datetime>
       <ion-icon name="calendar-outline" class="icon-calendario"></ion-icon>
-    </ion-item>
-    <div class="div-linea"></div>
-    <p class="titulos-campo">Datos de contacto del paciente</p>
-    <ion-item class="item-input" lines="none">
+    </ion-item> -->
+    <!-- <div class="div-linea"></div>
+    <p class="titulos-campo">Datos de contacto del paciente</p> -->
+    <!-- <ion-item class="item-input" lines="none">
       <ion-input placeholder="Numero de teléfono" class="input-form" type="number"></ion-input>
     </ion-item>
     <ion-item class="item-input" lines="none">
       <ion-input placeholder="Correo electrónico" class="input-form" type="email"></ion-input>
-    </ion-item>
-    <div class="div-linea"></div>
+    </ion-item> -->
+    <!-- <div class="div-linea"></div>
     <p class="titulos-campo">Referido por Dr(a):</p>
     <ion-item class="item-input" lines="none">
       <ion-input placeholder="Nombre" class="input-form" type="text"></ion-input>
     </ion-item>
     <ion-item class="item-input" lines="none">
       <ion-input placeholder="COP" class="input-form" type="number"></ion-input>
-    </ion-item>
-    <ion-button class="btn-form" mode="ios">Adelante</ion-button>
+    </ion-item> -->
+    <ion-button class="btn-form" type="submit" [disabled]="form.invalid" mode="ios">Adelante</ion-button>
+    </form>
   </ion-card>
 </ion-content>
