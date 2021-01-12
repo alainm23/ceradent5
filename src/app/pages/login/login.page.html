@@ -1,38 +1,41 @@
 <!-- Themes  register-flat-->
 <ion-content>
+  <img src="assets/imgs/grupo-817.png" width="100%" class="img-cabezera">
   <ion-grid class="ion-no-padding" *ngIf="database.apple_test === false">
-    <ion-row header align-items-start align-items-stretch>
-      <ion-col size="10" offset="1" size-md="6" offset-md="3">
-        <img logo src="assets/imgs/logo-cerdent.png">
+    <ion-row header align-items-start align-items-stretch class="ion-justify-content-center">
+      <ion-col size="10" size-sm="7">
+        <img logo src="assets/imgs/logo-cerdent.png" class="img-logo">
       </ion-col>
 
-      <ion-col size="10" offset="1" size-md="6" offset-md="3">
-        <form class="ion-padding" [formGroup]="phoneForm">
+      <ion-col size="10" size-sm="7">
+        <form class="ion-no-padding" [formGroup]="phoneForm">
           <ion-row align-items-start>
             <ion-col size="12">
-              <h1><strong>Bienvenido</strong>para ingresar identificate con tu numero de celular</h1>
+              <h1 class="tiutlo-h1"><strong>Bienvenido</strong></h1>
+              <h2 class="subtitulo">Para ingresar identificate con tu numero de celular</h2>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col size="12">
-              <ion-item>
-                <ion-label item-start>+51</ion-label>
-                <ion-input formControlName="phoneNumber" clearInput type="tel" placeholder="984567213"></ion-input>
+              <ion-item class="item-input" lines="none">
+                <ion-label item-start class="label-num">+51</ion-label>
+                <ion-input formControlName="phoneNumber" clearInput type="tel" placeholder="984567213" class="input-from"></ion-input>
               </ion-item>
+              <p class="ion-no-padding ion-no-margin link-numero" (click)="openExplicacion()">¿Porqué debo ingresar ni numero de celular?</p>
             </ion-col>
 
             <ion-col size="12">
               <ion-col size="12" class="ion-no-padding">
-                <ion-button expand="full" class="ion-no-margin" [disabled]="!phoneForm.valid" full text-uppercase (click)="login ()">Continuar</ion-button>
+                <ion-button class="btn-login" [disabled]="!phoneForm.valid" full text-uppercase (click)="login ()">Adelante</ion-button>
               </ion-col>
-              <div description text-center>
+              <!--<div description text-center>
                 <ion-row>
                   <ion-col size="12" class="ion-no-padding ion-no-margin">
                     <p class="ion-no-padding ion-no-margin"><a style="font-size:1.2rem;" (click)="openExplicacion()">¿Porqué debo ingresar ni numero de celular?</a></p>
                   </ion-col>
                 </ion-row>
-              </div>
+              </div>-->
             </ion-col>
           </ion-row>
         </form>

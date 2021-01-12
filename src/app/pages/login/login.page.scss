@@ -26,11 +26,21 @@ $settings-text-color-description: #242424;
 $settings-text-color-description-links: #687DFC;
 $settings-text-label-color: #FF0000;
 
+/* Formatos de letra */
+@font-face{
+  font-family: AvenirHeavy;
+  src : url('/assets/fonts/Avenir Heavy.ttf')
+} 
+@font-face{
+  font-family: AvenirBook;
+  src : url('/assets/fonts/Avenir Book.ttf')
+}
 /* Content
 ===============================*/
 ion-content {
   font-family: 'Montserrat', sans-serif;
   position: relative;
+  --background: #FAFAFA;
 
   .scroll-content {
     padding-bottom: 0 !important;
@@ -92,16 +102,7 @@ ion-content {
     ion-item {
       background-color: transparent !important;
 
-      ion-label {
-        // position: absolute;
-        // right: 0;
-        // bottom: 0;
-        // color: $settings-text-label-color !important;
-        // font-size: $settings-font-size-label;
-        // font-weight: $settings-font-weight-label;
-        // line-height: 17px;
-        // margin-right: 10px;
-      }
+      
 
       .item-inner {
         display: block !important;
@@ -188,17 +189,141 @@ ion-content {
     }
   }
 }
+.img-logo
+{
+  margin-top: -45px;
+  width: 100%;
+}
+.tiutlo-h1
+{
+  color: #000000;
+  font-family: AvenirHeavy;
+  font-size: 25px;
+  margin-top: 40px;
+}
+.subtitulo
+{
+  color: #000000;
+  font-size: 22px;
+  font-family: AvenirBook;
+  margin-bottom: 0px;
+}
+.item-input
+{
+  --background: #ffffff;
+  --border-color: #FFC4CE;
+  --border-style: solid;
+  --border-width: 1px;
+  --border-radius: 11px;
+  margin-top: 23px;
+  --min-height: 55px;
+  border-radius: 11px;
+  box-shadow: 0px 15px 29px #7176A840;
+}
+.item-input:hover
+{
+  --border-color: #eb445a;
+  border-color: #eb445a;
+}
+.img-cabezera
+{
+  height: 140px;
+}
+.link-numero
+{
+  color: #707070;
+  font-family: AvenirBook;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 12px;
+}
+.label-num
+{
+  --color: #707070;
+  font-family: AvenirBook;
+}
+.input-from
+{
+  --color: #707070;
+  --placeholder-color: #707070;
+  font-family: AvenirBook;
+}
+.btn-login
+{
+  --background: #7866DD;
+  --color: #FFFFFF;
+  --border-color: #DDDDDD;
+  --border-radius: 11px;
+  --border-style: solid;
+  --border-width: 1px;
+  --box-shadow: 0px 3px 6px #00000029;
+  border-radius: 11px;
+  height: 45px;
+  font-family: AvenirHeavy;
+  font-size: 16px;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 80px;
+}
 /* Responsive for tablet
 ===============================*/
+@media (min-width: 411px)
+{
+  .tiutlo-h1
+  {
+    margin-top: 70px;
+  }
+  .btn-login
+  {
+    margin-top: 110px;
+  }
+}
+
+@media (min-width: 640px)
+{
+  .img-logo
+  {
+    margin-top: -50px;
+  }
+  .btn-login
+  {
+    margin-bottom: 50px;
+  }
+}
+
+@media (min-width: 768px)
+{
+  .btn-login
+  {
+    height: 60px;
+  }
+  .item-input
+  {
+    --min-height: 65px;
+  }
+  .img-cabezera
+  {
+    height: 250px;
+  }
+}
+
+@media (min-width: 1024px)
+{
+  .img-cabezera
+  {
+    height: 430px;
+  }
+  .img-logo
+  {
+    margin-top: -90px;
+  }
+}
+
+
 @media (min-width: 576px) and (orientation: portrait) {
   ion-grid {
     position: relative;
   }
-    [logo] {
-      position: absolute;
-      bottom: -50px;
-      left: 20px;
-    }
     h1 {
       margin-top: 50px !important;
     }
@@ -211,11 +336,6 @@ ion-content {
   ion-grid {
     position: relative;
   }
-    [logo] {
-      position: absolute;
-      bottom: -50px;
-      left: 20px;
-    }
     h1 {
       margin-top: 50px !important;
     }
