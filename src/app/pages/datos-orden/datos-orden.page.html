@@ -1,15 +1,17 @@
-<!--<ion-header>
-  <ion-toolbar>
-    <ion-title>datos-paciente</ion-title>
+<ion-header>
+  <ion-toolbar class="menucabezera"> 
+    <ion-button class="btn-lef-header">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>   
+    <ion-buttons slot="end" class="btn-menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>-->
+</ion-header>
 
 <ion-content>
+  <h1 class="ion-text-center titulo">Mis pacientes</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit ()">
-    <ion-card class="card-header">
-      <h1 class="ion-text-center titulo-header">Datos del paciente</h1>
-    </ion-card>
-  
     <ion-list class="list-padding-left-right">
       <ion-card class="car-acordion">
         <ion-card-header (click)="ver_item (1)" class="acitvo">
@@ -19,17 +21,16 @@
         </ion-card-header>
       
         <ion-card-content *ngIf="item_01">
-          <h6 class="h6-titulo">Cone beam 3d</h6>
-          <p class="p-lugar">(Solo sede Wanchaq)</p>
+          <h6 class="h6-titulo">Cone beam 3d (Solo sede Wanchaq)</h6>
           <ion-list class="list-chec">
             <ion-radio-group formControlName="tomografia_volumetrica_tipo">        
-              <ion-item>
-                <ion-label>Sin análisis (solo CD)</ion-label>
+              <ion-item class="item-chebox">
+                <ion-label class="label-chec ion-text-wrap">Sin análisis (solo CD)</ion-label>
                 <ion-radio slot="start" value="sin_analisis"></ion-radio>
               </ion-item>
           
-              <ion-item>
-                <ion-label>Con análisis</ion-label>
+              <ion-item class="item-chebox">
+                <ion-label class="label-chec ion-text-wrap">Con análisis</ion-label>
                 <ion-radio slot="start" value="con_analisis"></ion-radio>
               </ion-item>
             </ion-radio-group>
@@ -194,13 +195,13 @@
 
           <ion-list class="list-chec">
             <ion-radio-group formControlName="radio_intra_tipo">        
-              <ion-item>
-                <ion-label>Bitewing</ion-label>
+              <ion-item class="item-chebox">
+                <ion-label class="label-chec ion-text-wrap">Bitewing</ion-label>
                 <ion-radio slot="start" value="bitewing"></ion-radio>
               </ion-item>
           
-              <ion-item>
-                <ion-label>Oclusal</ion-label>
+              <ion-item class="item-chebox">
+                <ion-label class="label-chec ion-text-wrap">Oclusal</ion-label>
                 <ion-radio slot="start" value="oclusal"></ion-radio>
               </ion-item>
             </ion-radio-group>
@@ -394,28 +395,28 @@
             </ion-item>
 
             <ion-radio-group *ngIf="form.value.vto_de_ricketts === true" formControlName="vto_de_ricketts_anios">        
-              <ion-item>
-                <ion-label>1 años</ion-label>
+              <ion-item class="item-chebox item-padding-radio">
+                <ion-label class="label-chec ion-text-wrap">1 años</ion-label>
                 <ion-radio slot="start" value="1"></ion-radio>
               </ion-item>
           
-              <ion-item>
-                <ion-label>2 años</ion-label>
+              <ion-item class="item-chebox item-padding-radio">
+                <ion-label class="label-chec ion-text-wrap">2 años</ion-label>
                 <ion-radio slot="start" value="2"></ion-radio>
               </ion-item>
 
-              <ion-item>
-                <ion-label>3 años</ion-label>
+              <ion-item class="item-chebox item-padding-radio">
+                <ion-label class="label-chec ion-text-wrap">3 años</ion-label>
                 <ion-radio slot="start" value="3"></ion-radio>
               </ion-item>
 
-              <ion-item>
-                <ion-label>4 años</ion-label>
+              <ion-item class="item-chebox item-padding-radio">
+                <ion-label class="label-chec ion-text-wrap">4 años</ion-label>
                 <ion-radio slot="start" value="4"></ion-radio>
               </ion-item>
 
-              <ion-item>
-                <ion-label>5 años</ion-label>
+              <ion-item class="item-chebox item-padding-radio">
+                <ion-label class="label-chec ion-text-wrap">5 años</ion-label>
                 <ion-radio slot="start" value="5"></ion-radio>
               </ion-item>
             </ion-radio-group>
