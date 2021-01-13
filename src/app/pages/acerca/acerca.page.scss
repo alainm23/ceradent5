@@ -1,0 +1,192 @@
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/fonts/Avenir Heavy.ttf')
+}   
+@font-face{
+    font-family: AvenirBlack;
+    src : url('/assets/fonts/Avenir-Black.otf')
+} 
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/fonts/Avenir Book.ttf')
+}
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/fonts/Avenir-Medium.ttf')
+}
+ion-header
+{
+    height: 74px;
+    .menucabezera
+    {
+        --background: #9F2C3F;
+        border-radius: 0px 0px 20px 20px;
+        height: 88px;
+        --border-color: #707070;
+        --border-style: solid;
+        --border-width: 1px;
+        display: flex;
+        align-items: center;
+        --padding-start: 35px;
+        --padding-end: 35px;
+        .btn-lef-header
+        {
+            --background: transparent;
+            --box-shadow: none;
+            margin: 0px;
+            --padding-start: 0px;
+            --padding-end: 0px;
+        }
+        .btn-menu
+        {
+            margin-right: 0px;
+            ion-menu-button
+            {
+                color: transparent;
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+            ion-menu-button::before
+            {
+                content: url('/assets/imgs/grupo-724.png');
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+                right: 0;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+ion-content
+{
+    --padding-top: 30px;
+    --background: #FAFAFA;
+    position: relative;
+    --padding-start: 30px;
+    --padding-end: 30px;
+    --padding-bottom: 55px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.titulo
+{
+    color: #000000;
+    font-family: AvenirHeavy;
+    font-size: 25px;
+    margin-bottom: 33px;
+}
+.p-descripcion
+{
+    color: #4D4D4D;
+    font-family: AvenirBook;
+    font-size: 16px;
+    margin: 0px;
+}
+.p-top
+{
+    margin-top: 18px;
+}
+.col-padding-cero-left
+{
+    padding-left: 0px;
+    padding-right: 20px;
+}
+.col-padding-cero-right
+{
+    padding-right: 0px;
+    padding-left: 20px;
+}
+.p-medium
+{
+    font-family: AvenirMedium !important;
+}
+.div-top-dis
+{
+    margin-top: 13px;
+}
+.p-bottom
+{
+    margin-bottom: 13px;
+}
+.logopro
+{
+    width: 65px;
+}
+.border-logo
+{
+    border-right: 1px solid #C3C3C3;
+}
+.p-top-footer
+{
+    margin-top: 45px;
+}
+@media (min-width: 411px)
+{
+    ion-content
+    {
+        --padding-start: 40px;
+        --padding-end: 40px;
+    }
+}
+@media (min-width: 480px)
+{
+    ion-content
+    {
+        --padding-start: 60px;
+        --padding-end: 60px;
+    }
+    ion-header
+    {
+        .menucabezera
+        {
+            --padding-start: 45px;
+            --oadding-end: 45px;
+        }
+    }
+}
+@media (min-width: 480px)
+{
+    ion-card
+    {
+        width: 49%;
+    }
+}
+@media (min-width: 768px)
+{
+    ion-header
+    {
+        height: 95px;
+        .menucabezera
+        {
+            --padding-start: 70px;
+            --oadding-end: 70px;
+            height: 105px;
+        }
+    }
+    ion-content
+    {
+        --padding-top: 50px;
+    }
+}
+@media (min-width: 1024px)
+{
+    ion-header
+    {
+        height: 110px;
+        .menucabezera
+        {
+            --padding-start: 120px;
+            --padding-end: 120px;
+            height: 120px;
+        }
+    }
+    ion-content
+    {   --padding-start: 180px;
+     
+        --padding-end: 180px;
+        --padding-top: 80px;
+    }
+}

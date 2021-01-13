@@ -1,3 +1,4 @@
+var require: any;
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';

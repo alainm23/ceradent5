@@ -1,6 +1,262 @@
-.cancelado{
-    background-color:#efefef;
+@font-face{
+    font-family: AvenirHeavy;
+    src : url('/assets/fonts/Avenir Heavy.ttf')
+}   
+@font-face{
+    font-family: AvenirBlack;
+    src : url('/assets/fonts/Avenir-Black.otf')
+} 
+@font-face{
+    font-family: AvenirBook;
+    src : url('/assets/fonts/Avenir Book.ttf')
 }
-.no-cancelado{
-    background-color:#ffdadd;
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/fonts/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/fonts/avenirltstd-light.otf')
+}
+ion-header
+{
+    height: 74px;
+    .menucabezera
+    {
+        --background: #9F2C3F;
+        border-radius: 0px 0px 20px 20px;
+        height: 88px;
+        --border-color: #707070;
+        --border-style: solid;
+        --border-width: 1px;
+        display: flex;
+        align-items: center;
+        --padding-start: 35px;
+        --padding-end: 35px;
+        .btn-lef-header
+        {
+            --background: transparent;
+            --box-shadow: none;
+            margin: 0px;
+            --padding-start: 0px;
+            --padding-end: 0px;
+        }
+        .btn-menu
+        {
+            margin-right: 0px;
+            ion-menu-button
+            {
+                color: transparent;
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+            ion-menu-button::before
+            {
+                content: url('/assets/imgs/grupo-724.png');
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+                right: 0;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+ion-content
+{
+    --padding-top: 30px;
+    --background: #FAFAFA;
+    position: relative;
+    --padding-start: 30px;
+    --padding-end: 30px;
+    --padding-bottom: 55px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.titulo
+{
+    color: #000000;
+    font-family: AvenirHeavy;
+    font-size: 25px;
+    margin-bottom: 14px;
+}
+.card-precio
+{
+    margin: 0px;
+    border: 1px solid #FFC4CE;
+    border-radius: 6px;
+    --background: #Ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 15px 29px #7176A840;
+    height: 60px;
+    .p-precio-uno
+    {
+        color: #9F2C3F;
+        margin: 0px;
+        font-family: Avenirlight;
+        font-size: 22px;
+    }
+}
+.div-tarje-efectivo
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    .p-light-tarjeta-efectivo
+    {
+        color: #9F2C3F;
+        font-family: Avenirlight;
+        margin: 0px;
+        font-size: 17px;
+    }
+}
+.carr-datos
+{
+    margin: 0px;
+    border: 1px solid #FFC4CE;
+    border-radius: 6px;
+    --background: #Ffffff;
+    box-shadow: 0px 15px 29px #7176A840;
+    padding: 10px 20px;
+    width: 100%;
+    margin-bottom: 6px;
+    ion-item
+    {
+        border-bottom: 1px solid #E3E3E3;
+        --padding-start: 0px;
+        --inner-padding-end: 0px;
+        --padding-top: 0px;
+        --padding-bottom: 6px;
+        ion-avatar
+        {
+            --border-radius: 50%;
+            width: 41px;
+            height: 41px;
+            margin: 0px;
+            margin-right: 12px;
+        }
+        .lbel-nombre
+        {
+            color: #9F2C3F;
+            font-family: Avenirlight;
+            font-size: 20px;
+        }
+    }
+    .p-medium
+    {
+        color: #4D4D4D;
+        font-family: AvenirMedium;
+        margin: 0px;
+        font-size: 16px;
+    }
+    .p-descripcion
+    {
+        color: #4D4D4D;
+        font-family: AvenirBook;
+        font-size: 15px;
+        margin: 0px;
+        margin-top: 3px;
+    }
+    .col-cero-padding-top
+    {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .margin-top-grid
+    {
+        margin-top: 8px;
+    }
+    .btn-card
+    {
+        --background: #9F2C3F;
+        --border-color: #FFC4CE;
+        --border-radius: 6px;
+        --border-style: solid;
+        --border-width: 1px;
+        margin: 0px;
+        font-family: AvenirHeavy;
+        height: 42px;
+        width: 95%;
+    }
+    .grid-top-margin
+    {
+        margin-top: 8px;
+    }
+}
+.div-card-datos
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 21px;
+    justify-content: space-between;
+}
+@media (min-width: 411px)
+{
+    ion-content
+    {
+        --padding-start: 40px;
+        --padding-end: 40px;
+    }
+}
+@media (min-width: 480px)
+{
+    ion-content
+    {
+        --padding-start: 40px;
+        --padding-end: 40px;
+    }
+    ion-header
+    {
+        .menucabezera
+        {
+            --padding-start: 45px;
+            --oadding-end: 45px;
+        }
+    }
+}
+@media (min-width: 768px)
+{
+    ion-header
+    {
+        height: 95px;
+        .menucabezera
+        {
+            --padding-start: 70px;
+            --oadding-end: 70px;
+            height: 105px;
+        }
+    }
+    ion-content
+    {
+        --padding-top: 50px;
+        --padding-start: 80px;
+        --padding-end: 80px;
+    }
+    .carr-datos
+    {
+        width: 49.5%;
+    }
+}
+@media (min-width: 1024px)
+{
+    ion-header
+    {
+        height: 110px;
+        .menucabezera
+        {
+            --padding-start: 120px;
+            --padding-end: 120px;
+            height: 120px;
+        }
+    }
+    ion-content
+    {  
+        --padding-start: 180px;
+        --padding-end: 180px;
+        --padding-top: 80px;
+    }
 }

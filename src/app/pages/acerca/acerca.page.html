@@ -1,16 +1,65 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+  <ion-toolbar class="menucabezera"> 
+    <ion-button class="btn-lef-header">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>   
+    <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    
-    <ion-title>Acerca de</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <ion-grid>
+  <h1 class="ion-text-center titulo">Acerca de la app</h1>
+  <p class="p-descripcion">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+  <p class="p-descripcion p-top p-bottom"><b>Datos de la app:</b></p>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="4" class="col-padding-cero-left">
+        <p class="p-descripcion">Version:</p>
+        <p class="p-descripcion">V.3.0</p>
+      </ion-col>
+      <ion-col size="8" class="col-padding-cero-right">
+        <div>
+          <p class="p-descripcion p-medium">Última actualización</p>
+          <p class="p-descripcion">Enero 2021</p>
+        </div>
+        <div class="div-top-dis">
+          <p class="p-descripcion p-medium">Disponibilidad:</p>
+          <p class="p-descripcion">Android Playstore (min SKD 19) iOS AppStore</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <p class="p-descripcion p-top p-bottom"><b>Desarrollado por:</b></p>
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="4" class="col-padding-cero-left border-logo">
+        <img src="assets/imgs/logopro.png" class="logopro">
+      </ion-col>
+      <ion-col size="8" class="col-padding-cero-right">
+        <div>
+          <p class="p-descripcion p-medium">Empresa:</p>
+          <p class="p-descripcion">PuntoPro Inversiones SRL</p>
+        </div>
+        <div class="div-top-dis">
+          <p class="p-descripcion p-medium">Numeros de contacto:</p>
+          <p class="p-descripcion">996280066 / 984780642</p>
+        </div>
+        <div class="div-top-dis">
+          <p class="p-descripcion p-medium">Correos:</p>
+          <p class="p-descripcion">eyal@puntopro.pe<br> juancarlos@puntopro.pe</p>
+        </div>
+        <div class="div-top-dis">
+          <p class="p-descripcion p-medium">Direccion:</p>
+          <p class="p-descripcion">Prog. Av. de los Inkas 1702, Sta Beatriz, Wanchaq, Cusco</p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <p class="p-descripcion ion-text-center p-top-footer">© Ceradent 2020.Todos lis derechos reservados.</p>
+  <!--<ion-grid>
     <ion-row>              
       <ion-col center text-center col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>
         <img style="margin-top:2rem;" src="assets/imgs/logo_puntopro.png" width="30%">
@@ -33,19 +82,19 @@
           </ion-col>
         </ion-row>
       </ion-col>
-      <!--<ion-col style="padding-left:2rem; padding-right:2rem;" center col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 offset-lg-3 offset-xl-3 offset-md-2>        
+      <ion-col style="padding-left:2rem; padding-right:2rem;" center col-12 col-sm-12 col-md-8 col-lg-6 col-xl-6 offset-lg-3 offset-xl-3 offset-md-2>        
         <p ion-text style="font-size:1.1rem;">Si tienes algun proyecto, negocio, una idea o simplemente tienes dudas, visitanos o contactate con nosotros, te brindaremos las respuestas, estrategias y herramientas que necesitas y lo mejor de todo es que la consulta es GRATIS :)</p>        
-      </ion-col>-->
+      </ion-col>
 
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 </ion-content>
 
-<ion-footer no-border style="border-top:solid 1px #CCCCCC">
+<!--<ion-footer no-border style="border-top:solid 1px #CCCCCC">
   <ion-toolbar transparent text-center>
     <p>&copy; 2018 Ceradent<br>
     Todos los derechos reservados</p>
     <p>Desarrollado por<br>
     &copy; PuntoPro SRL</p>
   </ion-toolbar>
-</ion-footer>
+</ion-footer>-->

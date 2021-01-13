@@ -18,6 +18,63 @@
     font-family: helveticaneueregular;
     src : url('/assets/fonts/helveticaneue-regular.ttf')
 }
+ion-header
+{
+    height: 74px;
+    .menucabezera
+    {
+        --background: #9F2C3F;
+        border-radius: 0px 0px 20px 20px;
+        height: 88px;
+        --border-color: #707070;
+        --border-style: solid;
+        --border-width: 1px;
+        display: flex;
+        align-items: center;
+        --padding-start: 35px;
+        --padding-end: 35px;
+        .btn-lef-header
+        {
+            --background: transparent;
+            --box-shadow: none;
+            margin: 0px;
+            --padding-start: 0px;
+            --padding-end: 0px;
+        }
+        .btn-menu
+        {
+            margin-right: 0px;
+            ion-menu-button
+            {
+                color: transparent;
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+            ion-menu-button::before
+            {
+                content: url('/assets/imgs/grupo-724.png');
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+                right: 0;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+ion-content
+{
+    --padding-top: 30px;
+}
+.titulo
+{
+    color: #000000;
+    font-family: AvenirHeavy;
+    font-size: 25px;
+    margin-bottom: 14px;
+}
 .card-header
 {
     width: 100%;
@@ -59,25 +116,52 @@
     border: 0px;
     ion-card-header
     {
-        background-color: #9F2C3F;
+        background-color: #FFFFFF;
+        border: 1px solid #FFC4CE;
         border-radius: 11px;
         position: relative;
-        padding-right: 20px;
+        padding-right: 35px;
         margin-bottom: 10px;
         ion-card-title
         {
-            color: #FFFFFF;
+            color: #9F2C3F;
             font-size: 17px;
             font-family: AvenirMedium;
         }
         .icon-rigth
         {
-            color: #FFFFFF;
+            color: #000000;
             position: absolute;
-            right: 4px;
+            right: 20px;
             top: 16px;
             z-index: 2;
             font-size: 20px;
+        }
+        .icon-close
+        {
+            color: #ffffff;
+            position: absolute;
+            right: 20px;
+            top: 16px;
+            z-index: 2;
+            font-size: 20px;
+
+        }
+        .desactivo
+        {
+            display: none;
+        }
+        .activo
+        {
+            display: block;
+        }
+    }
+    .acitvo
+    {
+        background-color: #9F2C3F !important;
+        ion-card-title
+        {
+            color: #FFFFFF !important;
         }
     }
     .conten-display-none
@@ -91,8 +175,8 @@
         .h6-titulo
         {
             color: #707070;
-            font-family: AvenirMedium;
-            font-size: 19px;
+            font-family: AvenirBook;
+            font-size: 17px;
             text-align: center;
         }
         .p-lugar
@@ -151,6 +235,17 @@
                 --border-radius: 5px;
                 --size: 23px;
             }
+            ion-radio
+            {
+                margin-left: 0px;
+                margin-right: 0px;
+                --color-checked: #fdcc28;
+            }
+        }
+        .item-padding-radio
+        {
+            --padding-start: 20px !important;
+            --inner-padding-end: 20px !important;
         }
         .div-datos
         {
@@ -284,6 +379,17 @@
         }
     }
 }
+@media (min-width: 480px)
+{
+    ion-header
+    {
+        .menucabezera
+        {
+            --padding-start: 45px;
+            --oadding-end: 45px;
+        }
+    }
+}
 @media (min-width: 640px)
 {
     .list-padding-left-right
@@ -313,6 +419,20 @@
         padding-right: 215px;
         margin-top: 50px;
     }
+    ion-header
+    {
+        height: 95px;
+        .menucabezera
+        {
+            --padding-start: 70px;
+            --oadding-end: 70px;
+            height: 105px;
+        }
+    }
+    ion-content
+    {
+        --padding-top: 50px;
+    }
 }
 @media (min-width: 1024px)
 {
@@ -321,5 +441,19 @@
         padding-left: 345px;
         padding-right: 345px;
         margin-top: 100px;
+    }
+    ion-header
+    {
+        height: 110px;
+        .menucabezera
+        {
+            --padding-start: 120px;
+            --padding-end: 120px;
+            height: 120px;
+        }
+    }
+    ion-content
+    {
+        --padding-top: 80px; 
     }
 }
