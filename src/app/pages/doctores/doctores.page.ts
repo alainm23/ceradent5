@@ -1,8 +1,9 @@
-var require: any;
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { DatabaseService } from 'src/app/services/database.service';
+import { DatabaseService } from '../../services/database.service';
+
+declare var require: any;
 const algoliasearch = require ('algoliasearch');
 
 @Component({

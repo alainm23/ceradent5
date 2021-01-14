@@ -1,52 +1,44 @@
 <ion-header>
-  <!--<ion-toolbar color="primary">        
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>
-      Ventas {{montoVendido + montoSaldos | currency:'S/. '}}
-    </ion-title>      
-  </ion-toolbar>
-  <ion-toolbar color="primary">
-    <ion-row>
-      <ion-col class="ion-text-center" style="color:#FFF;">
-          Tarjeta: {{montoTarjetaVendido + montoTarjetaSaldo | currency:'S/. '}}
-      </ion-col>
-      
-      <ion-col class="ion-text-center" style="color:#FFF;">
-          Efectivo: {{montoEfectivoVendido + montoEfectivoSaldo | currency:'S/. '}}
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>-->
-
   <ion-toolbar class="menucabezera"> 
-    <ion-button class="btn-lef-header">
+    <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>   
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Ventas 22.12.20</h1>
+  <h1 class="ion-text-center titulo">Ventas</h1>
+  <ion-item>            
+    <ion-datetime displayFormat="MMMM DD, del YYYY" [(ngModel)]="fechaActual" (ionChange)="onSelectDate ()"
+    monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"     
+    monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Agos, Sep, Oct, Nov, Dic"
+    dayNames="domingo, lunes, martes, miercoles, jueves, viernes, sabado"
+    dayShortNames="dom, lun, mar, mie, jue, vie, sab"
+    cancelText="Cancelar" doneText="Listo"></ion-datetime>
+  </ion-item>
+  <ion-item>            
+    <ion-select interface="popover" style="width:100%; max-width:100%;" [(ngModel)]="sucursal" (ionChange)="onSelectSucursal ()">
+      <ion-select-option *ngFor="let item of listaSucursales | async" [value]="item.id">{{item.data.nombre}}</ion-select-option>                                
+    </ion-select>
+  </ion-item>
+  <br>
   <ion-card class="card-precio">
-    <p class="p-precio-uno">Total: S/.370.00</p>
+    <p class="p-precio-uno">Total: {{ montoVendido + montoSaldos | currency:'S/. ' }}</p>
   </ion-card>
   <div class="div-tarje-efectivo">
-    <p class="p-light-tarjeta-efectivo">Tarjeta: S/.0.00</p>
-    <p class="p-light-tarjeta-efectivo">Efectivo: S/.370.00</p>
+    <p class="p-light-tarjeta-efectivo">Tarjeta: {{ montoTarjetaVendido + montoTarjetaSaldo | currency:'S/. ' }}</p>
+    <p class="p-light-tarjeta-efectivo">Efectivo: {{ montoEfectivoVendido + montoEfectivoSaldo | currency:'S/. ' }}</p>
   </div>
   <div class="div-card-datos">
-    <ion-card class="carr-datos">
+    <ion-card *ngFor="let item of ventasMensuales | orderBy: 'fecha' : true" class="carr-datos">
       <ion-item lines="none">
         <ion-avatar slot="start">
           <img src="assets/imgs/grupo-816.png">
         </ion-avatar>
-        <ion-label class="lbel-nombre">Mayra Garcia Perez</ion-label>
+        <ion-label class="lbel-nombre">{{ item.dataPlaca.nombre_cliente }}</ion-label>
       </ion-item>
       <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
         <ion-row>
@@ -56,7 +48,7 @@
                 <p class="p-medium">Doctor:</p>
               </ion-col>
               <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">Ivett Pacheco Alvarez</p>
+                <p class="p-descripcion">{{item.dataPlaca.nombre_doctor}} <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.dataPlaca.puntos_ganados}} pts.</span>  <span *ngIf="item.dataPlaca.puntos_usados>0" style="color:#f53d3d;">-{{item.dataPlaca.puntos_usados}} pts.</span></p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -66,7 +58,7 @@
                 <p class="p-medium">Placas:</p>
               </ion-col>
               <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">(1) RX Periapical Adulto</p>
+                <p class="p-descripcion">{{item.dataPlaca.nombres_servicios}}</p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -76,7 +68,7 @@
                 <p class="p-medium">Monto:</p>
               </ion-col>
               <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">S/.20.00</p>
+                <p class="p-descripcion">{{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" color="primary" (click)="openHistorial(item.data.placa)"></ion-icon></p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -84,179 +76,44 @@
       </ion-grid>
       <ion-grid class="ion-no-padding grid-top-margin">
         <ion-row class="ion-align-items-center">
-          <ion-col size="2" class="ion-text-center">
+          <!-- <ion-col size="2" class="ion-text-center">
             <img src="assets/imgs/icontelefono.png">
+          </ion-col> -->
+          <ion-col size="6" class="ion-text-center">
+            <ion-button class="btn-card">
+              <ion-icon slot="start" name="call"></ion-icon>
+              Doctor
+            </ion-button>
           </ion-col>
-          <ion-col size="5" class="ion-text-center">
-            <ion-button class="btn-card">Doctor</ion-button>
-          </ion-col>
-          <ion-col size="5" class="ion-text-end">
-            <ion-button class="btn-card">Paciente</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    <ion-card class="carr-datos">
-      <ion-item lines="none">
-        <ion-avatar slot="start">
-          <img src="assets/imgs/grupo-816.png">
-        </ion-avatar>
-        <ion-label class="lbel-nombre">Mayra Garcia Perez</ion-label>
-      </ion-item>
-      <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
-        <ion-row>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Doctor:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">Ivett Pacheco Alvarez</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Placas:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">(1) RX Periapical Adulto</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Monto:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
+          <ion-col size="6" class="ion-text-end">
+            <ion-button class="btn-card">
+              <ion-icon slot="start" name="call"></ion-icon>
+              Paciente
+            </ion-button>
           </ion-col>
         </ion-row>
-      </ion-grid>
-      <ion-grid class="ion-no-padding grid-top-margin">
-        <ion-row class="ion-align-items-center">
-          <ion-col size="2" class="ion-text-center">
-            <img src="assets/imgs/icontelefono.png">
-          </ion-col>
-          <ion-col size="5" class="ion-text-center">
-            <ion-button class="btn-card">Doctor</ion-button>
-          </ion-col>
-          <ion-col size="5" class="ion-text-end">
-            <ion-button class="btn-card">Paciente</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    <ion-card class="carr-datos">
-      <ion-item lines="none">
-        <ion-avatar slot="start">
-          <img src="assets/imgs/grupo-816.png">
-        </ion-avatar>
-        <ion-label class="lbel-nombre">Mayra Garcia Perez</ion-label>
-      </ion-item>
-      <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
-        <ion-row>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Doctor:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">Ivett Pacheco Alvarez</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Placas:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">(1) RX Periapical Adulto</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Monto:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="ion-no-padding grid-top-margin">
-        <ion-row class="ion-align-items-center">
-          <ion-col size="2" class="ion-text-center">
-            <img src="assets/imgs/icontelefono.png">
-          </ion-col>
-          <ion-col size="5" class="ion-text-center">
-            <ion-button class="btn-card">Doctor</ion-button>
-          </ion-col>
-          <ion-col size="5" class="ion-text-end">
-            <ion-button class="btn-card">Paciente</ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    <ion-card class="carr-datos">
-      <ion-item lines="none">
-        <ion-avatar slot="start">
-          <img src="assets/imgs/grupo-816.png">
-        </ion-avatar>
-        <ion-label class="lbel-nombre">Mayra Garcia Perez</ion-label>
-      </ion-item>
-      <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
-        <ion-row>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Doctor:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">Ivett Pacheco Alvarez</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Placas:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">(1) RX Periapical Adulto</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12" class="ion-no-padding">
-            <ion-row>
-              <ion-col size="3" class="ion-no-padding">
-                <p class="p-medium">Monto:</p>
-              </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid class="ion-no-padding grid-top-margin">
-        <ion-row class="ion-align-items-center">
-          <ion-col size="2" class="ion-text-center">
-            <img src="assets/imgs/icontelefono.png">
-          </ion-col>
-          <ion-col size="5" class="ion-text-center">
-            <ion-button class="btn-card">Doctor</ion-button>
-          </ion-col>
-          <ion-col size="5" class="ion-text-end">
-            <ion-button class="btn-card">Paciente</ion-button>
+        
+        <ion-row>  
+          <ion-col *ngIf="item.dataPlaca.duplicado">
+            <ion-button fill="clear" size="small" color="dark">                
+              <div>Duplicado</div>
+            </ion-button>
+          </ion-col>   
+          <ion-col *ngIf="item.dataPlaca.monto_efectivo+item.dataPlaca.monto_tarjeta<item.dataPlaca.monto">
+            <ion-button fill="clear" size="small" color="danger">                                 
+              <div style="text-transform:none;">Debe {{item.dataPlaca.monto-item.dataPlaca.monto_efectivo-item.dataPlaca.monto_tarjeta | currency:'S/. '}}</div>
+            </ion-button>
+          </ion-col>                       
+          <ion-col *ngIf="item.dataPlaca.imagenes" class="ion-text-right">
+            <ion-button (click)="mostrarPlacas(item.data.placa)" fill="clear" size="small">
+              <ion-icon slot="start" name="albums"></ion-icon>
+              <div>ver Placas</div>
+            </ion-button>
+          </ion-col>                  
+        </ion-row>  
+        <ion-row *ngIf="item.dataPlaca.descuento>0">
+          <ion-col style="background-color:beige; padding:1rem;">
+            <p class="ion-text-wrap"><b>Descuento:</b> {{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -266,21 +123,10 @@
   <ion-grid>
     <ion-row>        
       <ion-col size="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
-        <ion-item>            
-          <ion-datetime displayFormat="MMMM DD, del YYYY" [(ngModel)]="fechaActual" (ionChange)="onSelectDate ()"
-          monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"     
-          monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Agos, Sep, Oct, Nov, Dic"
-          dayNames="domingo, lunes, martes, miercoles, jueves, viernes, sabado"
-          dayShortNames="dom, lun, mar, mie, jue, vie, sab"
-          cancelText="Cancelar" doneText="Listo"></ion-datetime>
-        </ion-item>
+        
       </ion-col>        
       <ion-col size="12" size-sm="12" size-md="6" size-lg="3" size-xl="3">
-        <ion-item>            
-          <ion-select style="width:100%; max-width:100%;" [(ngModel)]="sucursal" (ionChange)="onSelectSucursal ()">
-            <ion-select-option *ngFor="let item of listaSucursales | async" [value]="item.id">{{item.data.nombre}}</ion-select-option>                                
-          </ion-select>
-        </ion-item>
+        
       </ion-col>
     </ion-row>
     <ion-row>              
@@ -317,6 +163,7 @@
           </ion-row>  
                       
           <img *ngIf="item.dataPlaca.imagenes" (click)="mostrarPlacas(item.data.placa)" src="assets/imgs/radiografia.jpg"/>
+          
           <ion-card-content>
             <p text-wrap><b>Doctor:</b> {{item.dataPlaca.nombre_doctor}} <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.dataPlaca.puntos_ganados}} pts.</span>  <span *ngIf="item.dataPlaca.puntos_usados>0" style="color:#f53d3d;">-{{item.dataPlaca.puntos_usados}} pts.</span></p>              
             <p text-wrap><b>Placas:</b> {{item.dataPlaca.nombres_servicios}}</p>

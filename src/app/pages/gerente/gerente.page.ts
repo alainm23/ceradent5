@@ -71,4 +71,26 @@ export class GerentePage implements OnInit {
     if (this.subscription!=undefined && this.subscription!=null)
     this.subscription.unsubscribe();
   }
+
+  ver_servicio (servicio: any) {
+    if (servicio.visible === null || servicio.visible === undefined) {
+      servicio.visible = true;
+      return;
+    }
+
+    servicio.visible = !servicio.visible;
+  }
+
+  ver_item (item: any) {
+    if (item.visible === null || item.visible === undefined) {
+      item.visible = true;
+      return;
+    }
+
+    item.visible = !item.visible;
+  }
+
+  back () {
+    this.navCtrl.back ();
+  }
 }

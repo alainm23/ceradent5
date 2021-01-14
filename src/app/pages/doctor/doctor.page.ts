@@ -160,4 +160,8 @@ export class DoctorPage implements OnInit {
       await toast.present();
     }    
   }
+
+  back () {
+    this.navCtrl.back ();
+  }
 }

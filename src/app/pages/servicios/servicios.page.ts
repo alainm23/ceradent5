@@ -80,4 +80,8 @@ export class ServiciosPage implements OnInit {
 
     return await modal.present ();
   }
+
+  back () {
+    this.navCtrl.back ();
+  }
 }

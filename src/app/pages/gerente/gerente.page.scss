@@ -18,6 +18,19 @@
     font-family: Avenirlight;
     src : url('/assets/fonts/avenirltstd-light.otf')
 }
+
+.transition {
+    transition: all 240ms ease-in-out;
+}
+
+.icon-card-item {
+    position: absolute;
+    right: 10px;
+    color: #ffffff;
+    top: 19px;
+    font-size: 18px;
+}
+
 ion-header
 {
     height: 74px;

@@ -236,4 +236,8 @@ export class ReporteDiarioPage implements OnInit {
       toast.present();
     }    
   }
+
+  back () {
+    this.navCtrl.back ();
+  }
 }

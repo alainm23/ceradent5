@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="menucabezera"> 
-    <ion-button class="btn-lef-header">
+    <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>   
     <ion-buttons slot="end" class="btn-menu">
@@ -10,379 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Bienvenidos</h1>
-  <ion-card class="cardactivo">
-    <ion-card-header class="carheaderactivo">
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add icondesactivo"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add iconactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="cardactivo">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add icondesactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content style="display: none;">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="cardactivo">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add icondesactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content style="display: none;">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="cardactivo">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add icondesactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content style="display: none;">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="cardactivo">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add icondesactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content style="display: none;">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="cardactivo">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add icondesactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content style="display: none;">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-card class="cardactivo">
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-icon name="add-outline" class="icon-card-add"></ion-icon>
-      <ion-icon name="close-outline" class="icon-card-add icondesactivo"></ion-icon>
-    </ion-card-header>
-    <ion-card-content style="display: none;">
-      <ion-grid class="ion-no-padding">
-        <ion-row>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Monto total vendido:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.7,879.00 </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Número de atenciones:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">223</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Puntos canjeados:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">230 pts.</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-          <ion-col size="12">
-            <ion-row>
-              <ion-col sixe="8">
-                <p class="p-medium">Total descuentos:</p>
-              </ion-col>
-              <ion-col size="4">
-                <p class="p-descripcion">S/.20.00</p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card-content>
-  </ion-card>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>                 
       <ion-col *ngFor="let item of listaSucursales | async" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
         <ion-card>
@@ -403,7 +31,7 @@
           </ion-card-content>  
           
           <ion-item-group *ngFor="let servicio of resumenServicios.get (item.data.id); let i = index">
-            <ion-item-divider (click)="toggleSection(i, item.data.id)" color="light" [ngClass]="{'section-active': servicio.open, 'section': !servicio.open}">{{servicio.dataServicio.nombre}}
+            <ion-item-divider (click)="toggleSection(i, item.data.id)" color="light" [ngClass]="{'section-active': servicio.open, 'section': !servicio.open}">{{ servicio.dataServicio.nombre }}
               <ion-icon slot="start" name="caret-forward-outline" *ngIf="!servicio.open"></ion-icon>
               <ion-icon slot="start" name="caret-down-outline" *ngIf="servicio.open"></ion-icon>
             </ion-item-divider> 
@@ -426,5 +54,138 @@
         </ion-card>
       </ion-col>
     </ion-row>  
-  </ion-grid>
+  </ion-grid> -->
+
+  <h1 class="ion-text-center titulo">Bienvenidos</h1>
+  <ng-container *ngFor="let item of listaSucursales | async">
+    <ion-card class="cardactivo">
+      <ion-card-header (click)="ver_item (item)" class="carheaderactivo">
+        <ion-card-title>
+          {{ item.data.nombre }}
+        </ion-card-title>
+        <ion-icon [ngStyle]="{'transform': item.visible ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-card-item transition"></ion-icon>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col sixe="8">
+                  <p class="p-medium">Monto total vendido:</p>
+                </ion-col>
+                <ion-col size="4">
+                  <p class="p-descripcion">{{item.dataResumen?.monto_total_efectivo+item.dataResumen?.monto_total_tarjeta| currency:'S/. ' }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col sixe="8">
+                  <p class="p-medium">Número de atenciones:</p>
+                </ion-col>
+                <ion-col size="4">
+                  <p class="p-descripcion">{{ item.dataResumen?.ventas_totales }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col sixe="8">
+                  <p class="p-medium">Puntos canjeados:</p>
+                </ion-col>
+                <ion-col size="4">
+                  <p class="p-descripcion">{{ item.dataResumen?.canje_total }} pts.</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col sixe="8">
+                  <p class="p-medium">Total descuentos:</p>
+                </ion-col>
+                <ion-col size="4">
+                  <p class="p-descripcion">{{ item.dataResumen?.descuento_total | currency:'S/. ' }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <ng-container *ngIf="item.visible">
+      <ion-card *ngFor="let servicio of resumenServicios.get (item.data.id); let i = index" class="cardactivo">
+        <ion-card-header (click)="ver_servicio (servicio)">
+          <ion-card-title>{{ servicio.dataServicio.nombre }}</ion-card-title>
+          <ion-icon [ngStyle]="{'transform': servicio.visible ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-card-add transition"></ion-icon>
+        </ion-card-header>
+
+        <ion-card-content *ngIf="servicio.visible">
+          <ion-grid class="ion-no-padding">
+            <ion-row>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col sixe="8">
+                    <p class="p-medium">Numero de Atenciones:</p>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p class="p-descripcion">{{ servicio.data.ventas_totales }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col sixe="8">
+                    <p class="p-medium">Monto total atenciones:</p>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p class="p-descripcion">{{ servicio.data.monto_total | currency:'S/. ' }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col sixe="8">
+                    <p class="p-medium">Numero de Duplicados:</p>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p class="p-descripcion">{{ servicio.data.duplicados_totales }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col sixe="8">
+                    <p class="p-medium">Monto total duplicados:</p>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p class="p-descripcion">{{ servicio.data.monto_duplicados | currency:'S/. ' }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12">
+                <ion-row>
+                  <ion-col sixe="8">
+                    <p class="p-medium">Descuentos:</p>
+                  </ion-col>
+                  <ion-col size="4">
+                    <p class="p-descripcion">{{ servicio.data.descuento_total | currency:'S/. ' }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+    <ion-row>                   
+      <ion-col class="ion-text-right">
+        <ion-button style="color: #9F2C3F;" (click)="mostrarDetalle (item.data.id)" fill="clear" size="small">                
+          Ver reporte diario
+          <ion-icon name="chevron-forward-outline" class="transition"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ng-container>
 </ion-content>
