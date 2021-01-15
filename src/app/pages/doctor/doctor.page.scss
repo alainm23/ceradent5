@@ -173,14 +173,14 @@ ion-content
     margin-top: 21px;
     justify-content: space-between;
 }
-@media (min-width: 411px)
-{
-    ion-content
-    {
-        --padding-start: 40px;
-        --padding-end: 40px;
-    }
-}
+// @media (min-width: 411px)
+// {
+//     ion-content
+//     {
+//         --padding-start: 40px;
+//         --padding-end: 40px;
+//     }
+// }
 @media (min-width: 480px)
 {
     ion-content

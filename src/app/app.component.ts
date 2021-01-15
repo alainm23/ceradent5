@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController, Platform, ToastController } from '@ionic/angular';
+import { NavController, Platform, ToastController, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Observable, Subscription } from 'rxjs';
@@ -33,7 +33,8 @@ export class AppComponent {
     private nav: NavController,
     private screenOrientation: ScreenOrientation,
     private events: EventsService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private menu_controller: MenuController
   ) {
     this.initializeApp ();
   }
@@ -284,5 +285,9 @@ export class AppComponent {
 
   open_reservas () {
    this.nav.navigateRoot (['reservas', this.codigoUsuario, this.permisos.rol]);
+  }
+
+  close_menu () {
+    this.menu_controller.close ('menu');
   }
 }

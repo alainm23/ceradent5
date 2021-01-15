@@ -490,4 +490,8 @@ export class DatabaseService {
   get_reserva_by_id (id: string) {
     return this.db.collection ('Doctor_Reservas').doc (id).valueChanges ();
   }
+
+  get_clientes_by_dni (dni: string) {
+    return this.db.collection('Clientes', ref => ref.where ('dni', '==', dni)).valueChanges ();
+  }
 }

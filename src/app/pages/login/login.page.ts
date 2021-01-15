@@ -134,9 +134,9 @@ export class LoginPage implements OnInit {
     const value = this.codigoForm.value;
     console.log(value)
     this.database.iniciarSesionEmail(value.email.toString().trim(), value.password.toString().trim()).then(data=>{
-      console.log(data)
+      console.log (data)
       // this.events.publish('user:login');
-      this.navCtrl.navigateRoot("dashboard")
+      this.navCtrl.navigateRoot ("dashboard")
     }, async error =>{
       let alert = await this.alertCtrl.create({
         header: "Error de acceso",

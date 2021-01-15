@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <!-- <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -7,11 +7,65 @@
     <ion-title>
       Lista de Doctores
     </ion-title>    
+  </ion-toolbar> -->
+  <ion-toolbar class="menucabezera"> 
+    <ion-button (click)="back ()" class="btn-lef-header">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>   
+    <ion-buttons slot="end" class="btn-menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
-  <ion-grid>
+  <h1 class="ion-text-center titulo">Lista de Doctores</h1>
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar por nombres o apellidos"></ion-searchbar>
+  <ion-card *ngFor="let item of listaDoctores | orderBy: 'nombres'" class="carr-datos">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="assets/imgs/grupo-816.png">
+      </ion-avatar>
+      <ion-label class="lbel-nombre">{{item.nombres}} {{item.apellidos}}</ion-label>
+    </ion-item>
+    <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+      <ion-row>
+        <ion-col size="12" class="ion-no-padding">
+          <ion-row>
+            <ion-col size="3" class="ion-no-padding">
+              <p class="p-medium">Telefono:</p>
+            </ion-col>
+            <ion-col size="9" class="col-cero-padding-top">
+              <p class="p-descripcion">{{ item.telefono }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="12" class="ion-no-padding">
+          <ion-row>
+            <ion-col size="3" class="ion-no-padding">
+              <p class="p-medium">Email:</p>
+            </ion-col>
+            <ion-col size="9" class="col-cero-padding-top">
+              <p class="p-descripcion">{{ item.email }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="12" class="ion-no-padding">
+          <ion-row>
+            <ion-col size="3" class="ion-no-padding">
+              <p class="p-medium">Puntaje:</p>
+            </ion-col>
+            <ion-col size="9" class="col-cero-padding-top">
+              <p class="p-descripcion">{{ item.puntaje }}</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <!-- <ion-grid>
     <ion-row>        
       <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar por apellido"></ion-searchbar>        
       <ion-col *ngFor="let item of listaDoctores | orderBy: 'nombres'" size="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
@@ -28,10 +82,10 @@
             <p style="color:#999999;">email: {{item.email}}</p>
             <p style="color:#999999;">Puntaje: {{item.puntaje}}</p>
             <!-- <p style="color:#999999;" *ngIf="item.dataNumero!=undefined">Clientes derivados: {{item.dataNumero.nro_placas}}</p>
-            <p style="color:#999999;" *ngIf="item.dataNumero==undefined">Clientes derivados: 0</p>           -->
+            <p style="color:#999999;" *ngIf="item.dataNumero==undefined">Clientes derivados: 0</p>
           </ion-label>
         </ion-item>
       </ion-col>
     </ion-row>  
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

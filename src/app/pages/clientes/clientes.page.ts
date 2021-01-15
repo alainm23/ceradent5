@@ -20,13 +20,15 @@ export class ClientesPage implements OnInit {
   public showLeftButton: boolean;
   public showRightButton: boolean;
   letraSeleccionada="";
-  listaClientes: any;
-  listaClientes_bak: any;
+  listaClientes: any [] = [];
+  listaClientes_bak: any [] = [];
 
   slideOpts: any = {
     slidesPerView: 6
   }
 
+  segment_value: string = 'dni';
+  dni_search: string = '';
   constructor(
     public navCtrl: NavController, 
     public database: DatabaseService,
@@ -48,7 +50,7 @@ export class ClientesPage implements OnInit {
       message: "Procesando informacion..."            
     })
     this.loading.present().then(()=>{
-      this.subscription=this.database.getClientesLetra(letra).subscribe(data=>{
+      this.subscription=this.database.getClientesLetra (letra).subscribe(data=>{
         console.log (data);
         //this.carga=true;        
         this.listaClientes=data;
@@ -107,7 +109,7 @@ export class ClientesPage implements OnInit {
     let q = $event.target.value;
     if (q != "") {
       this.listaClientes = this.listaClientes.filter ( item => {
-        return (item.nombres.toLowerCase().indexOf (q.toLowerCase()) > -1) 
+        return (item.dataCliente.nombres.toLowerCase().indexOf (q.toLowerCase()) > -1) 
       });
     }   
   } 
@@ -143,5 +145,33 @@ export class ClientesPage implements OnInit {
 
     if (this.subscription1!=undefined && this.subscription1!=null)
     this.subscription1.unsubscribe();
+  }
+
+  async buscar_dni () {
+    let loading = await this.loadingCtrl.create ({
+      message: "Procesando informacion..."            
+    });
+
+    await loading.present ();
+
+    this.subscription = this.database.get_clientes_by_dni (this.dni_search).subscribe ((res: any []) => {
+      console.log (res);
+
+      this.listaClientes = [];
+      res.forEach ((r: any) => {
+        this.listaClientes.push ({
+          dataCliente: r,
+          data: r
+        });
+      });
+      this.listaClientes_bak = this.listaClientes;
+
+      loading.dismiss();
+    });
+  }
+
+  segmentChanged (event: any) {
+    this.listaClientes = [];
+    this.listaClientes_bak = [];
   }
 }

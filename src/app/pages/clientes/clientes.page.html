@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <!-- <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -7,10 +7,36 @@
     <ion-title>
       Historial Cliente
     </ion-title>    
+  </ion-toolbar> -->
+  <ion-toolbar class="menucabezera"> 
+    <ion-button (click)="back ()" class="btn-lef-header">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>   
+    <ion-buttons slot="end" class="btn-menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
+</ion-header>
 
-  <ion-toolbar color="primary">
-    <ion-row class="filters">
+<ion-content>
+  <h1 class="ion-text-center titulo">Lista de Pacientes</h1>
+
+  <ion-segment (ionChange)="segmentChanged ($event)" mode="ios" [(ngModel)]="segment_value" style="margin-top: 1rem;"> 
+    <ion-segment-button value="dni">
+      <ion-label>Busqueda por DNI</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="nombre">
+      <ion-label>Busqueda por nommbre</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div style="margin-top: 6px; margin-bottom: 6px;">
+    <div *ngIf="segment_value === 'dni'" style="display: flex;">
+      <ion-searchbar mode="ios" [(ngModel)]="dni_search" placeholder="Busqueda por DNI"></ion-searchbar>
+      <ion-button type="tel" style="align-self: center;" size="small" mode="ios" slot="end" (click)="buscar_dni ()" [disabled]="dni_search === ''" color="brand">Buscar</ion-button>
+    </div>
+  
+    <ion-row *ngIf="segment_value === 'nombre'" class="filters">
       <ion-col class="col-with-arrow ion-no-padding" (click)="slidePrev()" size="1">
         <ion-icon *ngIf="showLeftButton" name="arrow-back"></ion-icon>
       </ion-col>
@@ -25,15 +51,56 @@
           <ion-icon *ngIf="showRightButton" name="arrow-forward"></ion-icon>
       </ion-col>
     </ion-row>
+  </div>
 
-  </ion-toolbar>
-</ion-header>
+  <div *ngIf="listaClientes_bak.length > 0">
+    <ion-searchbar *ngIf="segment_value === 'nombre' && listaClientes_bak.length > 0" mode="ios" (ionInput)="onInput($event)" style="width:100%; max-width:100%"></ion-searchbar>
+    <ion-card *ngFor="let cliente of listaClientes | orderBy: 'nombres'" class="carr-datos" (click)="seleccionarCliente(cliente.data.usuario)">
+      <ion-item lines="none">
+        <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'adulto'">
+          <img src="assets/imgs/icono_user_default.png">
+        </ion-avatar>
+  
+        <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'menor'">
+          <img src="assets/imgs/child-icon.png">
+        </ion-avatar>
+  
+        <ion-label class="lbel-nombre">
+          {{cliente.dataCliente.nombres}} {{cliente.dataCliente.apellidos}}
+        </ion-label>
+      </ion-item>
+      <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+        <ion-row>
+          <ion-col *ngIf="cliente.dataCliente.tipo=='adulto'" size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="3" class="ion-no-padding">
+                <p class="p-medium">Telefono:</p>
+              </ion-col>
+              <ion-col size="9" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ cliente.dataCliente.telefono }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col *ngIf="cliente.dataCliente.tipo=='menor'" size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="3" class="ion-no-padding">
+                <p class="p-medium">DNI:</p>
+              </ion-col>
+              <ion-col size="9" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ cliente.dataCliente.dni }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 
-<ion-content>
-  <ion-grid>
-    <ion-list *ngIf="listaClientes">
+
+  <!-- ion-grid>
+    <ion-list *ngIf="listaClientes.length > 0">
       <ion-item>
-        <ion-searchbar (ionInput)="onInput($event)" style="width:100%; max-width:100%"></ion-searchbar>
+        <ion-searchbar *ngIf="segment_value === 'segment_value'" mode="ios" (ionInput)="onInput($event)" style="width:100%; max-width:100%"></ion-searchbar>
       </ion-item>
       
       <ion-item *ngFor="let cliente of listaClientes | orderBy: 'nombres'" (click)="seleccionarCliente(cliente.data.usuario)">
@@ -57,7 +124,7 @@
       </ion-item>                
     </ion-list>
 
-    <ion-card *ngIf="datosCliente">
+    <!-- <ion-card *ngIf="datosCliente">
       <ion-row>
         <ion-col size="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
           <ion-item>
@@ -117,6 +184,6 @@
           </ion-row>      
         </ion-card>  
       </ion-col>
-    </ion-row>    
-  </ion-grid>
+    </ion-row>
+  </ion-grid-->
 </ion-content>

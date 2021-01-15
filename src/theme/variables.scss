@@ -103,6 +103,14 @@
   --ion-color-tint: #ffffff;
 }
   
+.ion-color-brand {
+  --ion-color-base: #9F2C3F;
+  --ion-color-base-rgb: 159, 44, 63;
+  --ion-color-contrast: #fff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #8f2738;
+  --ion-color-tint: #a84152;
+}
   
 @media (prefers-color-scheme: dark) {
   /*
