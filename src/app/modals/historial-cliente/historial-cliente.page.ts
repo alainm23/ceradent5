@@ -30,7 +30,7 @@ export class HistorialClientePage implements OnInit {
     public toastCtrl:ToastController) {
   }
 
-  dismiss(){
+  dismiss() {
     this.modalCtrl.dismiss ();
   }
 
@@ -132,5 +132,9 @@ export class HistorialClientePage implements OnInit {
       });
       toast.present();
     }    
+  }
+
+  back () {
+    this.navCtrl.back ();
   }
 }

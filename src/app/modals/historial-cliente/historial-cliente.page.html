@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
@@ -6,8 +6,27 @@
 
     <ion-title>Historial Cliente</ion-title>
   </ion-toolbar>  
-</ion-header>
+</ion-header> -->
 
+<ion-header>
+  <!-- <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Historial Cliente
+    </ion-title>    
+  </ion-toolbar> -->
+  <ion-toolbar class="menucabezera"> 
+    <ion-button (click)="back ()" class="btn-lef-header">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>   
+    <ion-buttons slot="end" class="btn-menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <ion-grid>    

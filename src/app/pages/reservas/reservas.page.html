@@ -1,23 +1,21 @@
 <ion-header>
-  <ion-toolbar color="primary">        
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-
-    <ion-title>
+  <ion-toolbar mode="ios" class="menucabezera"> 
+    <ion-button (click)="back ()" class="btn-lef-header">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title style="color: #fff">
       Reservas
-    </ion-title>  
-    
-    <ion-buttons slot="secondary">
-      <ion-button (click)="registrar ()">
-        Registrar
-        <ion-icon slot="end" name="add-circle"></ion-icon>
-      </ion-button>
+    </ion-title>
+    <ion-buttons slot="end" class="btn-menu">
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-button (click)="registrar ()">
+    Reservar
+  </ion-button>
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="ver (item)">
       <ion-avatar slot="start">

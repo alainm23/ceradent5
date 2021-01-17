@@ -42,4 +42,8 @@ export class ReservasPage implements OnInit {
   ver (item: any) {
     this.navCtrl.navigateForward (['agregar-editar-reserva', this.codigo, item.id]);
   }
+
+  back () {
+    this.navCtrl.back ();
+  }
 }

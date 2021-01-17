@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar class="menucabezera"> 
-    <ion-button class="btn-lef-header">
+    <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>   
     <ion-buttons slot="end" class="btn-menu">
@@ -23,41 +23,31 @@
         <ion-card-content *ngIf="item_01">
           <h6 class="h6-titulo">Cone beam 3d (Solo sede Wanchaq)</h6>
           <ion-list class="list-chec">
-            <ion-radio-group formControlName="tomografia_volumetrica_tipo">        
-              <ion-item class="item-chebox">
-                <ion-label class="label-chec ion-text-wrap">Sin análisis (solo CD)</ion-label>
-                <ion-radio slot="start" value="sin_analisis"></ion-radio>
-              </ion-item>
-          
-              <ion-item class="item-chebox">
-                <ion-label class="label-chec ion-text-wrap">Con análisis</ion-label>
-                <ion-radio slot="start" value="con_analisis"></ion-radio>
-              </ion-item>
-            </ion-radio-group>
+            <ion-list-header>
+              <ion-label>Sin análisis (solo CD)</ion-label>
+            </ion-list-header>
+            <ion-item lines="none" class="item-chebox">
+              <ion-checkbox formControlName="senos_maxilares"></ion-checkbox>
+              <ion-label class="label-chec ion-text-wrap">Senos maxilares</ion-label>
+            </ion-item>
 
-            <ng-container *ngIf="form.value.tomografia_volumetrica_tipo === 'sin_analisis'">
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="senos_maxilares"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Senos maxilares</ion-label>
-              </ion-item>
+            <ion-item lines="none" class="item-chebox">
+              <ion-checkbox formControlName="atm_b_abierta_b_cerrada"></ion-checkbox>
+              <ion-label class="label-chec ion-text-wrap">ATM (B.abierta / B. Cerrada)</ion-label>
+            </ion-item>
 
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="atm_b_abierta_b_cerrada"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">ATM (B.abierta / B. Cerrada)</ion-label>
-              </ion-item>
-            </ng-container>
-
-            <ng-container *ngIf="form.value.tomografia_volumetrica_tipo === 'con_analisis'">
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="area_patologica"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Área patológica</ion-label>
-              </ion-item>
-              
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="localizacion_conductos"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Localización de conducto</ion-label>
-              </ion-item>
-            </ng-container>      
+            <ion-list-header>
+              <ion-label>Con análisis</ion-label>
+            </ion-list-header>
+            <ion-item lines="none" class="item-chebox">
+              <ion-checkbox formControlName="area_patologica"></ion-checkbox>
+              <ion-label class="label-chec ion-text-wrap">Área patológica</ion-label>
+            </ion-item>
+            
+            <ion-item lines="none" class="item-chebox">
+              <ion-checkbox formControlName="localizacion_conductos"></ion-checkbox>
+              <ion-label class="label-chec ion-text-wrap">Localización de conducto</ion-label>
+            </ion-item>    
           </ion-list>
 
           <div class="div-datos">
@@ -195,50 +185,42 @@
 
           <ion-list class="list-chec">
             <ion-radio-group formControlName="radio_intra_tipo">        
-              <ion-item class="item-chebox">
-                <ion-label class="label-chec ion-text-wrap">Bitewing</ion-label>
-                <ion-radio slot="start" value="bitewing"></ion-radio>
-              </ion-item>
-          
-              <ion-item class="item-chebox">
-                <ion-label class="label-chec ion-text-wrap">Oclusal</ion-label>
-                <ion-radio slot="start" value="oclusal"></ion-radio>
-              </ion-item>
-            </ion-radio-group>
+              <ion-list-header>
+                <ion-label>Bitewing</ion-label>
+              </ion-list-header>
 
-            <ng-container *ngIf="form.value.radio_intra_tipo === 'bitewing'">
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="bitewing_morales"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Morales</ion-label>
-              </ion-item> 
+              <ion-list-header>
+                <ion-label>Morales</ion-label>
+              </ion-list-header>
 
-              <ion-item style="margin-left: 1rem;" *ngIf="form.value.bitewing_morales === true" lines="none" class="item-chebox">
+              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_morales_der"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Der</ion-label>
               </ion-item>
 
-              <ion-item style="margin-left: 1rem;" *ngIf="form.value.bitewing_morales === true" lines="none" class="item-chebox">
+              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_morales_izq"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
               </ion-item>
 
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="bitewing_premolares"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Premolares</ion-label>
-              </ion-item>
+              <ion-list-header>
+                <ion-label>Premolares</ion-label>
+              </ion-list-header>
 
-              <ion-item style="margin-left: 1rem;" *ngIf="form.value.bitewing_premolares === true" lines="none" class="item-chebox">
+              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_premolares_der"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Der</ion-label>
               </ion-item>
 
-              <ion-item style="margin-left: 1rem;" *ngIf="form.value.bitewing_premolares === true" lines="none" class="item-chebox">
+              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_premolares_izq"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
               </ion-item>
-            </ng-container>
 
-            <ng-container *ngIf="form.value.radio_intra_tipo === 'oclusal'">
+              <ion-list-header>
+                <ion-label>Oclusal</ion-label>
+              </ion-list-header>
+
               <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="oclusal_superior"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Superior</ion-label>
@@ -248,7 +230,7 @@
                 <ion-checkbox formControlName="oclusal_inferior"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Inferior</ion-label>
               </ion-item> 
-            </ng-container>
+            </ion-radio-group>
           </ion-list>
 
           <div class="div-datos">
@@ -432,17 +414,16 @@
       
         <ion-card-content *ngIf="item_05">
           <ion-list class="list-chec">
-            <ion-item lines="none" class="item-chebox">
-              <ion-checkbox formControlName="fotos_extra_intraorales"></ion-checkbox>
-              <ion-label class="label-chec ion-text-wrap">Fotos extra e intraorales</ion-label>
-            </ion-item>
+            <ion-list-header>
+              <ion-label>Fotos extra e intraorales</ion-label>
+            </ion-list-header>
 
-            <ion-item *ngIf="form.value.fotos_extra_intraorales === true" style="margin-left: 1rem;" lines="none" class="item-chebox">
+            <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
               <ion-checkbox formControlName="fotos_extra_intraorales_standar"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Standar</ion-label>
             </ion-item>
 
-            <ion-item *ngIf="form.value.fotos_extra_intraorales === true" style="margin-left: 1rem;" lines="none" class="item-chebox">
+            <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
               <ion-checkbox formControlName="fotos_extra_intraorales_profesional"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Profesional</ion-label>
             </ion-item>
@@ -492,6 +473,6 @@
         </ion-card-content>
       </ion-card>
     </ion-list>
-    <ion-button class="btn-form" mode="ios">Adelante</ion-button>
+    <ion-button class="btn-form" mode="ios" (click)="submit ()">Adelante</ion-button>
   </form>
 </ion-content>
