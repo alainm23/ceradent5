@@ -15,7 +15,10 @@
   <ion-toolbar class="menucabezera"> 
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-button>   
+    </ion-button> 
+    <ion-title>
+      Mis pacientes
+    </ion-title>    
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -24,8 +27,13 @@
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Mis pacientes</h1>
-  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar paciente"></ion-searchbar>            
+  <ion-item lines="none" class="item-buscard">
+    <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
+    <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+  </ion-item>
+  <!-- Quitar este buscador-->
+  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar paciente"></ion-searchbar> 
+  <!--Fin-->           
   <div class="div-card-datos">
     <ion-card *ngFor="let item of historialDoctor | orderBy:'fecha':true" class="carr-datos">
       <ion-item lines="none">
@@ -56,35 +64,45 @@
               </ion-col>
             </ion-row>
           </ion-col>
+          <ion-col size="12" class="ion-no-padding" *ngIf="item.dataPlaca.descuento > 0">
+            <ion-row>
+              <ion-col size="5" class="ion-no-padding">
+                <p class="p-medium">Descuento:</p>
+              </ion-col>
+              <ion-col size="7" class="col-cero-padding-top">
+                <p class="p-descripcion">{{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
         </ion-row>
       </ion-grid>
       <ion-grid class="ion-no-padding grid-top-margin">
         <ion-row class="ion-align-items-center">
           <ion-col size="6" class="ion-text-left">
-            <ion-button *ngIf="item.dataPlaca.puntos_ganados > 0 && item.dataPlaca.puntos_usados<=0" fill="clear" size="small" color="secondary">
-              <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+            <ion-button *ngIf="item.dataPlaca.puntos_ganados > 0 && item.dataPlaca.puntos_usados<=0" fill="clear" class="btn-pntos">
+              <!--<ion-icon slot="start" name="arrow-up-outline"></ion-icon>-->
               {{item.dataPlaca.puntos_ganados}} PTOS
             </ion-button>
 
-            <ion-button *ngIf="item.dataPlaca.puntos_usados>0" fill="clear" size="small" color="danger">
-              <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
+            <ion-button *ngIf="item.dataPlaca.puntos_usados>0" fill="clear" class="btn-pntos">
+              <!--<ion-icon slot="start" name="arrow-down-outline"></ion-icon>-->
               <div >{{item.dataPlaca.puntos_usados}} ptos</div>
             </ion-button>
           </ion-col>
 
           <ion-col size="6" class="ion-text-right">
-            <ion-button *ngIf="item.dataPlaca.imagenes" class="btn-card" (click)="mostrarPlacas(item.data.placa)" size="small">
-              <ion-icon slot="start" name="albums"></ion-icon>
+            <ion-button *ngIf="item.dataPlaca.imagenes" class="btn-card" (click)="mostrarPlacas(item.data.placa)">
+              <!--<ion-icon slot="start" name="albums"></ion-icon>-->
               Ver Placas
             </ion-button>
           </ion-col>
         </ion-row>
 
-        <ion-row *ngIf="item.dataPlaca.descuento > 0">
+        <!--<ion-row *ngIf="item.dataPlaca.descuento > 0">
           <ion-col style="background-color:beige; padding:1rem;">
             <p class="ion-text-wrap"><b>Descuento:</b> {{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
           </ion-col>
-        </ion-row>  
+        </ion-row>  -->
       </ion-grid>
     </ion-card>
   </div>

@@ -33,6 +33,13 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+            text-align: center;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -40,10 +47,16 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
+            position: absolute;
+            left: 18px;
+            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -112,8 +125,9 @@ ion-content
         {
             color: #4D4D4D;
             font-family: Avenirlight;
-            font-size: 20px;
+            font-size: 17px;
             margin: 0px;
+            line-height: 1;
             .spana-fecha
             {
                 font-size: 14px;
@@ -136,7 +150,14 @@ ion-content
     {
         width: 100%;
         --border-radius: 0px 0px 6px 6px;
-        height: 180px;
+        height: auto;
+        .img-loader
+        {
+            height: 140px !important;
+            background-position: center;
+            background-size: cover !important;
+            margin-bottom: 5px;
+        }
     }
 }
 .div-card-datos
@@ -152,6 +173,16 @@ ion-content
     {
         --padding-start: 40px;
         --padding-end: 40px;
+    }
+    .carr-datos
+    {
+        .img-rayox
+        {
+            .img-loader
+            {
+                height: 155px !important;
+            }
+        }
     }
 }
 @media (min-width: 480px)
@@ -169,6 +200,29 @@ ion-content
             --oadding-end: 45px;
         }
     }
+    .carr-datos
+    {
+        .img-rayox
+        {
+            .img-loader
+            {
+                height: 181px !important;
+            }
+        }
+    }
+}
+@media (min-width: 540px)
+{
+    .carr-datos
+    {
+        .img-rayox
+        {
+            .img-loader
+            {
+                height: 210px !important;
+            }
+        }
+    } 
 }
 @media (min-width: 768px)
 {

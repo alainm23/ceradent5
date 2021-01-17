@@ -36,6 +36,12 @@
     </ion-header>-->
   
     <ion-content style="position: relative;">  
+      <ion-item class="item-perfil" lines="none">
+        <ion-avatar slot="start" class="avatar-perfil">
+          <img src="assets/imgs/icono_doctor.png">
+        </ion-avatar>
+        <ion-label class="label-perfil"><span class="label-span-nombre">Avatar</span><br><span class="label-span-pnt">Doctor - 32pts</span></ion-label>
+      </ion-item>
       <img src="assets/imgs/lgomenu.png" class="img-absolute">
       <ion-button class="btnmenu" (click)="close_menu ()"><ion-icon name="close-sharp"></ion-icon></ion-button>
       <ion-list class="user-list">
@@ -46,19 +52,19 @@
           </ion-item>
         </ion-menu-toggle>
         
-        <!-- <ion-menu-toggle auto-hide="false">
+        <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos.isdoctor == true || permisos.iscliente == true" (click)="openTienda()" class="item-border-bottom">
               <img src="assets/imgs/menu-tres.png" class="img-icon">
             <ion-label>Tienda</ion-label>
           </ion-item>
-        </ion-menu-toggle> -->
+        </ion-menu-toggle>
 
-        <!-- <ion-menu-toggle auto-hide="false">
+        <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos.isdoctor == true || permisos.iscliente == true" (click)="openHistorial()" class="item-border-bottom">
               <img src="assets/imgs/menu-dos.png" class="img-icon">
             <ion-label> Historial de compras</ion-label>
           </ion-item>
-        </ion-menu-toggle> -->
+        </ion-menu-toggle> 
 
         <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos!=null && permisos.isdoctor==true" (click)="openDoctor()" class="item-border-bottom">

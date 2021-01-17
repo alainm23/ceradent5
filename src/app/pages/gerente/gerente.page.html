@@ -3,6 +3,9 @@
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>
+    <ion-title>
+      Sucursales
+    </ion-title> 
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -56,12 +59,13 @@
     </ion-row>  
   </ion-grid>
 
-  <h1 class="ion-text-center titulo">Sucursales</h1>
   <ng-container *ngFor="let item of listaSucursales | async">
     <ion-card class="cardactivo">
       <ion-card-header (click)="ver_item (item)" class="carheaderactivo">
         <ion-card-title>
-          {{ item.data.nombre }}
+          <b>{{ item.data.nombre }}</b>
+          <br>
+          <span class="spna-fecha">enero 2021</span>
         </ion-card-title>
         <ion-icon [ngStyle]="{'transform': item.visible ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-card-item transition"></ion-icon>
       </ion-card-header>
@@ -107,6 +111,14 @@
                   <p class="p-descripcion">{{ item.dataResumen?.descuento_total | currency:'S/. ' }}</p>
                 </ion-col>
               </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>                   
+            <ion-col class="ion-text-right">
+              <ion-button (click)="mostrarDetalle (item.data.id)" fill="clear" size="small" class="btn-reporte">                
+                Ver reporte diario
+                <ion-icon name="chevron-forward-outline" class="transition"></ion-icon>
+              </ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -179,13 +191,13 @@
       </ion-card>
     </ng-container>
 
-    <ion-row>                   
+    <!--<ion-row>                   
       <ion-col class="ion-text-right">
-        <ion-button style="color: #9F2C3F;" (click)="mostrarDetalle (item.data.id)" fill="clear" size="small">                
+        <ion-button (click)="mostrarDetalle (item.data.id)" fill="clear" size="small" class="btn-reporte">                
           Ver reporte diario
           <ion-icon name="chevron-forward-outline" class="transition"></ion-icon>
         </ion-button>
       </ion-col>
-    </ion-row>
+    </ion-row>-->
   </ng-container>
 </ion-content>

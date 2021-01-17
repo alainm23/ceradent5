@@ -26,8 +26,8 @@
         font-size: 1.6rem;
         line-height: 1.6rem;
 
-        ion-icon {
-            color: #000;
+        .icon-slider {
+            color: #9F2C3F;
         }
 
         &.col-with-arrow {
@@ -38,10 +38,12 @@
     }
 
     p {
-        color: #000;
+        color: #9F2C3F;
         margin: 0;
         font-size: 1.6rem;
         line-height: 1.6rem;
+        font-family: Avenirlight;
+        text-transform: capitalize;
     }
 
     .selected {
@@ -84,6 +86,13 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+            text-align: center;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -91,10 +100,16 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
+            position: absolute;
+            left: 18px;
+            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -132,6 +147,33 @@ ion-content
     font-family: AvenirHeavy;
     font-size: 25px;
     margin-bottom: 14px;
+}
+.p-buscar
+{
+    color: #9F2C3F;
+    font-family: Avenirlight;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+}
+
+ion-toggle
+{
+    --background: #Ffffff;
+    --background-checked: #ffffff;
+    --handle-background: #9F2C3F;
+    --handle-background-checked: #9F2C3F;
+    width: 52px;
+    --handle-width: 25px;
+    --handle-height: 25px;
+    --handle-border-radius: 50%;
+    border: 1px solid #707070;
+    border-radius: 15px;
+    height: 29px;
+}
+.p-botttom
+{
+    margin-bottom: 20px;
 }
 .card-precio
 {
@@ -194,7 +236,7 @@ ion-content
         {
             color: #9F2C3F;
             font-family: Avenirlight;
-            font-size: 20px;
+            font-size: 16px;
         }
     }
     .p-medium
@@ -245,6 +287,40 @@ ion-content
     margin-top: 21px;
     justify-content: space-between;
 }
+.item-buscard
+{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    margin-top: 20px;
+    .input-buscar
+    {
+        --color: #707070;
+        font-family: AvenirBook;
+        --placeholder-color: #707070;
+        --placeholder-font-weight: bolder;
+        border: 1px solid #FFC4CE;
+        border-radius: 6px; 
+        --padding-start: 20px;
+        --padding-end: 20px;
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+    }
+    .btn-buscardor
+    {
+        height: 100%;
+        --color: #fff;
+        --background: #9F2C3F;
+        --border-radius: 6px;
+        width: 42px;
+        height: 42px;
+        margin: 0px;
+        margin-left: 5px;
+        .icon-buscador
+        {
+            font-size: 25px;
+        }
+    }
+}
 // @media (min-width: 411px)
 // {
 //     ion-content
@@ -268,6 +344,26 @@ ion-content
             --oadding-end: 45px;
         }
     }
+    .item-buscard
+    {
+        .input-buscar
+        {
+            --padding-top: 13px;
+            --padding-bottom: 13px;
+        }
+        .btn-buscardor
+        {
+            width: 50px;
+            height: 50px;
+        }
+    }
+}
+@media (min-width: 640px)
+{
+    .carr-datos
+    {
+        width: 49.5%;
+    }
 }
 @media (min-width: 768px)
 {
@@ -286,10 +382,6 @@ ion-content
         --padding-top: 50px;
         --padding-start: 80px;
         --padding-end: 80px;
-    }
-    .carr-datos
-    {
-        width: 49.5%;
     }
 }
 @media (min-width: 1024px)

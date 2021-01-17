@@ -12,6 +12,9 @@
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>   
+    <ion-title>
+      Lista de Pacientes
+    </ion-title> 
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -19,8 +22,24 @@
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Lista de Pacientes</h1>
-
+  <p class="ion-text-center p-buscar p-botttom">Buscar por</p>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-text-end">
+        <p class="p-buscar">DNI</p>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <ion-toggle mode="ios"></ion-toggle>
+      </ion-col>
+      <ion-col class="ion-text-start">
+        <p class="p-buscar">NOMBRE</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-item lines="none" class="item-buscard">
+    <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
+    <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+  </ion-item>
   <ion-segment (ionChange)="segmentChanged ($event)" mode="ios" [(ngModel)]="segment_value" style="margin-top: 1rem;"> 
     <ion-segment-button value="dni">
       <ion-label>Busqueda por DNI</ion-label>
@@ -36,25 +55,71 @@
       <ion-button type="tel" style="align-self: center;" size="small" mode="ios" slot="end" (click)="buscar_dni ()" [disabled]="dni_search === ''" color="brand">Buscar</ion-button>
     </div>
   
-    <ion-row *ngIf="segment_value === 'nombre'" class="filters">
+    <ion-row *ngIf="segment_value === 'nombre'" class="filters ion-align-items-center">
       <ion-col class="col-with-arrow ion-no-padding" (click)="slidePrev()" size="1">
-        <ion-icon *ngIf="showLeftButton" name="arrow-back"></ion-icon>
+        <ion-icon *ngIf="showLeftButton" name="chevron-back-circle-sharp" class="icon-slider"></ion-icon>
       </ion-col>
       <ion-col class="ion-no-padding" size="10">
         <ion-slides (ionSlideDidChange)="slideChanged ()" [options]="slideOpts">
           <ion-slide *ngFor="let letraa of letras" (click)="filterData(letraa)">
-            <p style="font-size: 16px;" [class.selected]="letraSeleccionada === letraa">{{ letraa }}</p>
+            <p style="font-size: 16px;" [class.selected]="letraSeleccionada === letraa" class="p-colo-slider">{{ letraa }}</p>
           </ion-slide>
         </ion-slides>
       </ion-col>
-      <ion-col class="ion-no-padding col-with-arrow" (click)="slideNext()" col="1">
-          <ion-icon *ngIf="showRightButton" name="arrow-forward"></ion-icon>
+      <ion-col class="ion-no-padding col-with-arrow" (click)="slideNext()" size="1">
+          <ion-icon *ngIf="showRightButton" name="chevron-forward-circle-sharp" class="icon-slider"></ion-icon>
       </ion-col>
     </ion-row>
   </div>
 
   <div *ngIf="listaClientes_bak.length > 0">
     <ion-searchbar *ngIf="segment_value === 'nombre' && listaClientes_bak.length > 0" mode="ios" (ionInput)="onInput($event)" style="width:100%; max-width:100%"></ion-searchbar>
+    <ion-item lines="none" class="item-buscard">
+      <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
+      <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+    </ion-item>
+    <div class="div-card-datos">
+      <ion-card *ngFor="let cliente of listaClientes | orderBy: 'nombres'" class="carr-datos" (click)="seleccionarCliente(cliente.data.usuario)">
+        <ion-item lines="none">
+          <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'adulto'">
+            <img src="assets/imgs/icono_user_default.png">
+          </ion-avatar>
+    
+          <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'menor'">
+            <img src="assets/imgs/child-icon.png">
+          </ion-avatar>
+    
+          <ion-label class="lbel-nombre">
+            {{cliente.dataCliente.nombres}} {{cliente.dataCliente.apellidos}}
+          </ion-label>
+        </ion-item>
+        <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+          <ion-row>
+            <ion-col *ngIf="cliente.dataCliente.tipo=='adulto'" size="12" class="ion-no-padding">
+              <ion-row>
+                <ion-col size="4" class="ion-no-padding">
+                  <p class="p-medium">Telefono:</p>
+                </ion-col>
+                <ion-col size="8" class="col-cero-padding-top">
+                  <p class="p-descripcion">{{ cliente.dataCliente.telefono }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col *ngIf="cliente.dataCliente.tipo=='menor'" size="12" class="ion-no-padding">
+              <ion-row>
+                <ion-col size="4" class="ion-no-padding">
+                  <p class="p-medium">DNI:</p>
+                </ion-col>
+                <ion-col size="8" class="col-cero-padding-top">
+                  <p class="p-descripcion">{{ cliente.dataCliente.dni }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </div>
+    
     <ion-card *ngFor="let cliente of listaClientes | orderBy: 'nombres'" class="carr-datos" (click)="seleccionarCliente (cliente.data.usuario)">
       <ion-item lines="none">
         <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'adulto'">

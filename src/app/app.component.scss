@@ -55,6 +55,11 @@ src: url('../assets/fonts/montserrat/Montserrat-Regular.ttf');
     src: url('../assets/fonts/avenirltstd-light.otf'); 
 }
 
+@font-face {
+    font-family: AvenirHeavy;
+    src: url('../assets/fonts/Avenir Heavy.ttf'); 
+}
+
 //   .toast-error{
 //     >div{ background-color: red!important; padding: 1%; border-radius: 19px 19px 19px 19px;
 //       -moz-border-radius: 19px 19px 19px 19px;
@@ -294,14 +299,15 @@ display: inline-block;
 }
 ion-content
 {
-    --padding-top: 105px;
+    --padding-top: 100px;
     --padding-start: 25px;
     --padding-end: 40px;
 }
-ion-item
+.item-border-bottom
 {
     --padding-start: 0px;
     --inner-padding-end: 0px;
+    border-bottom: 1px solid #D5D5D5;
     ion-label
     {
         color: #000000;
@@ -314,7 +320,30 @@ ion-item
         width: 16px;
     }
 }
-.item-border-bottom
+.item-perfil
 {
-    border-bottom: 1px solid #D5D5D5;
+    --padding-start: 0px;
+    margin-bottom: 15px;
+    .avatar-perfil
+    {
+        margin: 0px;
+        --border-radius: 50%;
+        width: 60px;
+        height: 60px;
+    }
+    .label-perfil
+    {
+        margin-left: 20px;
+        color: #000000;
+        .label-span-nombre
+        {
+            font-family: AvenirHeavy;
+            font-size: 20px;
+        }
+        .label-span-pnt
+        {
+            font-family: Avenirlight;
+            font-size: 16px;
+        }
+    }
 }

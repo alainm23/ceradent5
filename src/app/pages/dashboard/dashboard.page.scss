@@ -52,6 +52,13 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        position: relative;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -63,6 +70,9 @@ ion-header
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: -2px;
             ion-menu-button
             {
                 color: transparent;
@@ -98,7 +108,7 @@ ion-content
 {
     color: #000000;
     font-family: AvenirHeavy;
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 33px;
 }
 .logo-bottom

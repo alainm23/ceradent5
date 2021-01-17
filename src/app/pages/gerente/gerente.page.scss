@@ -28,7 +28,7 @@
     right: 10px;
     color: #ffffff;
     top: 19px;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 ion-header
@@ -46,6 +46,13 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+            text-align: center;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -53,10 +60,16 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
+            position: absolute;
+            left: 18px;
+            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -108,6 +121,7 @@ ion-card
         border-radius: 6px;
         box-shadow: 0px 15px 29px #7176A840;
         margin-bottom: 7px;
+        padding-right: 33px;
         .icon-card-add
         {
             position: absolute;
@@ -120,6 +134,11 @@ ion-card
         {
             color: #000000;
             font-size: 14px;
+            font-family: Avenirlight;
+            .spna-fecha
+            {
+                font-size: 13px;
+            }
         }
         .icondesactivo
         {
@@ -157,7 +176,21 @@ ion-card
             font-size: 15px;
             margin: 0px;
         }
+        .btn-reporte
+        {
+            --color: #9F2C3F;
+            font-family: AvenirHeavy;
+            margin: 0px;
+            text-align: right;
+            margin-top: 5px;
+        }
     }
+}
+.btn-reporte
+{
+    --color: #9F2C3F;
+    font-family: AvenirHeavy;
+    margin: 0px;
 }
 @media (min-width: 411px)
 {
