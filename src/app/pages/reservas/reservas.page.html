@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">        
+  <!--<ion-toolbar color="primary">        
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -14,10 +14,22 @@
         <ion-icon slot="end" name="add-circle"></ion-icon>
       </ion-button>
     </ion-buttons>
+  </ion-toolbar>-->
+  <ion-toolbar class="menucabezera"> 
+    <ion-button (click)="registrar ()" class="btn-lef-header">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-button>   
+    <ion-title>
+      Reservas
+    </ion-title> 
+    <ion-buttons slot="end" class="btn-menu">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="ver (item)">
       <ion-avatar slot="start">
@@ -31,4 +43,38 @@
       </ion-label>
     </ion-item>
   </ion-list>
+  <div class="div-card-datos">
+    <ion-card *ngFor="let item of items" (click)="ver (item)" class="carr-datos">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="assets/imgs/grupo-816.png">
+        </ion-avatar>
+        <ion-label class="lbel-nombre">{{ item.cliente_nombres }}</ion-label>
+      </ion-item>
+      <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
+        <ion-row>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">DNI:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ item.cliente_dni }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">Servicios:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ item.servicios.length }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
 </ion-content>

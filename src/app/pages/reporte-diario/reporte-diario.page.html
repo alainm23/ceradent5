@@ -3,6 +3,9 @@
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>   
+    <ion-title>
+      Reporte Diario
+    </ion-title>
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,20 +13,23 @@
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Reporte Diario</h1>
-  <ion-item>            
-    <ion-datetime displayFormat="MMMM DD, del YYYY" [(ngModel)]="fechaActual" (ionChange)="onSelectDate ()"
-    monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"     
-    monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Agos, Sep, Oct, Nov, Dic"
-    dayNames="domingo, lunes, martes, miercoles, jueves, viernes, sabado"
-    dayShortNames="dom, lun, mar, mie, jue, vie, sab"
-    cancelText="Cancelar" doneText="Listo"></ion-datetime>
-  </ion-item>
-  <ion-item>            
-    <ion-select interface="popover" style="width:100%; max-width:100%;" [(ngModel)]="sucursal" (ionChange)="onSelectSucursal ()">
-      <ion-select-option *ngFor="let item of listaSucursales | async" [value]="item.id">{{item.data.nombre}}</ion-select-option>                                
-    </ion-select>
-  </ion-item>
+  <ion-card class="card-date-slect">
+    <ion-item lines="none" class="item-date">            
+      <ion-datetime displayFormat="MMMM DD, del YYYY" [(ngModel)]="fechaActual" (ionChange)="onSelectDate ()"
+      monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"     
+      monthShortNames="Ene, Feb, Mar, Abr, May, Jun, Jul, Agos, Sep, Oct, Nov, Dic"
+      dayNames="domingo, lunes, martes, miercoles, jueves, viernes, sabado"
+      dayShortNames="dom, lun, mar, mie, jue, vie, sab"
+      cancelText="Cancelar" doneText="Listo"></ion-datetime>
+      <ion-icon name="calendar-outline" class="icon-calendar"></ion-icon>
+    </ion-item>
+    <div class="div-linea"></div>
+    <ion-item lines="none" class="item-date">            
+      <ion-select interface="popover" style="width:100%; max-width:100%;" [(ngModel)]="sucursal" (ionChange)="onSelectSucursal ()" class="select-dato">
+        <ion-select-option *ngFor="let item of listaSucursales | async" [value]="item.id">{{item.data.nombre}}</ion-select-option>                                
+      </ion-select>
+    </ion-item>
+  </ion-card>
   <br>
   <ion-card class="card-precio">
     <p class="p-precio-uno">Total: {{ montoVendido + montoSaldos | currency:'S/. ' }}</p>
@@ -39,6 +45,7 @@
           <img src="assets/imgs/grupo-816.png">
         </ion-avatar>
         <ion-label class="lbel-nombre">{{ item.dataPlaca.nombre_cliente }}</ion-label>
+        <ion-button class="btn-puntos"><ion-icon name="ellipsis-vertical-sharp"></ion-icon></ion-button>
       </ion-item>
       <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
         <ion-row>
@@ -68,17 +75,17 @@
                 <p class="p-medium">Monto:</p>
               </ion-col>
               <ion-col size="9" class="col-cero-padding-top">
-                <p class="p-descripcion">{{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" color="primary" (click)="openHistorial(item.data.placa)"></ion-icon></p>
+                <p class="p-descripcion">{{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" (click)="openHistorial(item.data.placa)" class="icon-pago"></ion-icon></p>
               </ion-col>
             </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>
       <ion-grid class="ion-no-padding grid-top-margin">
-        <ion-row class="ion-align-items-center">
-          <!-- <ion-col size="2" class="ion-text-center">
+        <!--<ion-row class="ion-align-items-center">
+          <ion-col size="2" class="ion-text-center">
             <img src="assets/imgs/icontelefono.png">
-          </ion-col> -->
+          </ion-col> 
           <ion-col size="6" class="ion-text-center">
             <ion-button class="btn-card">
               <ion-icon slot="start" name="call"></ion-icon>
@@ -91,7 +98,7 @@
               Paciente
             </ion-button>
           </ion-col>
-        </ion-row>
+        </ion-row>-->
         
         <ion-row>  
           <ion-col *ngIf="item.dataPlaca.duplicado">
@@ -167,7 +174,7 @@
           <ion-card-content>
             <p text-wrap><b>Doctor:</b> {{item.dataPlaca.nombre_doctor}} <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.dataPlaca.puntos_ganados}} pts.</span>  <span *ngIf="item.dataPlaca.puntos_usados>0" style="color:#f53d3d;">-{{item.dataPlaca.puntos_usados}} pts.</span></p>              
             <p text-wrap><b>Placas:</b> {{item.dataPlaca.nombres_servicios}}</p>
-            <p text-wrap><b>Monto:</b> {{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" color="primary" (click)="openHistorial(item.data.placa)"></ion-icon></p>
+            <p text-wrap><b>Monto:</b> {{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" (click)="openHistorial(item.data.placa)" class="icon-pago"></ion-icon></p>
           </ion-card-content>    
           <ion-row>  
             <ion-col *ngIf="item.dataPlaca.duplicado">

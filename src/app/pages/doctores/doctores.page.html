@@ -11,7 +11,10 @@
   <ion-toolbar class="menucabezera"> 
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-button>   
+    </ion-button>
+    <ion-title>
+      Lista de Doctores
+    </ion-title>   
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -21,50 +24,55 @@
 
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Lista de Doctores</h1>
   <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar por nombres o apellidos"></ion-searchbar>
-  <ion-card *ngFor="let item of listaDoctores | orderBy: 'nombres'" class="carr-datos">
-    <ion-item lines="none">
-      <ion-avatar slot="start">
-        <img src="assets/imgs/grupo-816.png">
-      </ion-avatar>
-      <ion-label class="lbel-nombre">{{item.nombres}} {{item.apellidos}}</ion-label>
-    </ion-item>
-    <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
-      <ion-row>
-        <ion-col size="12" class="ion-no-padding">
-          <ion-row>
-            <ion-col size="3" class="ion-no-padding">
-              <p class="p-medium">Telefono:</p>
-            </ion-col>
-            <ion-col size="9" class="col-cero-padding-top">
-              <p class="p-descripcion">{{ item.telefono }}</p>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col size="12" class="ion-no-padding">
-          <ion-row>
-            <ion-col size="3" class="ion-no-padding">
-              <p class="p-medium">Email:</p>
-            </ion-col>
-            <ion-col size="9" class="col-cero-padding-top">
-              <p class="p-descripcion">{{ item.email }}</p>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-        <ion-col size="12" class="ion-no-padding">
-          <ion-row>
-            <ion-col size="3" class="ion-no-padding">
-              <p class="p-medium">Puntaje:</p>
-            </ion-col>
-            <ion-col size="9" class="col-cero-padding-top">
-              <p class="p-descripcion">{{ item.puntaje }}</p>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+  <ion-item lines="none" class="item-buscard">
+    <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
+    <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+  </ion-item>
+  <div class="div-card-datos">
+    <ion-card *ngFor="let item of listaDoctores | orderBy: 'nombres'" class="carr-datos">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="assets/imgs/grupo-816.png">
+        </ion-avatar>
+        <ion-label class="lbel-nombre">{{item.nombres}} {{item.apellidos}}</ion-label>
+      </ion-item>
+      <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+        <ion-row>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">Telefono:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ item.telefono }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">Email:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ item.email }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">Puntaje:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ item.puntaje }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
   <!-- <ion-grid>
     <ion-row>        
       <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar por apellido"></ion-searchbar>        

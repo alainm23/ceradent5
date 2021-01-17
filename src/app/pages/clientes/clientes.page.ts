@@ -24,7 +24,8 @@ export class ClientesPage implements OnInit {
   listaClientes_bak: any [] = [];
 
   slideOpts: any = {
-    slidesPerView: 6
+    slidesPerView: 6,
+    loop: true,
   }
 
   segment_value: string = 'dni';

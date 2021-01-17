@@ -33,6 +33,13 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+            text-align: center;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -40,10 +47,16 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
+            position: absolute;
+            left: 18px;
+            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -82,6 +95,39 @@ ion-content
     font-size: 25px;
     margin-bottom: 14px;
 }
+.item-buscard
+{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    .input-buscar
+    {
+        --color: #707070;
+        font-family: AvenirBook;
+        --placeholder-color: #707070;
+        --placeholder-font-weight: bolder;
+        border: 1px solid #FFC4CE;
+        border-radius: 6px; 
+        --padding-start: 20px;
+        --padding-end: 20px;
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+    }
+    .btn-buscardor
+    {
+        height: 100%;
+        --color: #fff;
+        --background: #9F2C3F;
+        --border-radius: 6px;
+        width: 42px;
+        height: 42px;
+        margin: 0px;
+        margin-left: 5px;
+        .icon-buscador
+        {
+            font-size: 25px;
+        }
+    }
+}
 .carr-datos
 {
     margin: 0px;
@@ -111,7 +157,7 @@ ion-content
         {
             color: #9F2C3F;
             font-family: Avenirlight;
-            font-size: 20px;
+            font-size: 16px;
             .spana-fecha
             {
                 font-size: 14px;
@@ -151,6 +197,19 @@ ion-content
         --border-width: 1px;
         margin: 0px;
         font-family: AvenirHeavy;
+        width: 100%;
+        --box-shadow: none;
+    }
+    .btn-pntos
+    {
+        --background: #ffffff;
+        --box-shadow: none;
+        --color: #4C00F7;
+        font-family: AvenirMedium;
+        width: 100%;
+        margin: 0px;
+        --padding-start: 0px;
+        --padding-end: 0px;
     }
     .grid-top-margin
     {
@@ -194,6 +253,19 @@ ion-content
         {
             --padding-start: 45px;
             --oadding-end: 45px;
+        }
+    }
+    .item-buscard
+    {
+        .input-buscar
+        {
+            --padding-top: 13px;
+            --padding-bottom: 13px;
+        }
+        .btn-buscardor
+        {
+            width: 50px;
+            height: 50px;
         }
     }
 }

@@ -288,11 +288,11 @@ ion-content
             }
             .div-btn-left
             {
-                border-right: 2px solid #707070;
+                border-right: 0px;
             }
             .div-btn-rigth
             {
-                border-left: 2px solid #707070;
+                border-left: 0px;
             }
         }
         .item-textarea
@@ -387,6 +387,45 @@ ion-content
         {
             --padding-start: 45px;
             --oadding-end: 45px;
+        }
+    }
+    .car-acordion
+    {
+        ion-card-content
+        {
+            .div-datos
+            {
+                .div-btn
+                {
+                    width: 382px;
+                    .btn-number
+                    {
+                        width: 34.7px;
+                        height: 34.7px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width: 540px)
+{
+    .car-acordion
+    {
+        ion-card-content
+        {
+            .div-datos
+            {
+                .div-btn
+                {
+                    width: 442px;
+                    .btn-number
+                    {
+                        width: 34.7px;
+                        height: 34.7px;
+                    }
+                }
+            }
         }
     }
 }
