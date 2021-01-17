@@ -119,6 +119,46 @@
         </ion-grid>
       </ion-card>
     </div>
+    
+    <ion-card *ngFor="let cliente of listaClientes | orderBy: 'nombres'" class="carr-datos" (click)="seleccionarCliente (cliente.data.usuario)">
+      <ion-item lines="none">
+        <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'adulto'">
+          <img src="assets/imgs/icono_user_default.png">
+        </ion-avatar>
+  
+        <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'menor'">
+          <img src="assets/imgs/child-icon.png">
+        </ion-avatar>
+  
+        <ion-label class="lbel-nombre">
+          {{cliente.dataCliente.nombres}} {{cliente.dataCliente.apellidos}}
+        </ion-label>
+      </ion-item>
+      <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+        <ion-row>
+          <ion-col *ngIf="cliente.dataCliente.tipo=='adulto'" size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="3" class="ion-no-padding">
+                <p class="p-medium">Telefono:</p>
+              </ion-col>
+              <ion-col size="9" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ cliente.dataCliente.telefono }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col *ngIf="cliente.dataCliente.tipo=='menor'" size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="3" class="ion-no-padding">
+                <p class="p-medium">DNI:</p>
+              </ion-col>
+              <ion-col size="9" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ cliente.dataCliente.dni }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
   </div>
 
 

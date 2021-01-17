@@ -10,14 +10,33 @@
     font-family: AvenirBook;
     src : url('/assets/fonts/Avenir Book.ttf')
 }
-@font-face{
-    font-family: AvenirMedium;
-    src : url('/assets/fonts/Avenir-Medium.ttf')
-}
-@font-face{
-    font-family: Avenirlight;
-    src : url('/assets/fonts/avenirltstd-light.otf')
-}
+/*.card-background-page {
+    ion-card {
+        position: relative;
+        
+    }
+    
+    .card-title {
+        position: absolute;
+        top: 65%;
+        left:5%;
+        font-size: 2.5em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 3px 3px 3px #000000;
+    }
+    
+    .card-subtitle {
+        font-size: 1.2em;
+        position: absolute;
+        top: 82%;
+        left:5%;
+        width: 100%;
+        color: #fff;
+        text-shadow: 1px 1px 2px #000000;
+    }
+}*/
 ion-header
 {
     height: 74px;
@@ -33,13 +52,6 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
-        ion-title
-        {
-            color: #ffffff;
-            font-family: AvenirHeavy;
-            font-size: 22px;
-            text-align: center;
-        }
         .btn-lef-header
         {
             --background: transparent;
@@ -47,16 +59,10 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
-            position: absolute;
-            left: 18px;
-            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
-            position: absolute;
-            right: 18px;
-            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -82,8 +88,8 @@ ion-content
     --padding-top: 30px;
     --background: #FAFAFA;
     position: relative;
-    --padding-start: 30px;
-    --padding-end: 30px;
+    --padding-start: 55px;
+    --padding-end: 55px;
     --padding-bottom: 55px;
     display: flex;
     flex-wrap: wrap;
@@ -93,180 +99,80 @@ ion-content
     color: #000000;
     font-family: AvenirHeavy;
     font-size: 25px;
-    margin-bottom: 14px;
+    margin-bottom: 33px;
 }
-.card-precio
+.logo-bottom
 {
-    margin: 0px;
-    border: 1px solid #FFC4CE;
-    border-radius: 6px;
-    --background: #Ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 15px 29px #7176A840;
-    height: 60px;
-    .p-precio-uno
-    {
-        color: #9F2C3F;
-        margin: 0px;
-        font-family: Avenirlight;
-        font-size: 22px;
-    }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 250px;
 }
-.div-tarje-efectivo
-{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-    .p-light-tarjeta-efectivo
-    {
-        color: #9F2C3F;
-        font-family: Avenirlight;
-        margin: 0px;
-        font-size: 17px;
-    }
-}
-.carr-datos
-{
-    margin: 0px;
-    border: 1px solid #FFC4CE;
-    border-radius: 6px;
-    --background: #Ffffff;
-    box-shadow: 0px 15px 29px #7176A840;
-    padding: 10px 20px;
-    width: 100%;
-    margin-bottom: 6px;
-    ion-item
-    {
-        border-bottom: 1px solid #E3E3E3;
-        --padding-start: 0px;
-        --inner-padding-end: 0px;
-        --padding-top: 0px;
-        --padding-bottom: 6px;
-        ion-avatar
-        {
-            --border-radius: 50%;
-            width: 41px;
-            height: 41px;
-            margin: 0px;
-            margin-right: 12px;
-        }
-        .lbel-nombre
-        {
-            color: #9F2C3F;
-            font-family: Avenirlight;
-            font-size: 16px;
-        }
-    }
-    .p-medium
-    {
-        color: #4D4D4D;
-        font-family: AvenirMedium;
-        margin: 0px;
-        font-size: 16px;
-    }
-    .p-descripcion
-    {
-        color: #4D4D4D;
-        font-family: AvenirBook;
-        font-size: 15px;
-        margin: 0px;
-        margin-top: 3px;
-    }
-    .col-cero-padding-top
-    {
-        padding-top: 0px;
-        padding-bottom: 0px;
-    }
-    .margin-top-grid
-    {
-        margin-top: 8px;
-    }
-    .btn-card
-    {
-        --background: #9F2C3F;
-        --border-color: #FFC4CE;
-        --border-radius: 6px;
-        --border-style: solid;
-        --border-width: 1px;
-        margin: 0px;
-        font-family: AvenirHeavy;
-        height: 42px;
-        width: 95%;
-    }
-    .grid-top-margin
-    {
-        margin-top: 8px;
-    }
-}
-.div-card-datos
+.div-card
 {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 21px;
+    width: 100%;
     justify-content: space-between;
 }
-.card-date-slect
+ion-card
 {
-    margin: 0px;
+    --background: #ffffff;
     border: 1px solid #FFC4CE;
     border-radius: 6px;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin: 0px;
+    height: 275px;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 6px;
     box-shadow: 0px 15px 29px #7176A840;
-    .item-date
+    width: 100%;
+    .img-icon-altura
     {
-        --padding-start: 0px;
-        --inner-padding-end: 0px;
-        box-shadow: none;
-        --border-width: 0px;
-        position: relative;
-        ion-datetime
-        {
-            width: 100%;
-            --padding-end: 25px;
-            color: #9F2C3F;
-            font-family: Avenirlight;
-        }
-        .icon-calendar
-        {
-            position: absolute;
-            right: 0;
-            z-index: 1;
-            color: #9F2C3F;
-        }
-        .select-dato
-        {
-            color: #4D4D4D;
-            font-family: AvenirBook;
-            .select-icon
-            {
-                color: #9F2C3F;
-            }
-        }
+        height: 131px;
     }
-    .div-linea
+    .h6-card
     {
-        width: 100%;
-        height: 1px;
-        background-color: #E3E3E3;
+        margin: 0px;
+        color: #9F2C3F;
+        font-family: AvenirBlack;
+        font-size: 27px;
+    }
+    .p-book
+    {
+        color: #9F2C3F;
+        font-family: AvenirBook;
+        margin: 0px;
+        font-size: 22px;
     }
 }
-// @media (min-width: 411px)
-// {
-//     ion-content
-//     {
-//         --padding-start: 40px;
-//         --padding-end: 40px;
-//     }
-// }
+@media (min-width: 411px)
+{
+    ion-card
+    {
+        height: 280px;
+        padding-top: 43px;
+        padding-bottom: 43px;
+    }
+    ion-content
+    {
+        --padding-start: 65px;
+        --padding-end: 65px;
+    }
+}
 @media (min-width: 480px)
 {
     ion-content
     {
-        --padding-start: 40px;
-        --padding-end: 40px;
+        --padding-start: 80px;
+        --padding-end: 80px;
+    }
+    ion-card
+    {
+        height: 310px;
+        padding-top: 60px;
+        padding-bottom: 60px;
     }
     ion-header
     {
@@ -275,6 +181,13 @@ ion-content
             --padding-start: 45px;
             --oadding-end: 45px;
         }
+    }
+}
+@media (min-width: 640px)
+{
+    ion-card
+    {
+        width: 49%;
     }
 }
 @media (min-width: 768px)
@@ -292,12 +205,6 @@ ion-content
     ion-content
     {
         --padding-top: 50px;
-        --padding-start: 80px;
-        --padding-end: 80px;
-    }
-    .carr-datos
-    {
-        width: 49.5%;
     }
 }
 @media (min-width: 1024px)
@@ -313,7 +220,7 @@ ion-content
         }
     }
     ion-content
-    {  
+    {
         --padding-start: 180px;
         --padding-end: 180px;
         --padding-top: 80px;

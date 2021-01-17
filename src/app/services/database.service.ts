@@ -395,7 +395,7 @@ export class DatabaseService {
         return refReferencias.map(refReferencia=>{
             const data:any = refReferencia.payload.doc.data();
             //data.id= refReferencia.payload.doc.id;
-            return this.getDatosClienteObservable(data.usuario).pipe(map(dataCliente=> Object.assign({},{data, dataCliente})));
+            return this.getDatosClienteObservable (data.usuario).pipe(map(dataCliente=> Object.assign({},{data, dataCliente})));
         })
       }
     })).mergeMap(observables =>{
@@ -492,6 +492,16 @@ export class DatabaseService {
   }
 
   get_clientes_by_dni (dni: string) {
-    return this.db.collection('Clientes', ref => ref.where ('dni', '==', dni)).valueChanges ();
+    return this.db.collection('Clientes', ref => ref.where ('dni', '==', dni)).snapshotChanges ().pipe (
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as any;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
+
+  registrar_cliente (data: any) {
+    
   }
 }

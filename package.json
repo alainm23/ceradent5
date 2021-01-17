@@ -48,6 +48,7 @@
     "firebase": "^7.13.1",
     "ionic-image-loader-v5": "^1.0.2",
     "moment": "^2.29.1",
+    "mx.ferreyra.callnumber": "0.0.2",
     "ngx-order-pipe": "^2.1.1",
     "onesignal-cordova-plugin": "^2.11.1",
     "rxjs": "~6.5.5",
@@ -111,7 +112,8 @@
       "cordova-plugin-firebase-authentication": {
         "ANDROID_FIREBASE_AUTH_VERSION": "19.3.+"
       },
-      "cordova-plugin-screen-orientation": {}
+      "cordova-plugin-screen-orientation": {},
+      "call-number": {}
     },
     "platforms": [
       "android"

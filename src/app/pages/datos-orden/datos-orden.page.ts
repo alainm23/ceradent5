@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-datos-orden',
@@ -25,11 +26,17 @@ export class DatosOrdenPage implements OnInit {
   radio_intra_d_02: Map <string, boolean> = new Map <string, boolean> ();
   radio_intra_i_01: Map <string, boolean> = new Map <string, boolean> ();
   radio_intra_i_02: Map <string, boolean> = new Map <string, boolean> ();
-  constructor (private navController: NavController, private route: ActivatedRoute) { }
+  constructor (
+    private navController: NavController,
+    private route: ActivatedRoute,
+    private database: DatabaseService,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit () {
     this.codigo = this.route.snapshot.paramMap.get ('codigo');
     this.paciente = JSON.parse (this.route.snapshot.paramMap.get ('paciente'));
+
+    console.log (this.paciente);
 
     this.form = new FormGroup({
       tomografia_volumetrica_tipo: new FormControl("", [Validators.required]),
@@ -53,8 +60,6 @@ export class DatosOrdenPage implements OnInit {
       lateral_7ms: new FormControl (false),
 
       radio_intra_tipo: new FormControl ('', [Validators.required]),
-      bitewing_morales: new FormControl (false),
-      bitewing_premolares: new FormControl (false),
       bitewing_morales_der: new FormControl (false),
       bitewing_morales_izq: new FormControl (false),
       bitewing_premolares_der: new FormControl (false),
@@ -75,7 +80,6 @@ export class DatosOrdenPage implements OnInit {
       vto_de_ricketts: new FormControl (false),
       vto_de_ricketts_anios: new FormControl (),
 
-      fotos_extra_intraorales: new FormControl (false),
       fotos_extra_intraorales_standar: new FormControl (false),
       fotos_extra_intraorales_profesional: new FormControl (false),
       duplicado_estudio: new FormControl (false),
@@ -129,5 +133,52 @@ export class DatosOrdenPage implements OnInit {
     } else {
       map.set (value, true);
     }
+  }
+
+  back () {
+    this.navController.back ();
+  }
+
+  checkbox_change (event: any, control: string) {
+    if (control === 'bitewing_morales') {
+      if (event === false) {
+        this.form.controls ['bitewing_morales_der'].setValue (false);
+        this.form.controls ['bitewing_morales_izq'].setValue (false);
+      }
+    } else if (control === 'bitewing_premolares') {
+      if (event === false) {
+        this.form.controls ['bitewing_premolares_der'].setValue (false);
+        this.form.controls ['bitewing_premolares_izq'].setValue (false);
+      }
+    }
+  }
+
+  async submit () {
+    let loading = await this.loadingCtrl.create({
+      message: "Procesando informacion..."            
+    });
+
+    // loading.present ();
+    
+    // console.log (this.form.value);
+
+    console.log (this.radio_intra_d_01);
+    console.log (this.radio_intra_d_02);
+    console.log (this.radio_intra_i_01);
+    console.log (this.radio_intra_i_02);
+    console.log (this.tomografia_volumetrica_derecho);
+    console.log (this.tomografia_volumetrica_izq);
+    
+    let request: any = {
+      id: this.database.createId (),
+      cliente_dni: this.paciente.dni,
+      cliente_id: this.paciente.id,
+      cliente_nombres: this.paciente.nombres + ' ' + this.paciente.apellidos,
+      doctor_id: this.codigo,
+      servicio: this.form.value,
+    };
+
+
+    // this.database.add_reserva ()
   }
 }

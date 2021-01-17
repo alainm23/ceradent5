@@ -10,54 +10,52 @@
 </ion-header>
 
 <ion-content>
+  <h1 class="ion-text-center titulo">Seleccionar paciente</h1>
   <ion-card class="card-form">
-    <form [formGroup]="form" (ngSubmit)="onSubmit ()">
-      <p class="titulos-campo">Datos personales</p>
-    <ion-item class="item-input" lines="none">
-      <ion-input placeholder="Nombre del paciente" formControlName="nombres" class="input-form" type="text"></ion-input>
+    <ion-item *ngIf="status === 0" class="item-input" lines="none">
+      <ion-input (ionChange)="changed ($event)" placeholder="DNI" [(ngModel)]="dni_search" class="input-form" type="tel"></ion-input>
     </ion-item>
 
-    <ion-item class="item-input" lines="none">
-      <ion-input placeholder="DNI" formControlName="dni" class="input-form" type="number"></ion-input>
-    </ion-item>
-    <div class="div-flex-campo">
-      <ion-item class="item-input item-rigth item-igual-fomr" lines="none">
-        <ion-select placeholder="Documento" class="select-fomr">
-          <ion-select-option value="f">DNI</ion-select-option>
-          <ion-select-option value="m">CE</ion-select-option>
-        </ion-select>
+    <!-- *ngIf="pacientes.length > 0" -->
+    <ion-list>
+      <ion-radio-group [(ngModel)]="paciente" *ngFor="let item of pacientes">
+        <ion-card>
+          <ion-item>
+            <ion-avatar slot="start" *ngIf="item.tipo == 'adulto'">
+              <img src="assets/imgs/icono_user_default.png">
+            </ion-avatar>
+      
+            <ion-avatar slot="start" *ngIf="item.tipo == 'menor'">
+              <img src="assets/imgs/child-icon.png">
+            </ion-avatar>
+  
+            <ion-label>{{ item.nombres }} {{ item.apellidos }}</ion-label>
+            <ion-radio slot="end" [value]="item"></ion-radio>
+          </ion-item>
+        </ion-card>
+      </ion-radio-group>
+    </ion-list>
+
+    <form *ngIf="status === 2" [formGroup]="form">
+      <p class="titulos-campo">Datos personales</p>
+      <ion-item class="item-input" lines="none">
+        <ion-input placeholder="Nombres" formControlName="nombres" class="input-form" type="text"></ion-input>
       </ion-item>
-      <ion-item class="item-input item-left item-igual-fomr" lines="none">
-        <ion-input placeholder="Número" class="input-form" type="number"></ion-input>
+
+      <ion-item class="item-input" lines="none">
+        <ion-input placeholder="Apellidos" formControlName="apellidos" class="input-form" type="text"></ion-input>
       </ion-item>
-    </div>
-    <ion-item class="item-input" lines="none">
-      <ion-select placeholder="Documento" class="select-fomr">
-        <ion-select-option value="f">Female</ion-select-option>
-        <ion-select-option value="m">Male</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-item class="item-input" lines="none">
-      <ion-datetime displayFormat="MM DD YY" placeholder="Fecha de nacimiento" mode="ios" class="input-datetime"></ion-datetime>
-      <ion-icon name="calendar-outline" class="icon-calendario"></ion-icon>
-    </ion-item>
-    <div class="div-linea"></div>
-    <p class="titulos-campo">Datos de contacto del paciente</p>
-    <ion-item class="item-input" lines="none">
-      <ion-input placeholder="Numero de teléfono" class="input-form" type="number"></ion-input>
-    </ion-item>
-    <ion-item class="item-input" lines="none">
-      <ion-input placeholder="Correo electrónico" class="input-form" type="email"></ion-input>
-    </ion-item>
-    <div class="div-linea"></div>
-    <p class="titulos-campo">Referido por Dr(a):</p>
-    <ion-item class="item-input" lines="none">
-      <ion-input placeholder="Nombre" class="input-form" type="text"></ion-input>
-    </ion-item>
-    <ion-item class="item-input" lines="none">
-      <ion-input placeholder="COP" class="input-form" type="number"></ion-input>
-    </ion-item>
-    <ion-button class="btn-form" type="submit" [disabled]="form.invalid" mode="ios">Adelante</ion-button>
+
+      <ion-item class="item-input" lines="none">
+        <ion-input readonly placeholder="DNI" formControlName="dni" class="input-form" type="number"></ion-input>
+      </ion-item>
     </form>
+    <ion-button class="btn-form" type="submit" (click)="submit ()" [disabled]="valid_button ()" mode="ios">
+      Adelante
+    </ion-button>
+
+    <ion-button *ngIf="status >= 1" class="btn-form" (click)="reset ()" mode="ios">
+      Cancelar
+    </ion-button>
   </ion-card>
 </ion-content>

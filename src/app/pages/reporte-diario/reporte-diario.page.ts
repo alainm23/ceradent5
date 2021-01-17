@@ -42,42 +42,39 @@ export class ReporteDiarioPage implements OnInit {
   }
 
   async ngOnInit(){
-    if (this.route.snapshot.paramMap.get("sucursal")!=undefined){
-      this.sucursal = this.route.snapshot.paramMap.get("sucursal"); 
-      this.loading = await this.loadingCtrl.create({
+    if (this.route.snapshot.paramMap.get("sucursal") !== undefined){
+      this.sucursal = this.route.snapshot.paramMap.get ("sucursal"); 
+      let loading = await this.loadingCtrl.create ({
          message: "Procesando informacion..."            
-      })
-      this.loading.present().then(_=>{
-        this.listaSucursales = this.database.getSucursales ();
-        this.database.getSucursales ().subscribe(d=>{
-          console.log (d);
-        });
+      });
 
-        this.subscription=this.database.getSucursales().subscribe(_=>{
-          this.subscription1=this.database.getVentasDiariasSucursal(this.sucursal, this.fechaActual).subscribe(ventas=>{
-            this.ventasMensuales=ventas;
-            console.log (ventas);
+      await loading.present ();
+
+      this.listaSucursales = this.database.getSucursales ();
+
+      this.subscription = this.database.getSucursales().subscribe (_=> {
+        this.subscription1 = this.database.getVentasDiariasSucursal (this.sucursal, this.fechaActual).subscribe(ventas=>{
+          this.ventasMensuales = ventas;
+
+          this.subscription2 = this.database.getSaldosDiariosSucursal (this.fechaActual, this.sucursal).subscribe(saldos=>{
+            this.saldosMensuales = saldos;
             
-            this.subscription2=this.database.getSaldosDiariosSucursal(this.fechaActual, this.sucursal).subscribe(saldos=>{
-              this.saldosMensuales=saldos;
-              console.log (saldos);
-              
-              this.loading.dismiss().then(_=>{                               
-                if (this.ventasMensuales.length>0){
-                  this.montoVendido = this.ventasMensuales.filter ((item) =>item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta).map((item) => +item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta).reduce((sum, current) => sum + current, 0);              
-                  this.montoEfectivoVendido = this.ventasMensuales.filter ((item) =>item.dataPlaca.primer_pago_efectivo).map((item) => +item.dataPlaca.primer_pago_efectivo).reduce((sum, current) => sum + current, 0);              
-                  this.montoTarjetaVendido = this.ventasMensuales.filter ((item) =>item.dataPlaca.primer_pago_tarjeta).map((item) => +item.dataPlaca.primer_pago_tarjeta).reduce((sum, current) => sum + current, 0);              
-                }
-                if (this.saldosMensuales.length>0){
-                  this.montoSaldos = this.saldosMensuales.filter ((item) =>item.dataPlaca.efectivo+item.dataPlaca.tarjeta).map((item) => +item.dataPlaca.efectivo+item.dataPlaca.tarjeta).reduce((sum, current) => sum + current, 0);              
-                  this.montoEfectivoSaldo = this.saldosMensuales.filter ((item) =>item.efectivo).map((item) => +item.dataPlaca.efectivo).reduce((sum, current) => sum + current, 0);              
-                  this.montoTarjetaSaldo = this.saldosMensuales.filter ((item) =>item.tarjeta).map((item) => +item.dataPlaca.tarjeta).reduce((sum, current) => sum + current, 0);              
-                }
-              })
-            })                  
-          })
+            if (this.ventasMensuales.length > 0){
+              this.montoVendido = this.ventasMensuales.filter ((item) =>item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta).map((item) => +item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta).reduce((sum, current) => sum + current, 0);              
+              this.montoEfectivoVendido = this.ventasMensuales.filter ((item) =>item.dataPlaca.primer_pago_efectivo).map((item) => +item.dataPlaca.primer_pago_efectivo).reduce((sum, current) => sum + current, 0);              
+              this.montoTarjetaVendido = this.ventasMensuales.filter ((item) =>item.dataPlaca.primer_pago_tarjeta).map((item) => +item.dataPlaca.primer_pago_tarjeta).reduce((sum, current) => sum + current, 0);              
+            }
+            
+            if (this.saldosMensuales.length > 0){
+              this.montoSaldos = this.saldosMensuales.filter ((item) =>item.dataPlaca.efectivo+item.dataPlaca.tarjeta).map((item) => +item.dataPlaca.efectivo+item.dataPlaca.tarjeta).reduce((sum, current) => sum + current, 0);              
+              this.montoEfectivoSaldo = this.saldosMensuales.filter ((item) =>item.efectivo).map((item) => +item.dataPlaca.efectivo).reduce((sum, current) => sum + current, 0);              
+              this.montoTarjetaSaldo = this.saldosMensuales.filter ((item) =>item.tarjeta).map((item) => +item.dataPlaca.tarjeta).reduce((sum, current) => sum + current, 0);              
+            }
+
+            loading.dismiss ();
+          });                  
         })
-      })      
+      });
     }
     else{
       this.navCtrl.navigateRoot ("gerente");

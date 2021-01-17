@@ -49,7 +49,7 @@ export class ClientesPage implements OnInit {
     console.log(this.letraSeleccionada);
     this.loading = await this.loadingCtrl.create({
       message: "Procesando informacion..."            
-    })
+    });
     this.loading.present().then(()=>{
       this.subscription=this.database.getClientesLetra (letra).subscribe(data=>{
         console.log (data);
@@ -162,7 +162,9 @@ export class ClientesPage implements OnInit {
       res.forEach ((r: any) => {
         this.listaClientes.push ({
           dataCliente: r,
-          data: r
+          data: {
+            usuario: r.id
+          }
         });
       });
       this.listaClientes_bak = this.listaClientes;
@@ -174,5 +176,9 @@ export class ClientesPage implements OnInit {
   segmentChanged (event: any) {
     this.listaClientes = [];
     this.listaClientes_bak = [];
+  }
+
+  back () {
+    this.navCtrl.back ();
   }
 }
