@@ -29,33 +29,21 @@
         <p class="p-buscar">DNI</p>
       </ion-col>
       <ion-col class="ion-text-center">
-        <ion-toggle mode="ios"></ion-toggle>
+        <ion-toggle (ionChange)="segmentChanged ($event)" [(ngModel)]="segment_value" mode="ios"></ion-toggle>
       </ion-col>
       <ion-col class="ion-text-start">
         <p class="p-buscar">NOMBRE</p>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-item lines="none" class="item-buscard">
-    <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
-    <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
-  </ion-item>
-  <ion-segment (ionChange)="segmentChanged ($event)" mode="ios" [(ngModel)]="segment_value" style="margin-top: 1rem;"> 
-    <ion-segment-button value="dni">
-      <ion-label>Busqueda por DNI</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="nombre">
-      <ion-label>Busqueda por nommbre</ion-label>
-    </ion-segment-button>
-  </ion-segment>
 
   <div style="margin-top: 6px; margin-bottom: 6px;">
-    <div *ngIf="segment_value === 'dni'" style="display: flex;">
-      <ion-searchbar mode="ios" [(ngModel)]="dni_search" placeholder="Busqueda por DNI"></ion-searchbar>
-      <ion-button type="tel" style="align-self: center;" size="small" mode="ios" slot="end" (click)="buscar_dni ()" [disabled]="dni_search === ''" color="brand">Buscar</ion-button>
-    </div>
+    <ion-item *ngIf="segment_value === false" lines="none" class="item-buscard">
+      <ion-input type="tel" [(ngModel)]="dni_search" placeholder="Busqueda por DNI" class="input-buscar"></ion-input>
+      <ion-button (click)="buscar_dni ()" [disabled]="dni_search === ''" class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+    </ion-item>
   
-    <ion-row *ngIf="segment_value === 'nombre'" class="filters ion-align-items-center">
+    <ion-row *ngIf="segment_value === true" class="filters ion-align-items-center">
       <ion-col class="col-with-arrow ion-no-padding" (click)="slidePrev()" size="1">
         <ion-icon *ngIf="showLeftButton" name="chevron-back-circle-sharp" class="icon-slider"></ion-icon>
       </ion-col>
@@ -73,11 +61,10 @@
   </div>
 
   <div *ngIf="listaClientes_bak.length > 0">
-    <ion-searchbar *ngIf="segment_value === 'nombre' && listaClientes_bak.length > 0" mode="ios" (ionInput)="onInput($event)" style="width:100%; max-width:100%"></ion-searchbar>
-    <ion-item lines="none" class="item-buscard">
-      <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
-      <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+    <ion-item *ngIf="segment_value === true && listaClientes_bak.length > 0"  lines="none" class="item-buscard">
+      <ion-input (ionInput)="onInput($event)" type="search" placeholder="Buscar por nombre" class="input-buscar"></ion-input>
     </ion-item>
+
     <div class="div-card-datos">
       <ion-card *ngFor="let cliente of listaClientes | orderBy: 'nombres'" class="carr-datos" (click)="seleccionarCliente(cliente.data.usuario)">
         <ion-item lines="none">

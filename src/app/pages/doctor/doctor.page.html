@@ -28,11 +28,11 @@
 
 <ion-content>
   <ion-item lines="none" class="item-buscard">
-    <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
-    <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+    <ion-input (ionInput)="onInput($event)" type="search" placeholder="Buscar paciente" class="input-buscar"></ion-input>
+    <!-- <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button> -->
   </ion-item>
   <!-- Quitar este buscador-->
-  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar paciente"></ion-searchbar> 
+  <!-- <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar paciente"></ion-searchbar>  -->
   <!--Fin-->           
   <div class="div-card-datos">
     <ion-card *ngFor="let item of historialDoctor | orderBy:'fecha':true" class="carr-datos">

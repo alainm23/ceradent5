@@ -11,6 +11,8 @@ import { DatabaseService } from 'src/app/services/database.service';
 })
 export class ReservasPage implements OnInit {
   codigo: string = '';
+  rol: string = '';
+
   items: any [] = [];
   constructor (
     private route: ActivatedRoute,
@@ -20,6 +22,7 @@ export class ReservasPage implements OnInit {
 
   async ngOnInit () {
     this.codigo = this.route.snapshot.paramMap.get ("codigo");
+    this.rol = this.route.snapshot.paramMap.get ("rol");
 
     let loading = await this.loadingCtrl.create({
       message: "Procesando informacion..."            
@@ -36,7 +39,7 @@ export class ReservasPage implements OnInit {
 
   registrar () {
     // this.navCtrl.navigateForward (['agregar-editar-reserva', this.codigo, 'null']);
-    this.navCtrl.navigateForward (['datos-paciente', this.codigo]);
+    this.navCtrl.navigateForward (['datos-paciente', this.codigo, this.rol]);
   }
 
   ver (item: any) {

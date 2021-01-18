@@ -28,7 +28,7 @@ export class ClientesPage implements OnInit {
     loop: true,
   }
 
-  segment_value: string = 'dni';
+  segment_value: boolean = false;
   dni_search: string = '';
   constructor(
     public navCtrl: NavController, 

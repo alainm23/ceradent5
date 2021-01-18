@@ -14,10 +14,9 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit ()">
     <ion-list class="list-padding-left-right">
       <ion-card class="car-acordion">
-        <ion-card-header (click)="ver_item (1)" class="acitvo">
+        <ion-card-header [class.acitvo]="item_01 === true" (click)="ver_item (1)">
           <ion-card-title>Tomografía volumétrica</ion-card-title>
-          <ion-icon name="add-outline" class="icon-rigth desactivo"></ion-icon>
-          <ion-icon name="close-outline" class="icon-close activo"></ion-icon>
+          <ion-icon [ngStyle]="{'transform': item_01 ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-rigth"></ion-icon>
         </ion-card-header>
       
         <ion-card-content *ngIf="item_01">
@@ -101,15 +100,15 @@
           </div>
 
           <ion-item class="item-textarea" lines="none">
-            <ion-textarea placeholder="Observación" class="textaera-plomo" rows="3"></ion-textarea>
+            <ion-textarea formControlName="tomografía_volumetrica_observacion" placeholder="Observación" class="textaera-plomo" rows="3"></ion-textarea>
           </ion-item>
         </ion-card-content>
       </ion-card>
+      
       <ion-card class="car-acordion">
-        <ion-card-header (click)="ver_item (2)">
+        <ion-card-header [class.acitvo]="item_02 === true" (click)="ver_item (2)">
           <ion-card-title>Radiografias extra orales digitales</ion-card-title>
-          <ion-icon name="add-outline" class="icon-rigth activo"></ion-icon>
-          <ion-icon name="close-outline" class="icon-close desactivo"></ion-icon>
+          <ion-icon [ngStyle]="{'transform': item_02 ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-rigth"></ion-icon>
         </ion-card-header>
       
         <ion-card-content *ngIf="item_02">
@@ -171,11 +170,11 @@
           </ion-list>
         </ion-card-content>
       </ion-card>
+      
       <ion-card class="car-acordion">
-        <ion-card-header (click)="ver_item (3)">
+        <ion-card-header [class.acitvo]="item_03 === true" (click)="ver_item (3)">
           <ion-card-title>Radiografias intraorales</ion-card-title>
-          <ion-icon name="add-outline" class="icon-rigth activo"></ion-icon>
-          <ion-icon name="close-outline" class="icon-close desactivo"></ion-icon>
+          <ion-icon [ngStyle]="{'transform': item_03 ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-rigth"></ion-icon>
         </ion-card-header>
       
         <ion-card-content *ngIf="item_03">
@@ -321,11 +320,11 @@
           </div>
         </ion-card-content>
       </ion-card>
+      
       <ion-card class="car-acordion">
-        <ion-card-header (click)="ver_item (4)">
+        <ion-card-header [class.acitvo]="item_04 === true" (click)="ver_item (4)">
           <ion-card-title>Análisis cefalométrico computarizado</ion-card-title>
-          <ion-icon name="add-outline" class="icon-rigth activo"></ion-icon>
-          <ion-icon name="close-outline" class="icon-close desactivo"></ion-icon>
+          <ion-icon [ngStyle]="{'transform': item_04 ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-rigth"></ion-icon>
         </ion-card-header>
       
         <ion-card-content *ngIf="item_04">
@@ -404,11 +403,11 @@
           </ion-list>
         </ion-card-content>
       </ion-card>
+
       <ion-card class="car-acordion">
-        <ion-card-header (click)="ver_item (5)">
+        <ion-card-header [class.acitvo]="item_05 === true" (click)="ver_item (5)">
           <ion-card-title>Exámenes complementarios</ion-card-title>
-          <ion-icon name="add-outline" class="icon-rigth activo"></ion-icon>
-          <ion-icon name="close-outline" class="icon-close desactivo"></ion-icon>
+          <ion-icon [ngStyle]="{'transform': item_05 ? 'rotate(90deg)' : 'none' }" name="chevron-forward-outline" class="icon-rigth"></ion-icon>
         </ion-card-header>
       
         <ion-card-content *ngIf="item_05">
@@ -427,48 +426,57 @@
               <ion-label class="label-chec ion-text-wrap">Profesional</ion-label>
             </ion-item>
 
-            <ion-item lines="none" class="item-chebox">
+            <!-- <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="duplicado_estudio"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Duplicado de estudio y/o radiografía</ion-label>
-            </ion-item>
+            </ion-item> -->
+            <ion-list-header>
+              <ion-label>Duplicado de estudio y/o radiografía</ion-label>
+            </ion-list-header>
 
-            <ng-container *ngIf="form.value.duplicado_estudio === true">
+            <ng-container>
               <ion-item class="item-textarea" lines="none">
                 <ion-textarea placeholder="Especifique aqui" formControlName="duplicado_estudio_texto" class="textaera-plomo" rows="3"></ion-textarea>
               </ion-item>
             </ng-container>
 
-            <ion-item lines="none" class="item-chebox">
+            <!-- <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="doc_completa_orto"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Documentación completa para Ortodoncia</ion-label>
-            </ion-item>
-          </ion-list>
+            </ion-item> -->
+            <ion-list-header>
+              <ion-label>Documentación completa para Ortodoncia</ion-label>
+            </ion-list-header>
 
-          <ng-container *ngIf="form.value.doc_completa_orto === true">
-            <p class="p-paquete ion-text-start p-bootom">Paquetes</p>
-            <ion-list class="list-chec">
-              <ion-item lines="none" class="item-chebox item-height-auto">
-                <ion-checkbox formControlName="doc_completa_orto_pack_1"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">1. Radiografía panorámica + radiografía cefalométrica lateral + 1 tipo de trazado cefalométrico + CD</ion-label>
-              </ion-item>
-              <ion-item lines="none" class="item-chebox item-height-auto">
-                <ion-checkbox formControlName="doc_completa_orto_pack_2"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">2. Radiografía panorámica + radiografía cefalométrica lateral + 2 tipos de trazados cefalométricos + documentación membreteada para ortodoncia + CD</ion-label>
-              </ion-item>
-              <ion-item lines="none" class="item-chebox item-height-auto">
-                <ion-checkbox formControlName="doc_completa_orto_pack_3"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">3. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías documentación membreteada para ortodoncia + CD</ion-label>
-              </ion-item>
-              <ion-item lines="none" class="item-chebox item-height-auto">
-                <ion-checkbox formControlName="doc_completa_orto_pack_4"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">4. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + CD</ion-label>
-              </ion-item>
-              <ion-item lines="none" class="item-chebox item-height-auto">
-                <ion-checkbox formControlName="doc_completa_orto_pack_5"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">5. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + modelos de estudio en yeso + CD</ion-label>
-              </ion-item>
+            <ion-list>
+              <ion-radio-group formControlName="doc_completa_orto_pack">            
+                <ion-item class="ion-text-wrap">
+                  <ion-label class="ion-text-wrap">1. Radiografía panorámica + radiografía cefalométrica lateral + 1 tipo de trazado cefalométrico + CD</ion-label>
+                  <ion-radio slot="start" value="1"></ion-radio>
+                </ion-item>
+
+                <ion-item class="ion-text-wrap">
+                  <ion-label class="ion-text-wrap">2. Radiografía panorámica + radiografía cefalométrica lateral + 2 tipos de trazados cefalométricos + documentación membreteada para ortodoncia + CD</ion-label>
+                  <ion-radio slot="start" value="2"></ion-radio>
+                </ion-item>
+
+                <ion-item class="ion-text-wrap">
+                  <ion-label class="ion-text-wrap">3. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías documentación membreteada para ortodoncia + CD</ion-label>
+                  <ion-radio slot="start" value="3"></ion-radio>
+                </ion-item>
+
+                <ion-item class="ion-text-wrap">
+                  <ion-label class="ion-text-wrap">4. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + CD</ion-label>
+                  <ion-radio slot="start" value="4"></ion-radio>
+                </ion-item>
+
+                <ion-item class="ion-text-wrap">
+                  <ion-label class="ion-text-wrap">5. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + modelos de estudio en yeso + CD</ion-label>
+                  <ion-radio slot="start" value="5"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
             </ion-list>
-          </ng-container>
+          </ion-list>
         </ion-card-content>
       </ion-card>
     </ion-list>

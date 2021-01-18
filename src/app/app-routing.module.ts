@@ -104,15 +104,15 @@ const routes: Routes = [
     loadChildren: () => import('./popovers/range/range.module').then( m => m.RangePageModule)
   },
   {
-    path: 'datos-paciente/:codigo',
+    path: 'datos-paciente/:codigo/:rol',
     loadChildren: () => import('./pages/datos-paciente/datos-paciente.module').then( m => m.DatosPacientePageModule)
   },
   {
-    path: 'datos-orden/:codigo/:paciente',
+    path: 'datos-orden/:codigo/:rol/:paciente',
     loadChildren: () => import('./pages/datos-orden/datos-orden.module').then( m => m.DatosOrdenPageModule)
   },
   {
-    path: 'gracias',
+    path: 'gracias/:codigo/:rol',
     loadChildren: () => import('./pages/gracias/gracias.module').then( m => m.GraciasPageModule)
   },
 

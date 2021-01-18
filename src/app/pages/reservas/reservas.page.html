@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="registrar ()">
+  <ion-button class="btn-login" expand="block" (click)="registrar ()">
     Reservar
   </ion-button>
   <ion-list>
@@ -22,10 +22,9 @@
         <img src="assets/imgs/icono_user_default.png">
       </ion-avatar>
   
-      <ion-label>
+      <ion-label class="ion-text-wrap">
         <h2><b>Paciente: {{ item.cliente_nombres }}</b></h2>
         <h4>DNI: {{ item.cliente_dni }}</h4>
-        <h4>Servicios: {{ item.servicios.length }}</h4>
       </ion-label>
     </ion-item>
   </ion-list>

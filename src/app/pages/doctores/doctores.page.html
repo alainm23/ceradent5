@@ -21,13 +21,11 @@
   </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content>
-  <ion-searchbar (ionInput)="onInput($event)" placeholder="Buscar por nombres o apellidos"></ion-searchbar>
+  <!-- <ion-searchbar (ionInput)="onInput ($event)" placeholder="Buscar por nombres o apellidos"></ion-searchbar> -->
   <ion-item lines="none" class="item-buscard">
-    <ion-input type="search" placeholder="Ingrese su numero aqui" class="input-buscar"></ion-input>
-    <ion-button class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button>
+    <ion-input (ionInput)="onInput ($event)" type="search" placeholder="Buscar por nombres o apellidos" class="input-buscar"></ion-input>
+    <!-- <ion-button (click)="onInput ($event)" class="btn-buscardor"><ion-icon name="search-sharp" class="icon-buscador"></ion-icon></ion-button> -->
   </ion-item>
   <div class="div-card-datos">
     <ion-card *ngFor="let item of listaDoctores | orderBy: 'nombres'" class="carr-datos">

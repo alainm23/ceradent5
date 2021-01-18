@@ -40,7 +40,11 @@
         <ion-avatar slot="start" class="avatar-perfil">
           <img src="assets/imgs/icono_doctor.png">
         </ion-avatar>
-        <ion-label class="label-perfil"><span class="label-span-nombre">Avatar</span><br><span class="label-span-pnt">Doctor - 32pts</span></ion-label>
+        <ion-label class="label-perfil">
+          <span class="label-span-nombre ion-text-wrap">{{ (usuario | async)?.nombres}}</span><br><span class="label-span-pnt">
+            <span ion-text color="light" *ngIf="permisos!=null">{{permisos.rol}}</span>&nbsp;<span ion-text color="light" *ngIf="permisos!=null && permisos.rol=='Doctor'">{{(usuario | async)?.puntaje}} pts.</span>
+          </span>
+        </ion-label>
       </ion-item>
       <img src="assets/imgs/lgomenu.png" class="img-absolute">
       <ion-button class="btnmenu" (click)="close_menu ()"><ion-icon name="close-sharp"></ion-icon></ion-button>
@@ -52,19 +56,19 @@
           </ion-item>
         </ion-menu-toggle>
         
-        <ion-menu-toggle auto-hide="false">
+        <!-- <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos.isdoctor == true || permisos.iscliente == true" (click)="openTienda()" class="item-border-bottom">
               <img src="assets/imgs/menu-tres.png" class="img-icon">
             <ion-label>Tienda</ion-label>
           </ion-item>
-        </ion-menu-toggle>
+        </ion-menu-toggle> -->
 
-        <ion-menu-toggle auto-hide="false">
+        <!-- <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos.isdoctor == true || permisos.iscliente == true" (click)="openHistorial()" class="item-border-bottom">
               <img src="assets/imgs/menu-dos.png" class="img-icon">
             <ion-label> Historial de compras</ion-label>
           </ion-item>
-        </ion-menu-toggle> 
+        </ion-menu-toggle>  -->
 
         <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos!=null && permisos.isdoctor==true" (click)="openDoctor()" class="item-border-bottom">
@@ -103,14 +107,14 @@
 
         <ion-menu-toggle auto-hide="false">
           <ion-item (click)="openAcerca ()" class="item-border-bottom">
-              <img src="assets/imgs/menu-diez.png" class="img-icon">
+            <img src="assets/imgs/menu-diez.png" class="img-icon">
             <ion-label>Acerca de</ion-label>
           </ion-item>   
         </ion-menu-toggle>   
 
         <ion-menu-toggle auto-hide="false">
-          <ion-item (click)="logout()" lines="none" class="item-salir">
-              <img src="assets/imgs/menu-once.png" class="img-icon">
+          <ion-item (click)="logout()" lines="none" class="item-border-bottom">
+            <img src="assets/imgs/menu-once.png" class="img-icon">
             <ion-label>Salir</ion-label>
           </ion-item>   
         </ion-menu-toggle>   

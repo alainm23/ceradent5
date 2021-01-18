@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-acerca',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AcercaPage implements OnInit {
 
-  constructor() { }
+  constructor (private navController: NavController) { }
 
   ngOnInit() {
   }
 
+  back () {
+    this.navController.back ();
+  }
 }

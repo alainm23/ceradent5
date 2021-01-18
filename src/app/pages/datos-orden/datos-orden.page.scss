@@ -18,6 +18,7 @@
     font-family: helveticaneueregular;
     src : url('/assets/fonts/helveticaneue-regular.ttf')
 }
+
 ion-header
 {
     height: 74px;
@@ -136,6 +137,7 @@ ion-content
             top: 16px;
             z-index: 2;
             font-size: 20px;
+            transition: all 240ms ease-in-out;
         }
         .icon-close
         {
@@ -160,6 +162,10 @@ ion-content
     {
         background-color: #9F2C3F !important;
         ion-card-title
+        {
+            color: #FFFFFF !important;
+        }
+        ion-icon
         {
             color: #FFFFFF !important;
         }

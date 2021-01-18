@@ -13,6 +13,7 @@ import { DatabaseService } from '../../services/database.service';
 export class DatosPacientePage implements OnInit {
   form: FormGroup;
   codigo: string; 
+  rol: string;
 
   dni_search: string = '';
   pacientes: any [] = [];
@@ -26,7 +27,8 @@ export class DatosPacientePage implements OnInit {
               private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
-    this.codigo = this.route.snapshot.paramMap.get('codigo');
+    this.codigo = this.route.snapshot.paramMap.get ('codigo');
+    this.rol = this.route.snapshot.paramMap.get ('rol');
 
     this.form = new FormGroup({
       apellidos: new FormControl ('',[Validators.required]),
@@ -37,7 +39,7 @@ export class DatosPacientePage implements OnInit {
 
   onSubmit () {
     console.log (this.form.value);
-    this.navController.navigateForward (['datos-orden', this.codigo, JSON.stringify (this.form.value)]);
+    this.navController.navigateForward (['datos-orden', this.codigo, this.rol, JSON.stringify (this.form.value)]);
   }
 
   ionViewWillEnter () {
@@ -88,7 +90,7 @@ export class DatosPacientePage implements OnInit {
       });
     } else if (this.status === 1) {
       console.log (this.paciente);
-      this.navController.navigateForward (['datos-orden', this.codigo, JSON.stringify (this.paciente)]);
+      this.navController.navigateForward (['datos-orden', this.codigo, this.rol, JSON.stringify (this.paciente)]);
       loading.dismiss ();
     } else if (this.status === 2) {
       let request: any = {
@@ -104,7 +106,7 @@ export class DatosPacientePage implements OnInit {
 
       this.database.addCliente (request).then (() => {
         loading.dismiss ();
-        this.navController.navigateForward (['datos-orden', this.codigo, JSON.stringify (request)]);
+        this.navController.navigateForward (['datos-orden', this.codigo, this.rol, JSON.stringify (request)]);
       }).catch ((error: any) => {
         console.log (error);
       });
@@ -134,5 +136,9 @@ export class DatosPacientePage implements OnInit {
     this.status = 0;
     this.pacientes = [];
     this.dni_search = '';
+  }
+
+  back () {
+    this.navController.back ();
   }
 }

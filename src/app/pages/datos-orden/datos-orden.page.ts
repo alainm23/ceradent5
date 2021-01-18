@@ -17,6 +17,7 @@ export class DatosOrdenPage implements OnInit {
   item_05: boolean = false;
   form: FormGroup;
   codigo: string;
+  rol: string;
   paciente: any
 
   tomografia_volumetrica_derecho: Map <string, boolean> = new Map <string, boolean> ();
@@ -35,15 +36,16 @@ export class DatosOrdenPage implements OnInit {
   ngOnInit () {
     this.codigo = this.route.snapshot.paramMap.get ('codigo');
     this.paciente = JSON.parse (this.route.snapshot.paramMap.get ('paciente'));
+    this.rol = this.route.snapshot.paramMap.get ('rol');
 
     console.log (this.paciente);
 
     this.form = new FormGroup({
-      tomografia_volumetrica_tipo: new FormControl("", [Validators.required]),
       senos_maxilares: new FormControl (false),
       atm_b_abierta_b_cerrada: new FormControl (false),
       area_patologica: new FormControl (false),
       localizacion_conductos: new FormControl (false),
+      tomografía_volumetrica_observacion: new FormControl (''),
 
       panoramica_sola: new FormControl (false),
       panoramica_con_informe: new FormControl (false),
@@ -82,14 +84,8 @@ export class DatosOrdenPage implements OnInit {
 
       fotos_extra_intraorales_standar: new FormControl (false),
       fotos_extra_intraorales_profesional: new FormControl (false),
-      duplicado_estudio: new FormControl (false),
       duplicado_estudio_texto: new FormControl (''),
-      doc_completa_orto: new FormControl (false),
-      doc_completa_orto_pack_1: new FormControl (false),
-      doc_completa_orto_pack_2: new FormControl (false),
-      doc_completa_orto_pack_3: new FormControl (false),
-      doc_completa_orto_pack_4: new FormControl (false),
-      doc_completa_orto_pack_5: new FormControl (false),
+      doc_completa_orto_pack: new FormControl ('')
     });
   }
 
@@ -158,7 +154,7 @@ export class DatosOrdenPage implements OnInit {
       message: "Procesando informacion..."            
     });
 
-    // loading.present ();
+    loading.present ();
     
     // console.log (this.form.value);
 
@@ -167,8 +163,8 @@ export class DatosOrdenPage implements OnInit {
     console.log (this.radio_intra_i_01);
     console.log (this.radio_intra_i_02);
     console.log (this.tomografia_volumetrica_derecho);
-    console.log (this.tomografia_volumetrica_izq);
-    
+    console.log (this.tomografia_volumetrica_izq);    
+
     let request: any = {
       id: this.database.createId (),
       cliente_dni: this.paciente.dni,
@@ -176,9 +172,23 @@ export class DatosOrdenPage implements OnInit {
       cliente_nombres: this.paciente.nombres + ' ' + this.paciente.apellidos,
       doctor_id: this.codigo,
       servicio: this.form.value,
+      servicio_extras: {
+        radio_intra_d_01: Array.from (this.radio_intra_d_01.keys ()),
+        radio_intra_d_02: Array.from (this.radio_intra_d_02.keys ()),
+        radio_intra_i_01: Array.from (this.radio_intra_i_01.keys ()),
+        radio_intra_i_02: Array.from (this.radio_intra_i_02.keys ()),
+        tomografia_volumetrica_derecho: Array.from (this.tomografia_volumetrica_derecho.keys ()),
+        tomografia_volumetrica_izq: Array.from (this.tomografia_volumetrica_izq.keys ())
+      }
     };
 
+    console.log (request);
 
-    // this.database.add_reserva ()
+    this.database.add_reserva (request).then (() => {
+      loading.dismiss ();
+      this.navController.navigateForward (['gracias', this.codigo, this.rol]);
+    }).catch ((error: any) => {
+      loading.dismiss ();
+    });
   }
 }

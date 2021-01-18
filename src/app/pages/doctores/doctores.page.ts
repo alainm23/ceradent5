@@ -65,4 +65,8 @@ export class DoctoresPage implements OnInit {
     if (this.subscription!=undefined && this.subscription!=null)
     this.subscription.unsubscribe();
   }
+
+  back () {
+    this.navCtrl.back ();
+  }
 }
