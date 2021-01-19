@@ -214,13 +214,17 @@ ion-content
     --inner-padding-end: 0px;
     margin-top: 20px;
     margin-bottom: 20px;
+    --background: #Ffffff;
+    --border-color: #FFC4CE;
+    --border-radius: 6px;
+    --border-style: solid;
+    --border-width: 1px;
     .input-buscar
     {
         --color: #707070;
         font-family: AvenirBook;
         --placeholder-color: #707070;
         --placeholder-font-weight: bolder;
-        border: 1px solid #FFC4CE;
         border-radius: 6px; 
         --padding-start: 20px;
         --padding-end: 20px;

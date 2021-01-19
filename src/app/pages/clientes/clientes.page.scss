@@ -292,6 +292,8 @@ ion-toggle
     --padding-start: 0px;
     --inner-padding-end: 0px;
     margin-top: 20px;
+    --border-radius: 6px;
+    --background: transparent;
     .input-buscar
     {
         --color: #707070;
@@ -304,6 +306,7 @@ ion-toggle
         --padding-end: 20px;
         --padding-top: 10px;
         --padding-bottom: 10px;
+        --background: #Ffffff;
     }
     .btn-buscardor
     {

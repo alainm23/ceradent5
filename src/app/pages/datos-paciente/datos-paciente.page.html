@@ -2,7 +2,10 @@
   <ion-toolbar class="menucabezera"> 
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-button>   
+    </ion-button> 
+    <ion-title>
+      Seleccionar paciente
+    </ion-title>  
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Seleccionar paciente</h1>
+  <h1 class="ion-text-center titulo"></h1>
   <ion-card class="card-form">
     <ion-item *ngIf="status === 0" class="item-input" lines="none">
       <ion-input (ionChange)="changed ($event)" placeholder="DNI" [(ngModel)]="dni_search" class="input-form" type="tel"></ion-input>

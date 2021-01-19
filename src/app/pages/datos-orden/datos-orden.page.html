@@ -2,7 +2,10 @@
   <ion-toolbar class="menucabezera"> 
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
-    </ion-button>   
+    </ion-button>  
+    <ion-title>
+      Orden
+    </ion-title>   
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -10,7 +13,6 @@
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center titulo">Mis pacientes</h1>
   <form [formGroup]="form" (ngSubmit)="onSubmit ()">
     <ion-list class="list-padding-left-right">
       <ion-card class="car-acordion">
@@ -22,7 +24,7 @@
         <ion-card-content *ngIf="item_01">
           <h6 class="h6-titulo">Cone beam 3d (Solo sede Wanchaq)</h6>
           <ion-list class="list-chec">
-            <ion-list-header>
+            <ion-list-header class="ion-no-padding">
               <ion-label>Sin análisis (solo CD)</ion-label>
             </ion-list-header>
             <ion-item lines="none" class="item-chebox">
@@ -35,7 +37,7 @@
               <ion-label class="label-chec ion-text-wrap">ATM (B.abierta / B. Cerrada)</ion-label>
             </ion-item>
 
-            <ion-list-header>
+            <ion-list-header class="ion-no-padding">
               <ion-label>Con análisis</ion-label>
             </ion-list-header>
             <ion-item lines="none" class="item-chebox">
@@ -75,6 +77,9 @@
           </div>
           
           <div class="div-datos">
+            <div class="div-rectangulo">
+              I
+            </div>
             <div class="div-btn div-btn-rigth">
               <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.1')" [color]="tomografia_volumetrica_derecho.get ('2.1') ? 'selected' : 'white'" class="btn-number">2.1</ion-button>
               <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.2')" [color]="tomografia_volumetrica_derecho.get ('2.2') ? 'selected' : 'white'" class="btn-number">2.2</ion-button>
@@ -93,9 +98,6 @@
               <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.6')" [color]="tomografia_volumetrica_derecho.get ('3.6') ? 'selected' : 'white'" class="btn-number">3.6</ion-button>
               <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.7')" [color]="tomografia_volumetrica_derecho.get ('3.7') ? 'selected' : 'white'" class="btn-number">3.7</ion-button>
               <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.8')" [color]="tomografia_volumetrica_derecho.get ('3.8') ? 'selected' : 'white'" class="btn-number">3.8</ion-button>
-            </div>
-            <div class="div-rectangulo">
-              I
             </div>
           </div>
 
@@ -184,39 +186,39 @@
 
           <ion-list class="list-chec">
             <ion-radio-group formControlName="radio_intra_tipo">        
-              <ion-list-header>
+              <ion-list-header class="ion-no-padding">
                 <ion-label>Bitewing</ion-label>
               </ion-list-header>
 
-              <ion-list-header>
+              <ion-list-header class="ion-no-padding">
                 <ion-label>Morales</ion-label>
               </ion-list-header>
 
-              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
+              <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_morales_der"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Der</ion-label>
               </ion-item>
 
-              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
+              <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_morales_izq"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
               </ion-item>
 
-              <ion-list-header>
+              <ion-list-header class="ion-no-padding">
                 <ion-label>Premolares</ion-label>
               </ion-list-header>
 
-              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
+              <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_premolares_der"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Der</ion-label>
               </ion-item>
 
-              <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
+              <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="bitewing_premolares_izq"></ion-checkbox>
                 <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
               </ion-item>
 
-              <ion-list-header>
+              <ion-list-header class="ion-no-padding">
                 <ion-label>Oclusal</ion-label>
               </ion-list-header>
 
@@ -258,6 +260,9 @@
           </div>
 
           <div class="div-datos">
+            <div class="div-rectangulo">
+              I
+            </div>
             <div class="div-btn div-btn-rigth">
               <ion-button mode="ios" (click)="select (radio_intra_i_01, '2.1')" [color]="radio_intra_i_01.get ('2.1') ? 'selected' : 'white'" class="btn-number">2.1</ion-button>
               <ion-button mode="ios" (click)="select (radio_intra_i_01, '2.2')" [color]="radio_intra_i_01.get ('2.2') ? 'selected' : 'white'" class="btn-number">2.2</ion-button>
@@ -276,9 +281,6 @@
               <ion-button mode="ios" (click)="select (radio_intra_i_01, '3.6')" [color]="radio_intra_i_01.get ('3.6') ? 'selected' : 'white'" class="btn-number">3.6</ion-button>
               <ion-button mode="ios" (click)="select (radio_intra_i_01, '3.7')" [color]="radio_intra_i_01.get ('3.7') ? 'selected' : 'white'" class="btn-number">3.7</ion-button>
               <ion-button mode="ios" (click)="select (radio_intra_i_01, '3.8')" [color]="radio_intra_i_01.get ('3.8') ? 'selected' : 'white'" class="btn-number">3.8</ion-button>
-            </div>
-            <div class="div-rectangulo">
-              I
             </div>
           </div>
 
@@ -301,6 +303,9 @@
           </div>
           
           <div class="div-datos">
+            <div class="div-rectangulo">
+              I
+            </div>
             <div class="div-btn div-btn-rigth">
               <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.1')" [color]="radio_intra_i_02.get ('6.1') ? 'selected' : 'white'" class="btn-number">6.1</ion-button>
               <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.2')" [color]="radio_intra_i_02.get ('6.2') ? 'selected' : 'white'" class="btn-number">6.2</ion-button>
@@ -313,9 +318,6 @@
               <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.3')" [color]="radio_intra_i_02.get ('7.3') ? 'selected' : 'white'" class="btn-number">7.3</ion-button>
               <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.4')" [color]="radio_intra_i_02.get ('7.4') ? 'selected' : 'white'" class="btn-number">7.4</ion-button>
               <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.5')" [color]="radio_intra_i_02.get ('7.5') ? 'selected' : 'white'" class="btn-number">7.5</ion-button>
-            </div>
-            <div class="div-rectangulo">
-              I
             </div>
           </div>
         </ion-card-content>
@@ -412,16 +414,16 @@
       
         <ion-card-content *ngIf="item_05">
           <ion-list class="list-chec">
-            <ion-list-header>
+            <ion-list-header class="ion-no-padding">
               <ion-label>Fotos extra e intraorales</ion-label>
             </ion-list-header>
 
-            <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
+            <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="fotos_extra_intraorales_standar"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Standar</ion-label>
             </ion-item>
 
-            <ion-item style="margin-left: 1rem;" lines="none" class="item-chebox">
+            <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="fotos_extra_intraorales_profesional"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Profesional</ion-label>
             </ion-item>
@@ -430,12 +432,12 @@
               <ion-checkbox formControlName="duplicado_estudio"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Duplicado de estudio y/o radiografía</ion-label>
             </ion-item> -->
-            <ion-list-header>
+            <ion-list-header class="ion-no-padding">
               <ion-label>Duplicado de estudio y/o radiografía</ion-label>
             </ion-list-header>
 
             <ng-container>
-              <ion-item class="item-textarea" lines="none">
+              <ion-item class="item-textarea textarea-bottom" lines="none">
                 <ion-textarea placeholder="Especifique aqui" formControlName="duplicado_estudio_texto" class="textaera-plomo" rows="3"></ion-textarea>
               </ion-item>
             </ng-container>
@@ -444,34 +446,34 @@
               <ion-checkbox formControlName="doc_completa_orto"></ion-checkbox>
               <ion-label class="label-chec ion-text-wrap">Documentación completa para Ortodoncia</ion-label>
             </ion-item> -->
-            <ion-list-header>
+            <ion-list-header class="ion-no-padding">
               <ion-label>Documentación completa para Ortodoncia</ion-label>
             </ion-list-header>
 
             <ion-list>
               <ion-radio-group formControlName="doc_completa_orto_pack">            
-                <ion-item class="ion-text-wrap">
-                  <ion-label class="ion-text-wrap">1. Radiografía panorámica + radiografía cefalométrica lateral + 1 tipo de trazado cefalométrico + CD</ion-label>
+                <ion-item class="ion-text-wrap item-chebox item-height-radio" lines="none">
+                  <ion-label class="ion-text-wrap label-chec">1. Radiografía panorámica + radiografía cefalométrica lateral + 1 tipo de trazado cefalométrico + CD</ion-label>
                   <ion-radio slot="start" value="1"></ion-radio>
                 </ion-item>
 
-                <ion-item class="ion-text-wrap">
-                  <ion-label class="ion-text-wrap">2. Radiografía panorámica + radiografía cefalométrica lateral + 2 tipos de trazados cefalométricos + documentación membreteada para ortodoncia + CD</ion-label>
+                <ion-item class="ion-text-wrap item-chebox item-height-radio" lines="none">
+                  <ion-label class="ion-text-wrap label-chec">2. Radiografía panorámica + radiografía cefalométrica lateral + 2 tipos de trazados cefalométricos + documentación membreteada para ortodoncia + CD</ion-label>
                   <ion-radio slot="start" value="2"></ion-radio>
                 </ion-item>
 
-                <ion-item class="ion-text-wrap">
-                  <ion-label class="ion-text-wrap">3. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías documentación membreteada para ortodoncia + CD</ion-label>
+                <ion-item class="ion-text-wrap item-chebox item-height-radio" lines="none">
+                  <ion-label class="ion-text-wrap label-chec">3. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías documentación membreteada para ortodoncia + CD</ion-label>
                   <ion-radio slot="start" value="3"></ion-radio>
                 </ion-item>
 
-                <ion-item class="ion-text-wrap">
-                  <ion-label class="ion-text-wrap">4. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + CD</ion-label>
+                <ion-item class="ion-text-wrap item-chebox item-height-radio" lines="none">
+                  <ion-label class="ion-text-wrap label-chec">4. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + CD</ion-label>
                   <ion-radio slot="start" value="4"></ion-radio>
                 </ion-item>
 
-                <ion-item class="ion-text-wrap">
-                  <ion-label class="ion-text-wrap">5. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + modelos de estudio en yeso + CD</ion-label>
+                <ion-item class="ion-text-wrap item-chebox item-height-radio" lines="none">
+                  <ion-label class="ion-text-wrap label-chec">5. Radiografía panorámica + radiografía cefalométrica lateral + 01 tipo de trazado cefalométrico + 08 fotografías + Radiografía carpal + Edad ósea + documentación membreteada para ortodoncia + modelos de estudio en yeso + CD</ion-label>
                   <ion-radio slot="start" value="5"></ion-radio>
                 </ion-item>
               </ion-radio-group>

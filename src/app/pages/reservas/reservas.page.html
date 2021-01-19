@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar mode="ios" class="menucabezera"> 
+  <ion-toolbar class="menucabezera"> 
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>
-    <ion-title style="color: #fff">
+    <ion-title>
       Reservas
-    </ion-title>
+    </ion-title>   
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -16,7 +16,7 @@
   <ion-button class="btn-login" expand="block" (click)="registrar ()">
     Reservar
   </ion-button>
-  <ion-list>
+  <!--<ion-list>
     <ion-item *ngFor="let item of items" (click)="ver (item)">
       <ion-avatar slot="start">
         <img src="assets/imgs/icono_user_default.png">
@@ -27,5 +27,32 @@
         <h4>DNI: {{ item.cliente_dni }}</h4>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
+  
+  <!-- nuevo diseño-->
+  <div class="div-card-datos">
+    <ion-card *ngFor="let item of items" (click)="ver (item)" class="carr-datos">
+      <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img src="assets/imgs/grupo-816.png">
+        </ion-avatar>
+        <ion-label class="lbel-nombre">{{ item.cliente_nombres }}</ion-label>
+      </ion-item>
+      <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+        <ion-row>
+          <ion-col size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="2" class="ion-no-padding">
+                <p class="p-medium">DNI:</p>
+              </ion-col>
+              <ion-col size="10" class="col-cero-padding-top">
+                <p class="p-descripcion">{{ item.cliente_dni }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+
 </ion-content>

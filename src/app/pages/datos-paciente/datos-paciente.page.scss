@@ -29,6 +29,14 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        position: relative;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+            text-align: center;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -36,10 +44,16 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
+            position: absolute;
+            left: 18px;
+            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -201,8 +215,8 @@ ion-content
 .btn-form
 {
     font-family: AvenirHeavy;
-    --background: #7866DD;
-    --background-activated: #7866DD;
+    --background: #9F2C3F;
+    --background-activated: #9F2C3F;
     --border-color: #DDDDDD;
     --border-radius: 11px;
     --border-style: solid;
