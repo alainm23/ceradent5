@@ -10,33 +10,14 @@
     font-family: AvenirBook;
     src : url('/assets/fonts/Avenir Book.ttf')
 }
-/*.card-background-page {
-    ion-card {
-        position: relative;
-        
-    }
-    
-    .card-title {
-        position: absolute;
-        top: 65%;
-        left:5%;
-        font-size: 2.5em;
-        width: 100%;
-        font-weight: bold;
-        color: #fff;
-        text-shadow: 3px 3px 3px #000000;
-    }
-    
-    .card-subtitle {
-        font-size: 1.2em;
-        position: absolute;
-        top: 82%;
-        left:5%;
-        width: 100%;
-        color: #fff;
-        text-shadow: 1px 1px 2px #000000;
-    }
-}*/
+@font-face{
+    font-family: AvenirMedium;
+    src : url('/assets/fonts/Avenir-Medium.ttf')
+}
+@font-face{
+    font-family: Avenirlight;
+    src : url('/assets/fonts/avenirltstd-light.otf')
+}
 ion-header
 {
     height: 74px;
@@ -52,6 +33,14 @@ ion-header
         align-items: center;
         --padding-start: 35px;
         --padding-end: 35px;
+        position: relative;
+        ion-title
+        {
+            color: #ffffff;
+            font-family: AvenirHeavy;
+            font-size: 22px;
+            text-align: center;
+        }
         .btn-lef-header
         {
             --background: transparent;
@@ -59,10 +48,16 @@ ion-header
             margin: 0px;
             --padding-start: 0px;
             --padding-end: 0px;
+            position: absolute;
+            left: 18px;
+            top: 10px;
         }
         .btn-menu
         {
             margin-right: 0px;
+            position: absolute;
+            right: 18px;
+            top: 15px;
             ion-menu-button
             {
                 color: transparent;
@@ -88,8 +83,8 @@ ion-content
     --padding-top: 30px;
     --background: #FAFAFA;
     position: relative;
-    --padding-start: 55px;
-    --padding-end: 55px;
+    --padding-start: 30px;
+    --padding-end: 30px;
     --padding-bottom: 55px;
     display: flex;
     flex-wrap: wrap;
@@ -99,80 +94,191 @@ ion-content
     color: #000000;
     font-family: AvenirHeavy;
     font-size: 25px;
-    margin-bottom: 33px;
+    margin-bottom: 14px;
 }
-.logo-bottom
+.card-precio
 {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 250px;
-}
-.div-card
-{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
-}
-ion-card
-{
-    --background: #ffffff;
+    margin: 0px;
     border: 1px solid #FFC4CE;
     border-radius: 6px;
-    margin: 0px;
-    height: 275px;
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-bottom: 6px;
+    --background: #Ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0px 15px 29px #7176A840;
-    width: 100%;
-    .img-icon-altura
-    {
-        height: 131px;
-    }
-    .h6-card
-    {
-        margin: 0px;
-        color: #9F2C3F;
-        font-family: AvenirBlack;
-        font-size: 27px;
-    }
-    .p-book
+    height: 60px;
+    .p-precio-uno
     {
         color: #9F2C3F;
-        font-family: AvenirBook;
         margin: 0px;
+        font-family: Avenirlight;
         font-size: 22px;
     }
 }
-@media (min-width: 411px)
+.div-tarje-efectivo
 {
-    ion-card
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    .p-light-tarjeta-efectivo
     {
-        height: 280px;
-        padding-top: 43px;
-        padding-bottom: 43px;
-    }
-    ion-content
-    {
-        --padding-start: 65px;
-        --padding-end: 65px;
+        color: #9F2C3F;
+        font-family: Avenirlight;
+        margin: 0px;
+        font-size: 17px;
     }
 }
+.carr-datos
+{
+    margin: 0px;
+    border: 1px solid #FFC4CE;
+    border-radius: 6px;
+    --background: #Ffffff;
+    box-shadow: 0px 15px 29px #7176A840;
+    padding: 10px 20px;
+    width: 100%;
+    margin-bottom: 6px;
+    ion-item
+    {
+        border-bottom: 1px solid #E3E3E3;
+        --padding-start: 0px;
+        --inner-padding-end: 0px;
+        --padding-top: 0px;
+        --padding-bottom: 6px;
+        ion-avatar
+        {
+            --border-radius: 50%;
+            width: 41px;
+            height: 41px;
+            margin: 0px;
+            margin-right: 12px;
+        }
+        .lbel-nombre
+        {
+            color: #9F2C3F;
+            font-family: Avenirlight;
+            font-size: 17px;
+        }
+    }
+    .p-medium
+    {
+        color: #4D4D4D;
+        font-family: AvenirMedium;
+        margin: 0px;
+        font-size: 16px;
+    }
+    .p-descripcion
+    {
+        color: #4D4D4D;
+        font-family: AvenirBook;
+        font-size: 15px;
+        margin: 0px;
+        margin-top: 3px;
+    }
+    .col-cero-padding-top
+    {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .margin-top-grid
+    {
+        margin-top: 8px;
+    }
+    .btn-card
+    {
+        --background: #9F2C3F;
+        --border-color: #FFC4CE;
+        --border-radius: 6px;
+        --border-style: solid;
+        --border-width: 1px;
+        margin: 0px;
+        font-family: AvenirHeavy;
+        height: 42px;
+        width: 95%;
+    }
+    .grid-top-margin
+    {
+        margin-top: 8px;
+    }
+}
+.div-card-datos
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 21px;
+    justify-content: space-between;
+}
+.item-buscard
+{
+    --padding-start: 0px;
+    --inner-padding-end: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    --background: #Ffffff;
+    --border-color: #FFC4CE;
+    --border-radius: 6px;
+    --border-style: solid;
+    --border-width: 1px;
+    .input-buscar
+    {
+        --color: #707070;
+        font-family: AvenirBook;
+        --placeholder-color: #707070;
+        --placeholder-font-weight: bolder;
+        border-radius: 6px; 
+        --padding-start: 20px;
+        --padding-end: 20px;
+        --padding-top: 10px;
+        --padding-bottom: 10px;
+    }
+    .btn-buscardor
+    {
+        height: 100%;
+        --color: #fff;
+        --background: #9F2C3F;
+        --border-radius: 6px;
+        width: 42px;
+        height: 42px;
+        margin: 0px;
+        margin-left: 5px;
+        .icon-buscador
+        {
+            font-size: 25px;
+        }
+    }
+}
+.btn-login
+{
+  --background: #9F2C3F;
+  --color: #FFFFFF;
+  --border-color: #DDDDDD;
+  --border-radius: 11px;
+  --border-style: solid;
+  --border-width: 1px;
+  --box-shadow: 0px 3px 6px #00000029;
+  border-radius: 11px;
+  height: 45px;
+  font-family: AvenirHeavy;
+  font-size: 16px;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+// @media (min-width: 411px)
+// {
+//     ion-content
+//     {
+//         --padding-start: 40px;
+//         --padding-end: 40px;
+//     }
+// }
 @media (min-width: 480px)
 {
     ion-content
     {
-        --padding-start: 80px;
-        --padding-end: 80px;
-    }
-    ion-card
-    {
-        height: 310px;
-        padding-top: 60px;
-        padding-bottom: 60px;
+        --padding-start: 40px;
+        --padding-end: 40px;
     }
     ion-header
     {
@@ -182,12 +288,18 @@ ion-card
             --oadding-end: 45px;
         }
     }
-}
-@media (min-width: 640px)
-{
-    ion-card
+    .item-buscard
     {
-        width: 49%;
+        .input-buscar
+        {
+            --padding-top: 13px;
+            --padding-bottom: 13px;
+        }
+        .btn-buscardor
+        {
+            width: 50px;
+            height: 50px;
+        }
     }
 }
 @media (min-width: 768px)
@@ -205,6 +317,18 @@ ion-card
     ion-content
     {
         --padding-top: 50px;
+        --padding-start: 80px;
+        --padding-end: 80px;
+    }
+    .carr-datos
+    {
+        width: 49.5%;
+    }
+    .btn-login
+    {
+        height: 60px;
+        width: 40%;
+        margin-left: 30%;
     }
 }
 @media (min-width: 1024px)
@@ -220,26 +344,9 @@ ion-card
         }
     }
     ion-content
-    {
+    {  
         --padding-start: 180px;
         --padding-end: 180px;
         --padding-top: 80px;
     }
-}
-
-.btn-login
-{
-  --background: #7866DD;
-  --color: #FFFFFF;
-  --border-color: #DDDDDD;
-  --border-radius: 11px;
-  --border-style: solid;
-  --border-width: 1px;
-  --box-shadow: 0px 3px 6px #00000029;
-  border-radius: 11px;
-  height: 45px;
-  font-family: AvenirHeavy;
-  font-size: 16px;
-  width: 60%;
-  margin-left: 20%;
 }
