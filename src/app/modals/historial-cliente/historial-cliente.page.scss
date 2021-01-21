@@ -201,7 +201,11 @@ ion-content
         {
             color: #9F2C3F;
             font-family: Avenirlight;
-            font-size: 20px;
+            font-size: 16px;
+            .spana-fecha
+            {
+                font-size: 14px;
+            }
         }
     }
     .p-medium
@@ -226,7 +230,7 @@ ion-content
     }
     .margin-top-grid
     {
-        margin-top: 8px;
+        margin-top: 13px;
     }
     .btn-card
     {
@@ -237,12 +241,32 @@ ion-content
         --border-width: 1px;
         margin: 0px;
         font-family: AvenirHeavy;
-        height: 42px;
-        width: 95%;
+        width: 100%;
+        --box-shadow: none;
+    }
+    .btn-pntos
+    {
+        --background: #ffffff;
+        --box-shadow: none;
+        --color: #4C00F7;
+        font-family: AvenirMedium;
+        width: 100%;
+        margin: 0px;
+        --padding-start: 0px;
+        --padding-end: 0px;
     }
     .grid-top-margin
     {
-        margin-top: 8px;
+        margin-top: 20px;
+    }
+    .p-puntos
+    {
+        color: #4C00F7;
+        font-size: 12px;
+        font-family: AvenirMedium;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 }
 .div-card-datos

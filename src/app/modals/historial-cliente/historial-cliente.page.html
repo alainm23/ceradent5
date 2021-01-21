@@ -1,23 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Historial Cliente</ion-title>
-  </ion-toolbar>  
-</ion-header> -->
-
 <ion-header>
-  <!-- <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-
-    <ion-title>
-      Historial Cliente
-    </ion-title>    
-  </ion-toolbar> -->
   <ion-toolbar class="menucabezera"> 
     <ion-button (click)="back ()" class="btn-lef-header">
       <ion-icon name="chevron-back-outline"></ion-icon>
@@ -30,32 +11,110 @@
 
 <ion-content>
   <ion-grid>    
-    <ion-card *ngIf="datosCliente">
-      <ion-row>
-        <ion-col size="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
-          <ion-item>             
-            <ion-avatar slot="start" *ngIf="datosCliente[0].data.tipo=='adulto'">
+    <ion-row>
+      <ion-col *ngIf="datosCliente" size="12" size-sm="12" size-md="6" size-lg="6" size-xl="6">
+        <ion-card class="carr-datos">
+          <ion-item lines="none">
+            <!-- <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'adulto'">
               <img src="assets/imgs/icono_user_default.png">
             </ion-avatar>
-            <ion-avatar slot="start" *ngIf="datosCliente[0].data.tipo=='menor'">
+      
+            <ion-avatar slot="start" *ngIf="cliente.dataCliente.tipo == 'menor'">
               <img src="assets/imgs/child-icon.png">
-            </ion-avatar>
+            </ion-avatar> -->
             
-            <ion-label>
-              <h2 textwrap>{{datosCliente[0]?.data.nombres}} {{datosCliente[0].data.apellidos}}</h2>                    
-              <p style="color:#999999;">cel. {{datosCliente[0]?.data.telefono}}</p>
-              <p style="color:#999999;">email: {{datosCliente[0]?.data.email}}</p>
-              <p style="color:#999999;">DNI: {{datosCliente[0]?.data.dni}}</p>
-              <p style="color:#999999;" *ngIf="datosCliente[0]?.dataNumero!=undefined">#Veces atendido: {{datosCliente[0]?.dataNumero.nro_placas}}</p>
-              <p style="color:#999999;" *ngIf="datosCliente[0]?.dataNumero==undefined">#Veces atendido: 0</p>  
-            </ion-label>          
+            <ion-avatar slot="start">
+              <img src="assets/imgs/grupo-816.png">
+            </ion-avatar>
+  
+            <ion-label class="lbel-nombre">
+              {{ datosCliente[0]?.data.nombres }} {{ datosCliente[0].data.apellidos }}
+            </ion-label>
           </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-card>
+          <ion-grid style="padding-left: 6px;" class="ion-padding-start ion-padding-end margin-top-grid">
+            <ion-row>
+              <ion-col size="12" class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="5" class="ion-no-padding">
+                    <p class="p-medium">Telefono:</p>
+                  </ion-col>
+                  <ion-col size="7" class="col-cero-padding-top">
+                    <p class="p-descripcion">{{ datosCliente[0]?.data.telefono }}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="5" class="ion-no-padding">
+                    <p class="p-medium">Email:</p>
+                  </ion-col>
+                  <ion-col size="7" class="col-cero-padding-top">
+                    <p class="p-descripcion">{{datosCliente[0]?.data.email}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="5" class="ion-no-padding">
+                    <p class="p-medium">DNI:</p>
+                  </ion-col>
+                  <ion-col size="7" class="col-cero-padding-top">
+                    <p class="p-descripcion">{{datosCliente[0]?.data.dni}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col *ngIf="datosCliente[0]?.dataNumero!=undefined" size="12" class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="5" class="ion-no-padding">
+                    <p class="p-medium">#Veces atendido:</p>
+                  </ion-col>
+                  <ion-col size="7" class="col-cero-padding-top">
+                    <p class="p-descripcion">{{datosCliente[0]?.dataNumero.nro_placas}}</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col *ngIf="datosCliente[0]?.dataNumero==undefined" size="12" class="ion-no-padding">
+                <ion-row>
+                  <ion-col size="5" class="ion-no-padding">
+                    <p class="p-medium">#Veces atendido:</p>
+                  </ion-col>
+                  <ion-col size="7" class="col-cero-padding-top">
+                    <p class="p-descripcion">0</p>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card>
+        <!-- <ion-item>             
+          <ion-avatar slot="start" *ngIf="datosCliente[0].data.tipo=='adulto'">
+            <img src="assets/imgs/icono_user_default.png">
+          </ion-avatar>
+          <ion-avatar slot="start" *ngIf="datosCliente[0].data.tipo=='menor'">
+            <img src="assets/imgs/child-icon.png">
+          </ion-avatar>
+          
+          <ion-label>
+            <h2 textwrap>{{datosCliente[0]?.data.nombres}} {{datosCliente[0].data.apellidos}}</h2>                    
+            <p style="color:#999999;">cel. {{datosCliente[0]?.data.telefono}}</p>
+            <p style="color:#999999;">email: {{datosCliente[0]?.data.email}}</p>
+            <p style="color:#999999;">DNI: {{datosCliente[0]?.data.dni}}</p>
+            <p style="color:#999999;" *ngIf="datosCliente[0]?.dataNumero!=undefined">#Veces atendido: {{datosCliente[0]?.dataNumero.nro_placas}}</p>
+            <p style="color:#999999;" *ngIf="datosCliente[0]?.dataNumero==undefined">#Veces atendido: 0</p>  
+          </ion-label>          
+        </ion-item> -->
+      </ion-col>
+    </ion-row>
+
     <ion-row *ngIf="historialCliente">
-      <ion-col size="12" class="ion-text-center" color="dark"><h2>Historial</h2></ion-col>
-      <ion-col *ngFor="let item of historialCliente | async | orderBy:'fecha':true" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
+
+      <ion-col size="12" class="ion-text-center" color="dark">
+        <h1 class="ion-text-center titulo">Historial</h1>
+      </ion-col>
+
+      <!-- <ion-col *ngFor="let item of historialCliente | async | orderBy:'fecha':true" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
         <ion-card>
           <ion-item class="cancelado">
             <ion-avatar slot="start">
@@ -117,7 +176,72 @@
             </ion-col>
             </ion-row>      
         </ion-card>  
-      </ion-col>
+      </ion-col> -->
+
+      <ion-card *ngFor="let item of historialCliente | async | orderBy:'fecha':true" class="carr-datos">
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img src="assets/imgs/grupo-816.png">
+          </ion-avatar>
+          <ion-label class="lbel-nombre">{{ item.dataPlaca.nombre_cliente }} <br><span class="spana-fecha">{{mostrarFecha(item.dataPlaca.fecha)}}</span></ion-label>
+        </ion-item>
+        <ion-grid class="ion-no-padding margin-top-grid">
+          <ion-row>
+            <ion-col size="12" class="ion-no-padding">
+              <ion-row>
+                <ion-col size="5" class="ion-no-padding">
+                  <p class="p-medium">Atendido en:</p>
+                </ion-col>
+                <ion-col size="7" class="col-cero-padding-top">
+                  <p class="p-descripcion">{{ item.dataPlaca.nombre_sucursal }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" class="ion-no-padding">
+              <ion-row>
+                <ion-col size="5" class="ion-no-padding">
+                  <p class="p-medium">Placas:</p>
+                </ion-col>
+                <ion-col size="7" class="col-cero-padding-top">
+                  <p class="p-descripcion">{{ item.dataPlaca.nombres_servicios }}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" class="ion-no-padding" *ngIf="item.dataPlaca.descuento > 0">
+              <ion-row>
+                <ion-col size="5" class="ion-no-padding">
+                  <p class="p-medium">Descuento:</p>
+                </ion-col>
+                <ion-col size="7" class="col-cero-padding-top">
+                  <p class="p-descripcion">{{item.dataPlaca.descuento | currency:'S/. '}}</p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="ion-no-padding grid-top-margin">
+          <ion-row class="ion-align-items-center">
+            <ion-col size="6" class="ion-text-left">
+              <ion-button *ngIf="item.dataPlaca.puntos_ganados > 0 && item.dataPlaca.puntos_usados<=0" fill="clear" class="btn-pntos">
+                <!--<ion-icon slot="start" name="arrow-up-outline"></ion-icon>-->
+                {{item.dataPlaca.puntos_ganados}} PTOS
+              </ion-button>
+  
+              <ion-button *ngIf="item.dataPlaca.puntos_usados>0" fill="clear" class="btn-pntos">
+                <!--<ion-icon slot="start" name="arrow-down-outline"></ion-icon>-->
+                <div >{{item.dataPlaca.puntos_usados}} ptos</div>
+              </ion-button>
+            </ion-col>
+  
+            <ion-col size="6" class="ion-text-right">
+              <ion-button *ngIf="item.dataPlaca.imagenes" class="btn-card" (click)="mostrarPlacas(item.data.placa)">
+                <!--<ion-icon slot="start" name="albums"></ion-icon>-->
+                Ver Placas
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
     </ion-row>    
   </ion-grid>
 </ion-content>
