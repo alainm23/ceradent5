@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { NavController, LoadingController, ModalController, ToastController, PopoverController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { DatabaseService } from '../../services/database.service';
 import * as moment from 'moment';
@@ -8,6 +8,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { ApoderadosPage } from 'src/app/modals/apoderados/apoderados.page';
 import { HistorialPagoPage } from '../../modals/historial-pago/historial-pago.page';
+import { ReporteDiarioPopoverPage } from '../../popovers/reporte-diario-popover/reporte-diario-popover.page';
 
 @Component({
   selector: 'app-reporte-diario',
@@ -38,10 +39,11 @@ export class ReporteDiarioPage implements OnInit {
     public modalCtrl: ModalController,
     private callNumber: CallNumber,
     private route: ActivatedRoute,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public popoverController: PopoverController) {
   }
 
-  async ngOnInit(){
+  async ngOnInit() {
     if (this.route.snapshot.paramMap.get("sucursal") !== undefined){
       this.sucursal = this.route.snapshot.paramMap.get ("sucursal"); 
       let loading = await this.loadingCtrl.create ({
@@ -92,36 +94,20 @@ export class ReporteDiarioPage implements OnInit {
     return await modal.present ();
   }
 
-  callDoctor(codigo){
+  callDoctor (codigo) {
     this.database.getDoctorEstatic(codigo).then(info=>{
       if (info.telefono!="" && info.telefono!=undefined){
-        //this.callNumber.isCallSupported()
-        //.then(function (response) {
-            //if (response == true) {
-              this.callNumber.callNumber(info.telefono, true);// do something
-            //}
-            //else {
-              //this.presentToast('Su dispositivo no permite realizar llamadas','error');
-            //}
-        //});
+        this.callNumber.callNumber(info.telefono, true);// do something
       }else{
         this.presentToast('El Doctor no tiene asociado un numero de telefono','error');
       }
     })
   }
 
-  callCliente(codigo){
+  callCliente (codigo) {
     this.database.getClienteEstatic(codigo).then(info=>{
       if (info.telefono!="" && info.telefono!=undefined){
-        //this.callNumber.isCallSupported()
-        //.then(function (response) {
-            //if (response == true) {
-              this.callNumber.callNumber(info.telefono, true);// do something
-            //}
-            //else {
-              //this.presentToast('Su dispositivo no permite realizar llamadas','error');
-            //}
-        //});
+        this.callNumber.callNumber(info.telefono, true);// do something
       }else{
         this.presentToast('El Cliente no tiene asociado un numero de telefono','error');
       }
@@ -236,5 +222,32 @@ export class ReporteDiarioPage implements OnInit {
 
   back () {
     this.navCtrl.back ();
+  }
+
+  async open_popover (ev: any, item: any) {
+    console.log (item);
+
+    const popover = await this.popoverController.create({
+      component: ReporteDiarioPopoverPage,
+      event: ev,
+      showBackdrop: false,
+      componentProps: {
+        item: item,
+      }
+    });
+
+    popover.onDidDismiss ().then ((response: any) => {
+      if (response.role === 'ok') {
+        if (response.data.accion === 'llamar-doctor') {
+          this.callDoctor (response.data.item.dataPlaca.doctor);
+        } else if (response.data.accion === 'llamar-cliente') {
+          this.callCliente (response.data.item.dataPlaca.cliente);
+        } else if (response.data.accion === 'ver-placas') {
+          this.mostrarPlacas (response.data.item.data.placa);
+        }
+      }
+    });
+
+    return await popover.present();
   }
 }

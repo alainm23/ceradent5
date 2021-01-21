@@ -45,73 +45,83 @@
           <img src="assets/imgs/grupo-816.png">
         </ion-avatar>
         <ion-label class="lbel-nombre">{{ item.dataPlaca.nombre_cliente }}</ion-label>
-        <ion-button class="btn-puntos"><ion-icon name="ellipsis-vertical-sharp"></ion-icon></ion-button>
+        <ion-button class="btn-puntos" (click)="open_popover ($event, item)">
+          <ion-icon name="ellipsis-vertical-sharp"></ion-icon>
+        </ion-button>
       </ion-item>
       <ion-grid class="ion-padding-start ion-padding-end margin-top-grid">
         <ion-row>
           <ion-col size="12" class="ion-no-padding">
             <ion-row>
-              <ion-col size="3" class="ion-no-padding">
+              <ion-col size="4" class="ion-no-padding">
                 <p class="p-medium">Doctor:</p>
               </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
+              <ion-col size="8" class="col-cero-padding-top">
                 <p class="p-descripcion">{{item.dataPlaca.nombre_doctor}} <span *ngIf="item.puntos_ganados>0" style="color:#32db64;">+{{item.dataPlaca.puntos_ganados}} pts.</span>  <span *ngIf="item.dataPlaca.puntos_usados>0" style="color:#f53d3d;">-{{item.dataPlaca.puntos_usados}} pts.</span></p>
               </ion-col>
             </ion-row>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-row>
-              <ion-col size="3" class="ion-no-padding">
+              <ion-col size="4" class="ion-no-padding">
                 <p class="p-medium">Placas:</p>
               </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
+              <ion-col size="8" class="col-cero-padding-top">
                 <p class="p-descripcion">{{item.dataPlaca.nombres_servicios}}</p>
               </ion-col>
             </ion-row>
           </ion-col>
           <ion-col size="12" class="ion-no-padding">
             <ion-row>
-              <ion-col size="3" class="ion-no-padding">
+              <ion-col size="4" class="ion-no-padding">
                 <p class="p-medium">Monto:</p>
               </ion-col>
-              <ion-col size="9" class="col-cero-padding-top">
+              <ion-col size="8" class="col-cero-padding-top">
                 <p class="p-descripcion">{{item.dataPlaca.primer_pago_efectivo+item.dataPlaca.primer_pago_tarjeta | currency:'S/. '}}&nbsp;&nbsp;&nbsp;<ion-icon name="clipboard-outline" (click)="openHistorial(item.data.placa)" class="icon-pago"></ion-icon></p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col *ngIf="item.dataPlaca.monto_efectivo+item.dataPlaca.monto_tarjeta<item.dataPlaca.monto" size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">Debe:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">
+                  {{item.dataPlaca.monto-item.dataPlaca.monto_efectivo-item.dataPlaca.monto_tarjeta | currency:'S/. '}}
+                </p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col *ngIf="item.dataPlaca.descuento>0" size="12" class="ion-no-padding">
+            <ion-row>
+              <ion-col size="4" class="ion-no-padding">
+                <p class="p-medium">Dscto.:</p>
+              </ion-col>
+              <ion-col size="8" class="col-cero-padding-top">
+                <p class="p-descripcion">
+                  {{ item.dataPlaca.descuento | currency:'S/. ' }} - {{ item.dataPlaca.motivo_descuento }}
+                </p>
               </ion-col>
             </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-grid class="ion-no-padding grid-top-margin">
-        <!--<ion-row class="ion-align-items-center">
-          <ion-col size="2" class="ion-text-center">
-            <img src="assets/imgs/icontelefono.png">
-          </ion-col> 
-          <ion-col size="6" class="ion-text-center">
-            <ion-button class="btn-card">
-              <ion-icon slot="start" name="call"></ion-icon>
-              Doctor
-            </ion-button>
-          </ion-col>
-          <ion-col size="6" class="ion-text-end">
-            <ion-button class="btn-card">
-              <ion-icon slot="start" name="call"></ion-icon>
-              Paciente
-            </ion-button>
-          </ion-col>
-        </ion-row>-->
-        
-        <ion-row>  
+      <!-- <ion-grid class="ion-no-padding grid-top-margin">
+        <!--<ion-row>  
           <ion-col *ngIf="item.dataPlaca.duplicado">
             <ion-button fill="clear" size="small" color="dark">                
               <div>Duplicado</div>
             </ion-button>
           </ion-col>   
-          <ion-col *ngIf="item.dataPlaca.monto_efectivo+item.dataPlaca.monto_tarjeta<item.dataPlaca.monto">
+          <ion-col >
             <ion-button fill="clear" size="small" color="danger">                                 
-              <div style="text-transform:none;">Debe {{item.dataPlaca.monto-item.dataPlaca.monto_efectivo-item.dataPlaca.monto_tarjeta | currency:'S/. '}}</div>
+              <div style="text-transform:none;">Debe </div>
             </ion-button>
           </ion-col>                       
-          <ion-col *ngIf="item.dataPlaca.imagenes" class="ion-text-right">
+          <ion-col  class="ion-text-right">
             <ion-button (click)="mostrarPlacas(item.data.placa)" fill="clear" size="small">
               <ion-icon slot="start" name="albums"></ion-icon>
               <div>ver Placas</div>
@@ -123,11 +133,11 @@
             <p class="ion-text-wrap"><b>Descuento:</b> {{item.dataPlaca.descuento | currency:'S/. '}} - {{item.dataPlaca.motivo_descuento}}</p>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
     </ion-card>
   </div>
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>        
       <ion-col size="12" size-sm="12" size-md="4" size-lg="4" size-xl="4">
         
@@ -264,5 +274,5 @@
           </ion-card>
       </ion-col>
     </ion-row>       
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

@@ -114,7 +114,11 @@ const routes: Routes = [
   {
     path: 'gracias/:codigo/:rol',
     loadChildren: () => import('./pages/gracias/gracias.module').then( m => m.GraciasPageModule)
+  },  {
+    path: 'reporte-diario-popover',
+    loadChildren: () => import('./popovers/reporte-diario-popover/reporte-diario-popover.module').then( m => m.ReporteDiarioPopoverPageModule)
   },
+
 
 ];
 

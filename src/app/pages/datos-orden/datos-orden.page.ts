@@ -91,35 +91,15 @@ export class DatosOrdenPage implements OnInit {
 
   ver_item (value: number) {
     if (value === 1) {
-      this.item_01 = true;
-      this.item_02 = false;
-      this.item_03 = false;
-      this.item_04 = false;
-      this.item_05 = false;
+      this.item_01 = !this.item_01;
     } else if (value === 2) {
-      this.item_01 = false;
-      this.item_02 = true;
-      this.item_03 = false;
-      this.item_04 = false;
-      this.item_05 = false;
+      this.item_02 = !this.item_02;
     } else if (value === 3) {
-      this.item_01 = false;
-      this.item_02 = false;
-      this.item_03 = true;
-      this.item_04 = false;
-      this.item_05 = false;
+      this.item_03 = !this.item_03;
     } else if (value === 4) {
-      this.item_01 = false;
-      this.item_02 = false;
-      this.item_03 = false;
-      this.item_04 = true;
-      this.item_05 = false;
+      this.item_04 = !this.item_04;
     } else {
-      this.item_01 = false;
-      this.item_02 = false;
-      this.item_03 = false;
-      this.item_04 = false;
-      this.item_05 = true;
+      this.item_05 = !this.item_05;
     }
   }
 
@@ -172,6 +152,7 @@ export class DatosOrdenPage implements OnInit {
       cliente_nombres: this.paciente.nombres + ' ' + this.paciente.apellidos,
       doctor_id: this.codigo,
       servicio: this.form.value,
+      fecha_registrada: new Date ().toISOString (),
       servicio_extras: {
         radio_intra_d_01: Array.from (this.radio_intra_d_01.keys ()),
         radio_intra_d_02: Array.from (this.radio_intra_d_02.keys ()),

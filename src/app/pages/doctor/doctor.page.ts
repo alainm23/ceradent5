@@ -46,7 +46,7 @@ export class DoctorPage implements OnInit {
 
       console.log(this.codigoUsuario);
 
-      if (this.origen !== '') {
+      if (this.origen === 'gerente') {
         this.subscription = this.database.getHistorialDoctorTotal (this.codigoUsuario).subscribe (async (info: any) => {
           console.log (info);
 
@@ -54,9 +54,9 @@ export class DoctorPage implements OnInit {
           this.historialDoctor_bak = info;
 
           await loading.dismiss ();
-        })
+        });
       } else {
-        let fecha_referencia=moment().subtract (3, 'month').format('YYYY-MM-DD');        
+        let fecha_referencia=moment().subtract (6, 'month').format('YYYY-MM-DD');        
         this.subscription=this.database.getHistorialDoctor (this.codigoUsuario, fecha_referencia).subscribe(async info=>{          
           console.log (info);
           

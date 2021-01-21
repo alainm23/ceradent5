@@ -32,6 +32,7 @@ import { HistorialPagoPageModule } from './modals/historial-pago/historial-pago.
 import { HistorialClientePageModule } from './modals/historial-cliente/historial-cliente.module';
 import { SeleccionarPacientePageModule } from './modals/seleccionar-paciente/seleccionar-paciente.module';
 import { ImagenViewPageModule } from './modals/imagen-view/imagen-view.module';
+import { ReporteDiarioPopoverPageModule } from './popovers/reporte-diario-popover/reporte-diario-popover.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,7 +53,8 @@ import { ImagenViewPageModule } from './modals/imagen-view/imagen-view.module';
     HistorialPagoPageModule,
     SeleccionarPacientePageModule,
     // HistorialClientePageModule,
-    ImagenViewPageModule
+    ImagenViewPageModule,
+    ReporteDiarioPopoverPageModule
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,18 @@
+<ion-content>
+  <ion-list>
+    <ion-item (click)="action ('llamar-doctor')">
+      <ion-icon class="icon-color" slot="start" name="call"></ion-icon>
+      <ion-label>Llamar doctor</ion-label>
+    </ion-item>
+    
+    <ion-item (click)="action ('llamar-cliente')">
+      <ion-icon class="icon-color" slot="start" name="call"></ion-icon>
+      <ion-label>LLamar cliente</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="item.dataPlaca.imagenes" (click)="action ('ver-placas')">
+      <ion-icon class="icon-color" slot="start" name="albums"></ion-icon>
+      <ion-label>Ver placas</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -29,7 +29,7 @@
   </ion-item>
   <div class="div-card-datos">
     <ion-card *ngFor="let item of listaDoctores | orderBy: 'nombres'" class="carr-datos">
-      <ion-item lines="none">
+      <ion-item (click)="openHistorialDoctor (item)" lines="none">
         <ion-avatar slot="start">
           <img src="assets/imgs/grupo-816.png">
         </ion-avatar>

@@ -4,7 +4,7 @@
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>   
     <ion-title>
-      Servicios
+      Placas
     </ion-title>
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
@@ -21,7 +21,7 @@
           <img src="assets/imgs/grupo-816.png">
         </ion-avatar>
         <ion-label class="lbel-nombre"><b>{{servicio.dataServicio.nombre}}</b><br><span class="spana-fecha">Placa Ceradent</span></ion-label>
-        <ion-button [disabled]="servicio.data.imagenes_url === undefined || servicio.data.imagenes_url === null" class="btncompartir" (click)="share (servicio)">
+        <ion-button [disabled]="servicio.data.imagenes_url === undefined || servicio.data.imagenes_url === null" class="btncompartir" (click)="share (servicio.dataServicio)">
           <img src="assets/imgs/compartir.png">
         </ion-button>
       </ion-item>

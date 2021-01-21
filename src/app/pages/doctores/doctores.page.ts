@@ -57,8 +57,9 @@ export class DoctoresPage implements OnInit {
     }   
   }
 
-  openHistorialDoctor(doctor:string){
-    this.navCtrl.navigateForward (['doctor', doctor, 'gerente']);
+  openHistorialDoctor (doctor:any){
+    console.log (doctor);
+    this.navCtrl.navigateForward (['doctor', doctor.objectID, 'doctor']);
   }
 
   ngOnDestroy(){

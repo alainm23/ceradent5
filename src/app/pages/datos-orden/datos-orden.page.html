@@ -137,11 +137,11 @@
             </ion-item>
             <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="carpal"></ion-checkbox>
-              <ion-label class="label-chec ion-text-wrap">Cerpal</ion-label>
+              <ion-label class="label-chec ion-text-wrap">Carpal</ion-label>
             </ion-item>
             <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="carpal_con_studio"></ion-checkbox>
-              <ion-label class="label-chec ion-text-wrap">Cerpal con estudio</ion-label>
+              <ion-label class="label-chec ion-text-wrap">Carpal con estudio</ion-label>
             </ion-item>
             <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="posterio_anterior"></ion-checkbox>
@@ -167,7 +167,7 @@
             </ion-item>
             <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="lateral_7ms"></ion-checkbox>
-              <ion-label class="label-chec ion-text-wrap">Lateral 7ma vertebra</ion-label>
+              <ion-label class="label-chec ion-text-wrap">Lateral 7ma. vertebra</ion-label>
             </ion-item>
           </ion-list>
         </ion-card-content>
@@ -180,9 +180,9 @@
         </ion-card-header>
       
         <ion-card-content *ngIf="item_03">
-          <ion-avatar>
+          <!-- <ion-avatar>
             <img src="assets/imgs/radiografia.jpg">
-          </ion-avatar>
+          </ion-avatar> -->
 
           <ion-list class="list-chec">
             <ion-radio-group formControlName="radio_intra_tipo">        
@@ -190,33 +190,35 @@
                 <ion-label>Bitewing</ion-label>
               </ion-list-header>
 
-              <ion-list-header class="ion-no-padding">
-                <ion-label>Morales</ion-label>
-              </ion-list-header>
-
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="bitewing_morales_der"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Der</ion-label>
-              </ion-item>
-
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="bitewing_morales_izq"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
-              </ion-item>
-
-              <ion-list-header class="ion-no-padding">
-                <ion-label>Premolares</ion-label>
-              </ion-list-header>
-
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="bitewing_premolares_der"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Der</ion-label>
-              </ion-item>
-
-              <ion-item lines="none" class="item-chebox">
-                <ion-checkbox formControlName="bitewing_premolares_izq"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
-              </ion-item>
+              <div style="margin-left: 1rem;">
+                <ion-list-header class="ion-no-padding">
+                  <ion-label>Molares</ion-label>
+                </ion-list-header>
+  
+                <ion-item lines="none" class="item-chebox">
+                  <ion-checkbox formControlName="bitewing_morales_der"></ion-checkbox>
+                  <ion-label class="label-chec ion-text-wrap">Der</ion-label>
+                </ion-item>
+  
+                <ion-item lines="none" class="item-chebox">
+                  <ion-checkbox formControlName="bitewing_morales_izq"></ion-checkbox>
+                  <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
+                </ion-item>
+  
+                <ion-list-header class="ion-no-padding">
+                  <ion-label>Premolares</ion-label>
+                </ion-list-header>
+  
+                <ion-item lines="none" class="item-chebox">
+                  <ion-checkbox formControlName="bitewing_premolares_der"></ion-checkbox>
+                  <ion-label class="label-chec ion-text-wrap">Der</ion-label>
+                </ion-item>
+  
+                <ion-item lines="none" class="item-chebox">
+                  <ion-checkbox formControlName="bitewing_premolares_izq"></ion-checkbox>
+                  <ion-label class="label-chec ion-text-wrap">Izq</ion-label>
+                </ion-item>
+              </div>
 
               <ion-list-header class="ion-no-padding">
                 <ion-label>Oclusal</ion-label>
@@ -224,12 +226,12 @@
 
               <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="oclusal_superior"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Superior</ion-label>
+                <ion-label class="label-chec ion-text-wrap">Superior / técnica Donovan</ion-label>
               </ion-item> 
 
               <ion-item lines="none" class="item-chebox">
                 <ion-checkbox formControlName="oclusal_inferior"></ion-checkbox>
-                <ion-label class="label-chec ion-text-wrap">Inferior</ion-label>
+                <ion-label class="label-chec ion-text-wrap">Inferior / técnica Donovan</ion-label>
               </ion-item> 
             </ion-radio-group>
           </ion-list>
@@ -341,7 +343,7 @@
             </ion-item>
             <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="u_s_p_0_unicamp"></ion-checkbox>
-              <ion-label class="label-chec ion-text-wrap">U.S.P 0- Unicamp</ion-label>
+              <ion-label class="label-chec ion-text-wrap">U.S.P - Unicamp</ion-label>
             </ion-item>
             <ion-item lines="none" class="item-chebox">
               <ion-checkbox formControlName="steiner"></ion-checkbox>
@@ -447,7 +449,7 @@
               <ion-label class="label-chec ion-text-wrap">Documentación completa para Ortodoncia</ion-label>
             </ion-item> -->
             <ion-list-header class="ion-no-padding">
-              <ion-label>Documentación completa para Ortodoncia</ion-label>
+              <ion-label>Documentación completa para Ortodoncia (Paquetes)</ion-label>
             </ion-list-header>
 
             <ion-list>
@@ -482,6 +484,6 @@
         </ion-card-content>
       </ion-card>
     </ion-list>
-    <ion-button class="btn-form" mode="ios" (click)="submit ()">Adelante</ion-button>
+    <ion-button class="btn-form" mode="ios" (click)="submit ()">Registrar orden</ion-button>
   </form>
 </ion-content>

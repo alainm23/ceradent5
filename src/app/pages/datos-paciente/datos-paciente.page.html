@@ -4,7 +4,7 @@
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button> 
     <ion-title>
-      Seleccionar paciente
+      Paciente
     </ion-title>  
     <ion-buttons slot="end" class="btn-menu">
       <ion-menu-button></ion-menu-button>
@@ -16,7 +16,7 @@
   <h1 class="ion-text-center titulo"></h1>
   <ion-card class="card-form">
     <ion-item *ngIf="status === 0" class="item-input" lines="none">
-      <ion-input (ionChange)="changed ($event)" placeholder="DNI" [(ngModel)]="dni_search" class="input-form" type="tel"></ion-input>
+      <ion-input (ionChange)="changed ($event)" placeholder="DNI del paciente" [(ngModel)]="dni_search" class="input-form" type="tel"></ion-input>
     </ion-item>
 
     <!-- *ngIf="pacientes.length > 0" -->
@@ -25,15 +25,15 @@
         <ion-card>
           <ion-item>
             <ion-avatar slot="start" *ngIf="item.tipo == 'adulto'">
-              <img src="assets/imgs/icono_user_default.png">
+              <img src="assets/imgs/grupo-816.png">
             </ion-avatar>
       
             <ion-avatar slot="start" *ngIf="item.tipo == 'menor'">
-              <img src="assets/imgs/child-icon.png">
+              <img src="assets/imgs/grupo-816.png">
             </ion-avatar>
   
             <ion-label>{{ item.nombres }} {{ item.apellidos }}</ion-label>
-            <ion-radio slot="end" [value]="item"></ion-radio>
+            <ion-radio color="warning" slot="end" [value]="item"></ion-radio>
           </ion-item>
         </ion-card>
       </ion-radio-group>
@@ -54,7 +54,13 @@
       </ion-item>
     </form>
     <ion-button class="btn-form" type="submit" (click)="submit ()" [disabled]="valid_button ()" mode="ios">
-      Adelante
+      <ng-container *ngIf="status !== 0">
+        Adelante
+      </ng-container>
+
+      <ng-container *ngIf="status === 0">
+        Buscar
+      </ng-container>
     </ion-button>
 
     <ion-button *ngIf="status >= 1" class="btn-form" (click)="reset ()" mode="ios">

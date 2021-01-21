@@ -9,7 +9,6 @@ import { EventsService } from '../../services/events.service';
 export class RangePage implements OnInit {
   @Input () value: number = 1;
   @Input () icon: number = 1;
-
   constructor (private events: EventsService) { }
 
   ngOnInit() {

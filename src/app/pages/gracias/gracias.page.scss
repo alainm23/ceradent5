@@ -6,6 +6,25 @@
     font-family: AvenirBook;
     src : url('/assets/fonts/Avenir Book.ttf')
 }
+
+.btn-form
+{
+    font-family: AvenirHeavy;
+    --background: #9F2C3F;
+    --background-activated: #9F2C3F;
+    --border-color: #DDDDDD;
+    --border-radius: 11px;
+    --border-style: solid;
+    --border-width: 1px;
+    --color: #FFFFFF;
+    font-size: 22px;
+    height: 60px;
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 28px;
+    margin-top: 28px;
+}
+
 ion-header
 {
     height: 74px;
@@ -56,7 +75,7 @@ ion-header
 {
     display: flex;
     justify-content: center;
-    margin-top: 115px;
+    margin-top: 50px;
     .img-icon
     {
         width: 76px;
