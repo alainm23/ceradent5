@@ -18,7 +18,7 @@
     <ion-card *ngFor="let servicio of listaServicios" class="carr-datos">
       <ion-item lines="none">
         <ion-avatar slot="start" class="img-circle">
-          <img src="assets/imgs/grupo-816.png">
+          <img src="assets/adulto.png">
         </ion-avatar>
         <ion-label class="lbel-nombre"><b>{{servicio.dataServicio.nombre}}</b><br><span class="spana-fecha">Placa Ceradent</span></ion-label>
         <ion-button [disabled]="servicio.data.imagenes_url === undefined || servicio.data.imagenes_url === null" class="btncompartir" (click)="share (servicio.dataServicio)">

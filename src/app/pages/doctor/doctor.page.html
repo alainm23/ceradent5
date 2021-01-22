@@ -37,8 +37,12 @@
   <div class="div-card-datos">
     <ion-card *ngFor="let item of historialDoctor | orderBy:'fecha':true" class="carr-datos">
       <ion-item lines="none">
-        <ion-avatar slot="start">
-          <img src="assets/imgs/grupo-816.png">
+        <ion-avatar slot="start" *ngIf="item.dataPlaca.tipo_cliente == 'adulto'">
+          <img src="assets/adulto.png">
+        </ion-avatar>
+  
+        <ion-avatar slot="start" *ngIf="item.dataPlaca.tipo_cliente == 'menor'">
+          <img src="assets/bebe.png">
         </ion-avatar>
         <ion-label class="lbel-nombre">{{ item.dataPlaca.nombre_cliente }} <br><span class="spana-fecha">{{mostrarFecha(item.dataPlaca.fecha)}}</span></ion-label>
       </ion-item>
