@@ -79,8 +79,16 @@
 
         <ion-menu-toggle auto-hide="false">
           <ion-item *ngIf="permisos!=null && permisos.isdoctor==true" (click)="open_reservas ()" class="item-border-bottom">
-              <img src="assets/imgs/menu-seis.png" class="img-icon">
+            <img src="assets/imgs/menu-seis.png" class="img-icon">
             <ion-label>Doctor - Ordenes</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle auto-hide="false">
+          <ion-item *ngIf="permisos!=null && permisos.isdoctor==true" (click)="open_mensajes ()" class="item-border-bottom">
+            <img src="assets/imgs/menu-seis.png" class="img-icon">
+            <ion-label>Mensajes</ion-label>
+            <ion-badge *ngIf="mensajes_no_leidos > 0" mode="ios" color="danger">{{ mensajes_no_leidos }}</ion-badge>
           </ion-item>
         </ion-menu-toggle>
 

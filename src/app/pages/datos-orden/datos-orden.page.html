@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="form" (ngSubmit)="onSubmit ()">
+  <form [formGroup]="form">
     <ion-list class="list-padding-left-right">
       <ion-card class="car-acordion">
         <ion-card-header [class.acitvo]="item_01 === true" (click)="ver_item (1)">
@@ -56,23 +56,23 @@
               D
             </div>
             <div class="div-btn div-btn-left">
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.8')" [color]="tomografia_volumetrica_izq.get ('1.8') ? 'selected' : 'white'" class="btn-number">1.8</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.7')" [color]="tomografia_volumetrica_izq.get ('1.7') ? 'selected' : 'white'" class="btn-number">1.7</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.6')" [color]="tomografia_volumetrica_izq.get ('1.6') ? 'selected' : 'white'" class="btn-number">1.6</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.5')" [color]="tomografia_volumetrica_izq.get ('1.5') ? 'selected' : 'white'" class="btn-number">1.5</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.4')" [color]="tomografia_volumetrica_izq.get ('1.4') ? 'selected' : 'white'" class="btn-number">1.4</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.3')" [color]="tomografia_volumetrica_izq.get ('1.3') ? 'selected' : 'white'" class="btn-number">1.3</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.2')" [color]="tomografia_volumetrica_izq.get ('1.2') ? 'selected' : 'white'" class="btn-number">1.2</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '1.1')" [color]="tomografia_volumetrica_izq.get ('1.1') ? 'selected' : 'white'" class="btn-number">1.1</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.8')" [color]="tomografia_volumetrica_derecho.get ('1.8') ? 'selected' : 'white'" class="btn-number">1.8</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.7')" [color]="tomografia_volumetrica_derecho.get ('1.7') ? 'selected' : 'white'" class="btn-number">1.7</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.6')" [color]="tomografia_volumetrica_derecho.get ('1.6') ? 'selected' : 'white'" class="btn-number">1.6</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.5')" [color]="tomografia_volumetrica_derecho.get ('1.5') ? 'selected' : 'white'" class="btn-number">1.5</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.4')" [color]="tomografia_volumetrica_derecho.get ('1.4') ? 'selected' : 'white'" class="btn-number">1.4</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.3')" [color]="tomografia_volumetrica_derecho.get ('1.3') ? 'selected' : 'white'" class="btn-number">1.3</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.2')" [color]="tomografia_volumetrica_derecho.get ('1.2') ? 'selected' : 'white'" class="btn-number">1.2</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '1.1')" [color]="tomografia_volumetrica_derecho.get ('1.1') ? 'selected' : 'white'" class="btn-number">1.1</ion-button>
               <!--<div>&nbsp;</div>-->
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.8')" [color]="tomografia_volumetrica_izq.get ('4.8') ? 'selected' : 'white'" class="btn-number">4.8</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.7')" [color]="tomografia_volumetrica_izq.get ('4.7') ? 'selected' : 'white'" class="btn-number">4.7</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.6')" [color]="tomografia_volumetrica_izq.get ('4.6') ? 'selected' : 'white'" class="btn-number">4.6</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.5')" [color]="tomografia_volumetrica_izq.get ('4.5') ? 'selected' : 'white'" class="btn-number">4.5</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.4')" [color]="tomografia_volumetrica_izq.get ('4.4') ? 'selected' : 'white'" class="btn-number">4.4</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.3')" [color]="tomografia_volumetrica_izq.get ('4.3') ? 'selected' : 'white'" class="btn-number">4.3</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.2')" [color]="tomografia_volumetrica_izq.get ('4.2') ? 'selected' : 'white'" class="btn-number">4.2</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '4.1')" [color]="tomografia_volumetrica_izq.get ('4.1') ? 'selected' : 'white'" class="btn-number">4.1</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.8')" [color]="tomografia_volumetrica_derecho.get ('4.8') ? 'selected' : 'white'" class="btn-number">4.8</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.7')" [color]="tomografia_volumetrica_derecho.get ('4.7') ? 'selected' : 'white'" class="btn-number">4.7</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.6')" [color]="tomografia_volumetrica_derecho.get ('4.6') ? 'selected' : 'white'" class="btn-number">4.6</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.5')" [color]="tomografia_volumetrica_derecho.get ('4.5') ? 'selected' : 'white'" class="btn-number">4.5</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.4')" [color]="tomografia_volumetrica_derecho.get ('4.4') ? 'selected' : 'white'" class="btn-number">4.4</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.3')" [color]="tomografia_volumetrica_derecho.get ('4.3') ? 'selected' : 'white'" class="btn-number">4.3</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.2')" [color]="tomografia_volumetrica_derecho.get ('4.2') ? 'selected' : 'white'" class="btn-number">4.2</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '4.1')" [color]="tomografia_volumetrica_derecho.get ('4.1') ? 'selected' : 'white'" class="btn-number">4.1</ion-button>
             </div>
           </div>
           
@@ -81,23 +81,23 @@
               I
             </div>
             <div class="div-btn div-btn-rigth">
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.1')" [color]="tomografia_volumetrica_derecho.get ('2.1') ? 'selected' : 'white'" class="btn-number">2.1</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.2')" [color]="tomografia_volumetrica_derecho.get ('2.2') ? 'selected' : 'white'" class="btn-number">2.2</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.3')" [color]="tomografia_volumetrica_derecho.get ('2.3') ? 'selected' : 'white'" class="btn-number">2.3</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.4')" [color]="tomografia_volumetrica_derecho.get ('2.4') ? 'selected' : 'white'" class="btn-number">2.4</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.5')" [color]="tomografia_volumetrica_derecho.get ('2.5') ? 'selected' : 'white'" class="btn-number">2.5</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.6')" [color]="tomografia_volumetrica_derecho.get ('2.6') ? 'selected' : 'white'" class="btn-number">2.6</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.7')" [color]="tomografia_volumetrica_derecho.get ('2.7') ? 'selected' : 'white'" class="btn-number">2.7</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '2.8')" [color]="tomografia_volumetrica_derecho.get ('2.8') ? 'selected' : 'white'" class="btn-number">2.8</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.1')" [color]="tomografia_volumetrica_izq.get ('2.1') ? 'selected' : 'white'" class="btn-number">2.1</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.2')" [color]="tomografia_volumetrica_izq.get ('2.2') ? 'selected' : 'white'" class="btn-number">2.2</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.3')" [color]="tomografia_volumetrica_izq.get ('2.3') ? 'selected' : 'white'" class="btn-number">2.3</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.4')" [color]="tomografia_volumetrica_izq.get ('2.4') ? 'selected' : 'white'" class="btn-number">2.4</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.5')" [color]="tomografia_volumetrica_izq.get ('2.5') ? 'selected' : 'white'" class="btn-number">2.5</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.6')" [color]="tomografia_volumetrica_izq.get ('2.6') ? 'selected' : 'white'" class="btn-number">2.6</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.7')" [color]="tomografia_volumetrica_izq.get ('2.7') ? 'selected' : 'white'" class="btn-number">2.7</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '2.8')" [color]="tomografia_volumetrica_izq.get ('2.8') ? 'selected' : 'white'" class="btn-number">2.8</ion-button>
               <!--<div>&nbsp;</div>-->
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.1')" [color]="tomografia_volumetrica_derecho.get ('3.1') ? 'selected' : 'white'" class="btn-number">3.1</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.2')" [color]="tomografia_volumetrica_derecho.get ('3.2') ? 'selected' : 'white'" class="btn-number">3.2</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.3')" [color]="tomografia_volumetrica_derecho.get ('3.3') ? 'selected' : 'white'" class="btn-number">3.3</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.4')" [color]="tomografia_volumetrica_derecho.get ('3.4') ? 'selected' : 'white'" class="btn-number">3.4</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.5')" [color]="tomografia_volumetrica_derecho.get ('3.5') ? 'selected' : 'white'" class="btn-number">3.5</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.6')" [color]="tomografia_volumetrica_derecho.get ('3.6') ? 'selected' : 'white'" class="btn-number">3.6</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.7')" [color]="tomografia_volumetrica_derecho.get ('3.7') ? 'selected' : 'white'" class="btn-number">3.7</ion-button>
-              <ion-button mode="ios" (click)="select (tomografia_volumetrica_derecho, '3.8')" [color]="tomografia_volumetrica_derecho.get ('3.8') ? 'selected' : 'white'" class="btn-number">3.8</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.1')" [color]="tomografia_volumetrica_izq.get ('3.1') ? 'selected' : 'white'" class="btn-number">3.1</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.2')" [color]="tomografia_volumetrica_izq.get ('3.2') ? 'selected' : 'white'" class="btn-number">3.2</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.3')" [color]="tomografia_volumetrica_izq.get ('3.3') ? 'selected' : 'white'" class="btn-number">3.3</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.4')" [color]="tomografia_volumetrica_izq.get ('3.4') ? 'selected' : 'white'" class="btn-number">3.4</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.5')" [color]="tomografia_volumetrica_izq.get ('3.5') ? 'selected' : 'white'" class="btn-number">3.5</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.6')" [color]="tomografia_volumetrica_izq.get ('3.6') ? 'selected' : 'white'" class="btn-number">3.6</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.7')" [color]="tomografia_volumetrica_izq.get ('3.7') ? 'selected' : 'white'" class="btn-number">3.7</ion-button>
+              <ion-button mode="ios" (click)="select (tomografia_volumetrica_izq, '3.8')" [color]="tomografia_volumetrica_izq.get ('3.8') ? 'selected' : 'white'" class="btn-number">3.8</ion-button>
             </div>
           </div>
 
@@ -291,16 +291,16 @@
               D
             </div>
             <div class="div-btn div-btn-left">
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.5')" [color]="radio_intra_d_02.get ('5.5') ? 'selected' : 'white'" class="btn-number">5.5</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.4')" [color]="radio_intra_d_02.get ('5.4') ? 'selected' : 'white'" class="btn-number">5.4</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.3')" [color]="radio_intra_d_02.get ('5.3') ? 'selected' : 'white'" class="btn-number">5.3</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.2')" [color]="radio_intra_d_02.get ('5.2') ? 'selected' : 'white'" class="btn-number">5.2</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.1')" [color]="radio_intra_d_02.get ('5.1') ? 'selected' : 'white'" class="btn-number">5.1</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.5')" [color]="radio_intra_d_02.get ('8.5') ? 'selected' : 'white'" class="btn-number">8.5</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.4')" [color]="radio_intra_d_02.get ('8.4') ? 'selected' : 'white'" class="btn-number">8.4</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.3')" [color]="radio_intra_d_02.get ('8.3') ? 'selected' : 'white'" class="btn-number">8.3</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.2')" [color]="radio_intra_d_02.get ('8.2') ? 'selected' : 'white'" class="btn-number">8.2</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.1')" [color]="radio_intra_d_02.get ('8.1') ? 'selected' : 'white'" class="btn-number">8.1</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.5')" [color]="radio_intra_d_02.get ('5.5') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">5.5</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.4')" [color]="radio_intra_d_02.get ('5.4') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">5.4</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.3')" [color]="radio_intra_d_02.get ('5.3') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">5.3</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.2')" [color]="radio_intra_d_02.get ('5.2') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">5.2</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '5.1')" [color]="radio_intra_d_02.get ('5.1') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">5.1</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.5')" [color]="radio_intra_d_02.get ('8.5') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">8.5</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.4')" [color]="radio_intra_d_02.get ('8.4') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">8.4</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.3')" [color]="radio_intra_d_02.get ('8.3') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">8.3</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.2')" [color]="radio_intra_d_02.get ('8.2') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">8.2</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_d_02, '8.1')" [color]="radio_intra_d_02.get ('8.1') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">8.1</ion-button>
             </div>
           </div>
           
@@ -309,17 +309,17 @@
               I
             </div>
             <div class="div-btn div-btn-rigth">
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.1')" [color]="radio_intra_i_02.get ('6.1') ? 'selected' : 'white'" class="btn-number">6.1</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.2')" [color]="radio_intra_i_02.get ('6.2') ? 'selected' : 'white'" class="btn-number">6.2</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.3')" [color]="radio_intra_i_02.get ('6.3') ? 'selected' : 'white'" class="btn-number">6.3</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.4')" [color]="radio_intra_i_02.get ('6.4') ? 'selected' : 'white'" class="btn-number">6.4</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.5')" [color]="radio_intra_i_02.get ('6.5') ? 'selected' : 'white'" class="btn-number">6.5</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.1')" [color]="radio_intra_i_02.get ('6.1') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">6.1</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.2')" [color]="radio_intra_i_02.get ('6.2') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">6.2</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.3')" [color]="radio_intra_i_02.get ('6.3') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">6.3</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.4')" [color]="radio_intra_i_02.get ('6.4') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">6.4</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '6.5')" [color]="radio_intra_i_02.get ('6.5') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">6.5</ion-button>
               <!--<div>&nbsp;</div>-->
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.1')" [color]="radio_intra_i_02.get ('7.1') ? 'selected' : 'white'" class="btn-number">7.1</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.2')" [color]="radio_intra_i_02.get ('7.2') ? 'selected' : 'white'" class="btn-number">7.2</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.3')" [color]="radio_intra_i_02.get ('7.3') ? 'selected' : 'white'" class="btn-number">7.3</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.4')" [color]="radio_intra_i_02.get ('7.4') ? 'selected' : 'white'" class="btn-number">7.4</ion-button>
-              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.5')" [color]="radio_intra_i_02.get ('7.5') ? 'selected' : 'white'" class="btn-number">7.5</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.1')" [color]="radio_intra_i_02.get ('7.1') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">7.1</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.2')" [color]="radio_intra_i_02.get ('7.2') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">7.2</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.3')" [color]="radio_intra_i_02.get ('7.3') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">7.3</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.4')" [color]="radio_intra_i_02.get ('7.4') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">7.4</ion-button>
+              <ion-button mode="ios" (click)="select (radio_intra_i_02, '7.5')" [color]="radio_intra_i_02.get ('7.5') ? 'selected' : 'white'" class="btn-number btn-cindo-cuadros">7.5</ion-button>
             </div>
           </div>
         </ion-card-content>

@@ -6,6 +6,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { DatabaseService } from 'src/app/services/database.service';
 import { ActivatedRoute } from '@angular/router';
 import { ImagenViewPage } from '../../modals/imagen-view/imagen-view.page';
+import { IonicImageLoaderComponent } from 'ionic-image-loader-v5';
 
 @Component({
   selector: 'app-servicios',
@@ -17,6 +18,7 @@ export class ServiciosPage implements OnInit {
   subscription:Subscription;
   listaServicios: any;
   imagenesServicios: Map<string, Array<any | null>> = new Map<string, Array<any | null>>();
+  imagenes: any [] = [];
   constructor(
     public navCtrl: NavController, 
     public database: DatabaseService,
@@ -60,21 +62,55 @@ export class ServiciosPage implements OnInit {
     }
   }
 
-  share (item: any) {
-    let message = 'Placa Ceradent - ' + item.nombre;
-    this.socialSharing.share (message, '', item.data.imagenes_url, '');
+  async share (item: any) {
+    let loading = await this.loadingCtrl.create({
+      message: "Cargando...",      
+    });
+
+    loading.present ();
+
+    let message: string = 'Placa Ceradent - ' + item.dataServicio.nombre;
+    let imagenes_urls: any [] = [];
+    for (let index = 0; index < this.imagenes.length; index++) {
+      imagenes_urls.push (await this.convertToDataURLviaCanvas (this.imagenes [index], "image/jpeg"));
+    }
+    
+    this.socialSharing.share (message, '', imagenes_urls, '').then (() => {
+      loading.dismiss ();
+    }).catch ((error: any) => {
+      loading.dismiss ();
+    });
   }
 
-  onImageLoad (img: any, data: any) {
-    data.data.imagenes_url = img;
+  convertToDataURLviaCanvas (url, outputFormat){
+    return new Promise ((resolve, reject) => {
+      var img = new Image ();
+      img.crossOrigin = '*';
+      img.onload = () => {
+        let canvas = <HTMLCanvasElement> document.createElement('CANVAS'),
+          ctx = canvas.getContext('2d'),
+          dataURL;
+        canvas.height = img.height;
+        canvas.width = img.width;
+        ctx.drawImage(img, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat);
+        resolve(dataURL);
+        canvas = null;
+      };
+      img.src = url;
+    });
   }
 
-  async visualizar (item: any) {
-    console.log (item.data.imagenes_url);
+  onImageLoad (img: IonicImageLoaderComponent, index: number) {
+    this.imagenes [index] = img.src;
+  }
+
+  async visualizar (index: number) {
+    console.log (this.imagenes);
     const modal = await this.modalController.create({
       component: ImagenViewPage,
       componentProps: {
-        imagen: item.data.imagenes_url._src
+        imagen: this.imagenes [index]
       }
     });
 

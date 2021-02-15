@@ -105,7 +105,7 @@ export class DatosOrdenPage implements OnInit {
 
   select (map: Map <string, boolean>, value: string) {
     if (map.has (value)) {
-      map.set (value, !map.get (value));
+      map.delete (value);
     } else {
       map.set (value, true);
     }
@@ -135,15 +135,6 @@ export class DatosOrdenPage implements OnInit {
     });
 
     loading.present ();
-    
-    // console.log (this.form.value);
-
-    console.log (this.radio_intra_d_01);
-    console.log (this.radio_intra_d_02);
-    console.log (this.radio_intra_i_01);
-    console.log (this.radio_intra_i_02);
-    console.log (this.tomografia_volumetrica_derecho);
-    console.log (this.tomografia_volumetrica_izq);    
 
     let request: any = {
       id: this.database.createId (),
@@ -153,6 +144,7 @@ export class DatosOrdenPage implements OnInit {
       doctor_id: this.codigo,
       servicio: this.form.value,
       fecha_registrada: new Date ().toISOString (),
+      visto: false,
       servicio_extras: {
         radio_intra_d_01: Array.from (this.radio_intra_d_01.keys ()),
         radio_intra_d_02: Array.from (this.radio_intra_d_02.keys ()),
@@ -162,9 +154,7 @@ export class DatosOrdenPage implements OnInit {
         tomografia_volumetrica_izq: Array.from (this.tomografia_volumetrica_izq.keys ())
       }
     };
-
-    console.log (request);
-
+    
     this.database.add_reserva (request).then (() => {
       loading.dismiss ();
       this.navController.navigateForward (['gracias', this.codigo, this.rol]);

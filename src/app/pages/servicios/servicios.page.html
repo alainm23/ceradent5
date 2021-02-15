@@ -21,12 +21,16 @@
           <img src="assets/adulto.png">
         </ion-avatar>
         <ion-label class="lbel-nombre"><b>{{servicio.dataServicio.nombre}}</b><br><span class="spana-fecha">Placa Ceradent</span></ion-label>
-        <ion-button [disabled]="servicio.data.imagenes_url === undefined || servicio.data.imagenes_url === null" class="btncompartir" (click)="share (servicio.dataServicio)">
+        <ion-button [disabled]="imagenes.length <= 0" class="btncompartir" (click)="share (servicio)">
           <img src="assets/imgs/compartir.png">
         </ion-button>
       </ion-item>
       <ion-avatar class="img-rayox">
-        <img-loader class="img-loader" *ngFor="let imagen of imagenesServicios.get (servicio.data.servicio)" [src]="imagen | async" (click)="visualizar (servicio)" (load)="onImageLoad ($event, servicio)"></img-loader>
+        <img-loader class="img-loader"
+          *ngFor="let imagen of imagenesServicios.get (servicio.data.servicio); index as i"
+          [src]="imagen | async"
+          (click)="visualizar (i)"
+          (load)="onImageLoad ($event, i)"></img-loader>
       </ion-avatar>
     </ion-card>
   </div>

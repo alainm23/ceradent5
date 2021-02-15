@@ -59,7 +59,10 @@ export class DashboardPage implements OnInit {
                         buttons: [
                           {
                             text: "Entendido",
-                            role: "cancelar"
+                            role: "cancelar",
+                            handler: () => {
+                              this.navCtrl.navigateRoot ("login");
+                            }
                           }
                         ]
                       });
@@ -72,35 +75,40 @@ export class DashboardPage implements OnInit {
         }
       });
     } else {
-      this.database.estaLogueado().then(async (data)=>{
-        if (!data) this.navCtrl.navigateRoot("login");
-        else{
+      this.database.estaLogueado ().then (async (data) => {
+        if (!data) {
+          this.navCtrl.navigateRoot ("login");
+        } else {
           let load = await this.loadingCtrl.create({
             message: "Cargando..."
-          })
-          load.present().then(()=>{
-            //esta logeado, continuamos con el proceso de mostrar informacion
-            this.database.traerDatosUsuarioLocal().then (telefono=>{
-              if (telefono!=null && telefono!=undefined){
+          });
+
+          load.present ().then (() => {
+            this.database.traerDatosUsuarioLocal ().then (telefono => {
+              if (telefono != null && telefono != undefined) {
                 this.database.existeTelefonoRegistradoObservable(telefono).subscribe(dataUsuario=>{
-                  if (dataUsuario){
+                  if (dataUsuario) {
                     //verificamos que tenga roles
-                    load.dismiss().then(_=>{
+                    load.dismiss ().then(_=>{
                       this.codigoUsuario=dataUsuario.usuario;
                       this.isDoctor=dataUsuario.isdoctor;
                       this.isCliente=dataUsuario.iscliente;
                       this.isGerente=dataUsuario.isgerente;
                     })
-                  }else{
+                  } else {
                     load.dismiss().then(async _=>{
                       let alert = await this.alertCtrl.create({
                         header: "Opssss!",
+                        backdropDismiss: false,
                         subHeader: "No encontramos información relacionada al celular "+telefono,
                         message: "Si usted esta registrado en el sistema de CERADENT, por favor comuniquese con ellos y verifique si su numero de celular es el correcto.",
                         buttons: [
                           {
                             text: "Entendido",
-                            role: "cancelar"
+                            role: "cancelar",
+                            handler: () => {
+                              this.navCtrl.navigateRoot ("login");
+                            }
                           }
                         ]
                       });
@@ -109,18 +117,22 @@ export class DashboardPage implements OnInit {
                     })
                   }
                 })
-              }else{
-                load.dismiss().then(async _=>{
+              } else {
+                load.dismiss ().then(async _=>{
                   console.log('debe cerrar sesion porque no hay codigo')
                   //this.database.cerrarSesion();
                   let alert = await this.alertCtrl.create({
                     header: "Opssss!",
+                    backdropDismiss: false,
                     subHeader: "No se guardo tu numero de celular",
                     message: "Si usted esta registrado en el sistema de CERADENT, por favor comuniquese con ellos y verifique si su numero de celular es el correcto.",
                     buttons: [
                       {
                         text: "Entendido",
-                        role: "cancelar"
+                        role: "cancelar",
+                        handler: () => {
+                          this.navCtrl.navigateRoot ("login");
+                        }
                       }
                     ]
                   });
@@ -129,7 +141,7 @@ export class DashboardPage implements OnInit {
                 })
               }
             })
-          })
+          });
         }
       });
     }

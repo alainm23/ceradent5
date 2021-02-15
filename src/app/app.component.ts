@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 
-import { NavController, Platform, ToastController, MenuController } from '@ionic/angular';
+import { NavController, Platform, ToastController, MenuController, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Observable, Subscription } from 'rxjs';
 
 // Services
+import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
 import { DatabaseService } from './services/database.service'; 
 import { ImageLoaderConfigService } from 'ionic-image-loader-v5';
-import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { OneSignal, OSNotificationOpenedResult, OSNotification } from '@ionic-native/onesignal/ngx';
 import { EventsService } from './services/events.service';
 import * as moment from 'moment';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
@@ -23,6 +24,7 @@ export class AppComponent {
   permisos: any={'rol': 'Visitante','isadmin':false,'isadminprincipal':false,'isdoctor':false,'iscliente':false, 'isgerente':false};
   subscription:Subscription;
   codigoUsuario:string;
+  mensajes_no_leidos: number = 0;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -34,7 +36,9 @@ export class AppComponent {
     private screenOrientation: ScreenOrientation,
     private events: EventsService,
     private toastCtrl: ToastController,
-    private menu_controller: MenuController
+    private menu_controller: MenuController,
+    private firebaseAuthentication: FirebaseAuthentication,
+    private alertCtrl: AlertController
   ) {
     this.initializeApp ();
   }
@@ -49,14 +53,17 @@ export class AppComponent {
         this.statusBar.backgroundColorByHexString ('#000000');
       }
 
-      console.log(this.screenOrientation.type);
-      this.screenOrientation.lock (this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+      if (this.platform.is ('cordova')) {
+        console.log(this.screenOrientation.type);
+        this.screenOrientation.lock (this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+      }
 
       this.imageLoaderConfig.setWidth ('40vw');
       this.imageLoaderConfig.setHeight ('40vw');
       this.imageLoaderConfig.setBackgroundSize ('cover');
 
       moment.locale ('es');
+
       // Events
       this.events.get_user_login ().subscribe (() => {
         this.cargarMenu ();
@@ -68,39 +75,67 @@ export class AppComponent {
 
   cargarMenu () {
     if (this.database.apple_test === true) {
-      this.database.existeTelefonoRegistradoObservable("+51984780642").subscribe(dataPermisos=>{
+      this.database.existeTelefonoRegistradoObservable("+51984780642").subscribe (dataPermisos=>{
         if (dataPermisos){
           this.codigoUsuario=dataPermisos.usuario;
-          if (this.platform.is('cordova')){
+
+          if (this.platform.is ('cordova')) {
             this.oneSignal.startInit('f11aefde-f262-4dc2-9044-c790df0144dd', '320283851351');
             this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
-            this.oneSignal.handleNotificationOpened().subscribe((jsonData: any) => {
-              //do something when a notification is opened
+            this.oneSignal.handleNotificationOpened ().subscribe ((jsonData: OSNotificationOpenedResult) => {
+              console.log ('handleNotificationOpened', jsonData);
               const destino = jsonData.notification.payload.additionalData.destino;
-                if (destino=="doctores"){
-                  // this.nav.navigateForward (['DoctorPage', this.codigoUsuario])
-                }else if (destino=="clientes"){
-                  // this.nav.navigateForward (['ClientePage', this.codigoUsuario])
-                }
-            });
-
-            this.oneSignal.handleNotificationReceived().subscribe((jsonData: any) => {
-              const destino = jsonData.payload.additionalData.destino;
-              if (destino=="doctores"){
-                this.presentToast("Ceradent: Nueva placa registrada", "exito");
-              }else if (destino=="clientes"){
-                this.presentToast("Ceradent: Nueva placa registrada", "exito");
+              if (destino == "doctores") {
+                this.nav.navigateRoot (['doctor', this.codigoUsuario, 'null']);
+              } else if (destino == "clientes"){
+                this.nav.navigateRoot (['cliente', this.codigoUsuario]);
+              } else if (destino === 'mensajes') {
+                this.nav.navigateForward (['mensajes', this.codigoUsuario]);
               }
             });
 
+            this.oneSignal.handleNotificationReceived ().subscribe (async (jsonData: OSNotification) => {
+              console.log ('handleNotificationReceived', jsonData);
+              const destino = jsonData.payload.additionalData.destino;
+              let message = '';
+              if (destino == "doctores" || destino == "clientes") {
+                message = 'Ceradent: Nueva placa registrada';
+              } else {
+                message = 'Ceradent: Nuevo Mensaje';
+              }
+
+              let alert = await this.alertCtrl.create ({
+                message: message,
+                buttons: [
+                  {
+                    text: 'Mas tarde',
+                    role: 'cancel'
+                  }, {
+                    text: 'Revisar',
+                    handler: () => {
+                      if (destino == "doctores") {
+                        this.nav.navigateRoot (['doctor', this.codigoUsuario, 'null']);
+                      } else if (destino == "clientes") {
+                        this.nav.navigateRoot (['cliente', this.codigoUsuario]);
+                      } else if (destino === 'mensajes') {
+                        this.nav.navigateForward (['mensajes', this.codigoUsuario]);
+                      }
+                    }
+                  }
+                ]
+              });
+              
+              alert.present ();
+            });
+
             //.handleNotificationReceived()
-            this.oneSignal.endInit();
+            this.oneSignal.endInit ();
 
             //guardamos el token en la base de datos
-            this.oneSignal.getIds().then(ids=>{
+            this.oneSignal.getIds ().then(ids=>{
               console.log(ids);
               //this.database.registrarToken(telefono, ids.userId);
-            }),error=>{ console.log('Error guardando id') }
+            });
 
             //traemos los tags para poder modificarlos
             this.oneSignal.getTags().then(data=>{
@@ -110,71 +145,97 @@ export class AppComponent {
           this.permisos=dataPermisos;
 
           //guardamos el tag usuario para cualquier envio
-          this.oneSignal.sendTag(this.codigoUsuario,"true");
+          this.oneSignal.sendTag (this.codigoUsuario,"true");
           //tremos la informción
           if (dataPermisos.isgerente){
             this.usuario=this.database.getAdministradorObservable(dataPermisos.usuario);
             this.permisos.rol="Gerente";
-            this.oneSignal.sendTag("Gerente","true");
+            this.oneSignal.sendTag ("Gerente","true");
           }else{
             if (dataPermisos.isdoctor){
               this.usuario=this.database.getDoctorObservable(dataPermisos.usuario);
               this.permisos.rol="Doctor";
-              this.oneSignal.sendTag("Doctor","true");
+              this.oneSignal.sendTag ("Doctor","true");
             }else{
               if (dataPermisos.iscliente){
                 this.usuario=this.database.getClienteObservable(dataPermisos.usuario);
                 this.permisos.rol="Cliente";
-                this.oneSignal.sendTag("Cliente","true");
+                this.oneSignal.sendTag ("Cliente","true");
               }else{
-                console.log('El usuario no tiene un rol permitido por la aplicación')
+                console.log ('El usuario no tiene un rol permitido por la aplicación')
               }
             }
           }
+
+          this.init_mensajes (this.codigoUsuario);
         }else{
           console.log('No se encuentra el telefono'); // el telefono del ususario no esta registrado en el sistema
         }
       });
     } else {
-      this.database.traerDatosUsuarioLocal().then(telefono=>{
-        // let telefono='+51984749743';//'';
-        // let telefono='+51958191972';//'';
-        // let telefono = '+51921674935';//'';
-        // let telefono = '+51994701995';//'';
-        if (telefono!=null && telefono!=undefined){
+      this.database.traerDatosUsuarioLocal().then (telefono => {
+        if (telefono!=null && telefono!=undefined) {
           this.database.existeTelefonoRegistradoObservable(telefono).subscribe(dataPermisos=>{
             if (dataPermisos){
               this.codigoUsuario=dataPermisos.usuario;
-              if (this.platform.is('cordova')){
+
+              if (this.platform.is('cordova')) {
                 this.oneSignal.startInit('f11aefde-f262-4dc2-9044-c790df0144dd', '320283851351');
                 this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
-                this.oneSignal.handleNotificationOpened().subscribe((jsonData: any) => {
-                  //do something when a notification is opened
+                this.oneSignal.handleNotificationOpened ().subscribe ((jsonData: OSNotificationOpenedResult) => {
+                  console.log ('handleNotificationOpened', jsonData);
                   const destino = jsonData.notification.payload.additionalData.destino;
-                    if (destino=="doctores"){
-                      // this.nav.setRoot('DoctorPage',{'codigo':this.codigoUsuario})
-                    }else if (destino=="clientes"){
-                      // this.nav.setRoot('ClientePage',{'codigo':this.codigoUsuario})
-                    }
+                  if (destino === "doctores") {
+                    this.nav.navigateRoot (['doctor', this.codigoUsuario, 'null']);
+                  } else if (destino === "clientes"){
+                    this.nav.navigateRoot (['cliente', this.codigoUsuario]);
+                  } else if (destino === 'mensajes') {
+                    this.nav.navigateForward (['mensajes', this.codigoUsuario]);
+                  }
                 });
 
-                this.oneSignal.handleNotificationReceived().subscribe((jsonData: any) => {
+                this.oneSignal.handleNotificationReceived ().subscribe (async (jsonData: OSNotification) => {
+                  console.log ('handleNotificationReceived', jsonData);
                   const destino = jsonData.payload.additionalData.destino;
-                  if (destino=="doctores"){
-                    this.presentToast("Ceradent: Nueva placa registrada", "exito");
-                  }else if (destino=="clientes"){
-                    this.presentToast("Ceradent: Nueva placa registrada", "exito");
+                  let message = '';
+                  if (destino == "doctores" || destino == "clientes") {
+                    message = 'Ceradent: Nueva placa registrada';
+                  } else {
+                    message = 'Ceradent: Nuevo Mensaje';
                   }
+
+                  let alert = await this.alertCtrl.create ({
+                    message: message,
+                    buttons: [
+                      {
+                        text: 'Mas tarde',
+                        role: 'cancel'
+                      }, {
+                        text: 'Revisar',
+                        handler: () => {
+                          if (destino == "doctores") {
+                            this.nav.navigateRoot (['doctor', this.codigoUsuario, 'null']);
+                          } else if (destino == "clientes") {
+                            this.nav.navigateRoot (['cliente', this.codigoUsuario]);
+                          } else if (destino === 'mensajes') {
+                            this.nav.navigateForward (['mensajes', this.codigoUsuario]);
+                          }
+                        }
+                      }
+                    ]
+                  });
+                  
+                  alert.present ();
                 });
 
                 //.handleNotificationReceived()
                 this.oneSignal.endInit();
 
                 //guardamos el token en la base de datos
-                this.oneSignal.getIds().then(ids=>{
+                this.oneSignal.getIds().then (ids => {
                   console.log(ids);
-                  this.database.registrarToken(telefono, ids.userId);
-                }),error=>{ console.log('Error guardando id') }
+                  this.database.registrarToken (telefono, ids.userId);
+                });
 
                 //traemos los tags para poder modificarlos
                 this.oneSignal.getTags().then(data=>{
@@ -205,6 +266,8 @@ export class AppComponent {
                   }
                 }
               }
+
+              this.init_mensajes (this.codigoUsuario);
             } else{
               console.log('No se encuentra el telefono'); // el telefono del ususario no esta registrado en el sistema
             }
@@ -215,6 +278,22 @@ export class AppComponent {
         }
       });
     }
+  }
+
+  init_mensajes (id: string) {
+    this.database.get_historial_mensajes_todos_badge (id).subscribe ((res: any []) => {
+      this.mensajes_no_leidos = 0;
+      console.log (res);
+      res.forEach ((mensaje: any) => {
+        if (mensaje.para_todos === true) {
+          if (mensaje.leidos.find (x => x === id) === undefined) {
+            this.mensajes_no_leidos++;
+          }
+        } else {
+          this.mensajes_no_leidos++;
+        }
+      })
+    });
   }
 
   async presentToast(message,type) {
@@ -240,6 +319,7 @@ export class AppComponent {
   logout() {
     this.database.borrarDatosUsuario ();
     this.database.cerrarSesion ();
+    this.firebaseAuthentication.signOut ();
     this.nav.navigateRoot (["login"]);
   }
 
@@ -273,6 +353,10 @@ export class AppComponent {
 
   openDoctores () {
     this.nav.navigateRoot ('doctores');
+  }
+
+  open_mensajes () {
+    this.nav.navigateRoot (['mensajes', this.codigoUsuario]);
   }
 
   openTienda() {

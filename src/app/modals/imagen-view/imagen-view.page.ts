@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { ModalController, PopoverController, Platform } from '@ionic/angular';
 import { RangePage } from '../../popovers/range/range.page';
 import { EventsService } from '../../services/events.service';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
@@ -20,9 +20,10 @@ export class ImagenViewPage implements OnInit {
   brightness: number = 1;
   contrast: number = 1;
   constructor (private mnodal: ModalController,
-      public popoverController: PopoverController,
+      private popoverController: PopoverController,
       private screenOrientation: ScreenOrientation,
-      public events: EventsService) { }
+      private platform: Platform,
+      private events: EventsService) { }
 
   ngOnInit() {
     this.screenOrientation.unlock ();
@@ -43,7 +44,9 @@ export class ImagenViewPage implements OnInit {
   }
 
   ionViewDidLeave () {
-    this.screenOrientation.lock (this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+    if (this.platform.is ('cordova')) {
+      this.screenOrientation.lock (this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+    }
   }
 
   async present_popover (ev: any, tipo: string) {

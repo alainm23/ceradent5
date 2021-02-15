@@ -9,9 +9,10 @@ import { Observable } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+// import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import { first, map } from 'rxjs/operators';
-import { combineLatest, of } from "rxjs/index";
+import { of, combineLatest } from "rxjs/index";
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +43,7 @@ export class DatabaseService {
     return this.storage.set('telefonousuario',telefono);
   }
 
-  iniciarSesionEmail(email: string, password: string) {
+  iniciarSesionEmail (email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword (email, password);
   }
 
@@ -503,5 +504,39 @@ export class DatabaseService {
 
   registrar_cliente (data: any) {
     
+  }
+
+  get_mensajes_todos () {
+    return this.db.collection ('Mensajes_Todos').valueChanges ();
+  }
+
+  update_mensaje_todos (id: string, data: any) {
+    return this.db.collection ('Mensajes_Todos').doc (id).update (data);
+  }
+  
+  get_historial_mensajes (doctor_id: string) {
+    return this.db.collection ('Doctores').doc (doctor_id).collection ('Mensajes', ref => ref.orderBy ('fecha', 'desc')).valueChanges ();
+  }
+
+  get_historial_mensajes_todos (doctor_id: string) {
+    const fooPosts = this.db.collection ('Doctores').doc (doctor_id).collection ('Mensajes', ref => ref.orderBy ('fecha', 'desc')).valueChanges ();
+    const barPosts = this.db.collection ('Mensajes_Todos').valueChanges ();
+
+    return combineLatest<any[]>(fooPosts, barPosts).pipe (
+      map(arr => arr.reduce((acc, cur) => acc.concat(cur) ) ),
+    );
+  }
+
+  get_historial_mensajes_todos_badge (doctor_id: string) {
+    const fooPosts = this.db.collection ('Doctores').doc (doctor_id).collection ('Mensajes', ref => ref.where ('leido', '==', false)).valueChanges ();
+    const barPosts = this.db.collection ('Mensajes_Todos').valueChanges ();
+
+    return combineLatest<any[]>(fooPosts, barPosts).pipe (
+      map(arr => arr.reduce((acc, cur) => acc.concat(cur) ) ),
+    );
+  }
+
+  update_mensaje (doctor_id: string, mensaje_id: string, object: any) {
+    return this.db.collection ('Doctores').doc (doctor_id).collection ('Mensajes').doc (mensaje_id).update (object);
   }
 }
