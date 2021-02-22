@@ -3,7 +3,7 @@
     <name>Ceradent</name>
     <description>Administrador de placas radiograficas CERADENT</description>
     <author email="info@ceradentperu.com" href="http://www.ceradentperu.com/">
-        CERADENT
+    CERADENT
     </author>
     <content src="index.html" />
     <access origin="*" />
