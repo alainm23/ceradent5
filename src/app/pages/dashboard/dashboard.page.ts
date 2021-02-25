@@ -26,13 +26,11 @@ export class DashboardPage implements OnInit {
 
   ngOnInit () {
     this.events.get_user_login ().subscribe (() => {
-      this.cargar ();
+      this.ionViewWillEnter ();
     });
-
-    this.cargar ();
   }
 
-  cargar () {
+  ionViewWillEnter () {
     console.log ('Iniciando dashboard');
     if (this.database.apple_test === true) {
       console.log ('Apple Test como True');
