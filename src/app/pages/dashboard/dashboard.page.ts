@@ -154,8 +154,12 @@ export class DashboardPage implements OnInit {
                 await alert.present ();
               })
             }
+          }).catch ((error: any) => {
+            console.log (error);
           });
         }
+      }).catch ((error: any) => {
+        console.log (error);
       });
     }
   }
