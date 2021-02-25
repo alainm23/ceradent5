@@ -9,9 +9,9 @@ import { EventsService } from 'src/app/services/events.service';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  isCliente:boolean=false;
-  isDoctor:boolean=false;
-  isGerente:boolean=false;
+  isCliente:boolean = false;
+  isDoctor:boolean = false;
+  isGerente:boolean = false;
   codigoUsuario:string;
   auxiliar:string;
 
@@ -83,64 +83,66 @@ export class DashboardPage implements OnInit {
             message: "Cargando..."
           });
 
-          load.present ().then (() => {
-            this.database.traerDatosUsuarioLocal ().then (telefono => {
-              if (telefono != null && telefono != undefined) {
-                this.database.existeTelefonoRegistradoObservable(telefono).subscribe(dataUsuario=>{
-                  if (dataUsuario) {
-                    //verificamos que tenga roles
-                    load.dismiss ().then(_=>{
-                      this.codigoUsuario=dataUsuario.usuario;
-                      this.isDoctor=dataUsuario.isdoctor;
-                      this.isCliente=dataUsuario.iscliente;
-                      this.isGerente=dataUsuario.isgerente;
-                    })
-                  } else {
-                    load.dismiss().then(async _=>{
-                      let alert = await this.alertCtrl.create({
-                        header: "Opssss!",
-                        backdropDismiss: false,
-                        subHeader: "No encontramos información relacionada al celular "+telefono,
-                        message: "Si usted esta registrado en el sistema de CERADENT, por favor comuniquese con ellos y verifique si su numero de celular es el correcto.",
-                        buttons: [
-                          {
-                            text: "Entendido",
-                            role: "cancelar",
-                            handler: () => {
-                              this.navCtrl.navigateRoot ("login");
-                            }
+          await load.present ();
+
+          this.database.traerDatosUsuarioLocal ().then (telefono => {
+            console.log ('Telefono: ' + telefono);
+            if (telefono != null && telefono != undefined) {
+              this.database.existeTelefonoRegistradoObservable (telefono).subscribe ((dataUsuario: any) => {
+                if (dataUsuario) {
+                  console.log ('dataUsuario', dataUsuario);
+                  load.dismiss ();
+
+                  //verificamos que tenga roles
+                  this.codigoUsuario = dataUsuario.usuario;
+                  this.isDoctor = dataUsuario.isdoctor;
+                  this.isCliente = dataUsuario.iscliente;
+                  this.isGerente = dataUsuario.isgerente;
+                } else {
+                  load.dismiss().then(async _=>{
+                    let alert = await this.alertCtrl.create({
+                      header: "Opssss!",
+                      backdropDismiss: false,
+                      subHeader: "No encontramos información relacionada al celular "+telefono,
+                      message: "Si usted esta registrado en el sistema de CERADENT, por favor comuniquese con ellos y verifique si su numero de celular es el correcto.",
+                      buttons: [
+                        {
+                          text: "Entendido",
+                          role: "cancelar",
+                          handler: () => {
+                            this.navCtrl.navigateRoot ("login");
                           }
-                        ]
-                      });
-
-                      await alert.present ();
-                    })
-                  }
-                })
-              } else {
-                load.dismiss ().then(async _=>{
-                  console.log('debe cerrar sesion porque no hay codigo')
-                  //this.database.cerrarSesion();
-                  let alert = await this.alertCtrl.create({
-                    header: "Opssss!",
-                    backdropDismiss: false,
-                    subHeader: "No se guardo tu numero de celular",
-                    message: "Si usted esta registrado en el sistema de CERADENT, por favor comuniquese con ellos y verifique si su numero de celular es el correcto.",
-                    buttons: [
-                      {
-                        text: "Entendido",
-                        role: "cancelar",
-                        handler: () => {
-                          this.navCtrl.navigateRoot ("login");
                         }
-                      }
-                    ]
-                  });
+                      ]
+                    });
 
-                  await alert.present ();
-                })
-              }
-            })
+                    await alert.present ();
+                  })
+                }
+              })
+            } else {
+              load.dismiss ().then(async _=>{
+                console.log('debe cerrar sesion porque no hay codigo')
+                //this.database.cerrarSesion();
+                let alert = await this.alertCtrl.create({
+                  header: "Opssss!",
+                  backdropDismiss: false,
+                  subHeader: "No se guardo tu numero de celular",
+                  message: "Si usted esta registrado en el sistema de CERADENT, por favor comuniquese con ellos y verifique si su numero de celular es el correcto.",
+                  buttons: [
+                    {
+                      text: "Entendido",
+                      role: "cancelar",
+                      handler: () => {
+                        this.navCtrl.navigateRoot ("login");
+                      }
+                    }
+                  ]
+                });
+
+                await alert.present ();
+              })
+            }
           });
         }
       });

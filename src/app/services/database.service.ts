@@ -40,7 +40,7 @@ export class DatabaseService {
 
   /*INICIO funciones para guardar localmente la informacion*/
   guardarDatosUsuarioLocal(telefono:string){
-    return this.storage.set('telefonousuario',telefono);
+    return this.storage.set ('telefonousuario',telefono);
   }
 
   iniciarSesionEmail (email: string, password: string) {
