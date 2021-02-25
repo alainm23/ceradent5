@@ -22,12 +22,13 @@ export class DashboardPage implements OnInit {
     public events: EventsService,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController) {
-      // this.events.subscribe ('apple_test', () => {
-      //   this.cargar ();
-      // });
   }
 
   ngOnInit () {
+    this.events.get_user_login ().subscribe (() => {
+      this.cargar ();
+    });
+
     this.cargar ();
   }
 
@@ -44,7 +45,7 @@ export class DashboardPage implements OnInit {
                 this.database.existeTelefonoRegistradoObservable("+51984780642").subscribe(dataUsuario=>{
                   if (dataUsuario){
                     //verificamos que tenga roles
-                    loading.dismiss ().then (_=>{
+                    loading.dismiss ().then (_=> {
                       this.codigoUsuario = dataUsuario.usuario;
                       this.isDoctor = dataUsuario.isdoctor;
                       this.isCliente = dataUsuario.iscliente;
@@ -88,7 +89,7 @@ export class DashboardPage implements OnInit {
           this.database.traerDatosUsuarioLocal ().then (telefono => {
             console.log ('Telefono: ' + telefono);
             if (telefono != null && telefono != undefined) {
-              this.database.existeTelefonoRegistradoObservable (telefono).subscribe ((dataUsuario: any) => {
+              this.database.existeTelefonoRegistradoObservable (telefono).subscribe (async (dataUsuario: any) => {
                 if (dataUsuario) {
                   console.log ('dataUsuario', dataUsuario);
                   load.dismiss ();
@@ -98,9 +99,16 @@ export class DashboardPage implements OnInit {
                   this.isDoctor = dataUsuario.isdoctor;
                   this.isCliente = dataUsuario.iscliente;
                   this.isGerente = dataUsuario.isgerente;
+
+                  let alert = await this.alertCtrl.create ({
+                    header: 'Permisos',
+                    message: 'Doctor: ' + dataUsuario.isdoctor + 'Cliente: ' + dataUsuario.iscliente + 'Gerente: ' + dataUsuario.isgerente
+                  });
+
+                  await alert.present ();
                 } else {
                   load.dismiss().then(async _=>{
-                    let alert = await this.alertCtrl.create({
+                    let alert = await this.alertCtrl.create ({
                       header: "Opssss!",
                       backdropDismiss: false,
                       subHeader: "No encontramos información relacionada al celular "+telefono,

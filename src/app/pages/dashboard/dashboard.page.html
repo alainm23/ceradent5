@@ -13,46 +13,27 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>
+      <p>
+        Doctor: {{ isDoctor }}
+        Cliente: {{ isCliente }}
+        Gerente: {{ isGerente }}
+      </p>
+    </ion-label>
+  </ion-item>
   <img src="assets/imgs/logo-dos-ceradent.png" class="logo-bottom">
   <h1 class="ion-text-center titulo">Bienvenido</h1>
   <div class="div-card">
-    <ion-card *ngIf="isDoctor" (click)="navegarDoctor ()">
+    <ion-card *ngIf="isDoctor === true" (click)="navegarDoctor ()">
       <img src="assets/imgs/Rfc2rI.png" class="img-icon-altura">
       <h6 class="h6-card">Doctores</h6>
       <p class="p-book">Ver pacientes</p>
     </ion-card>
-    <ion-card *ngIf="isGerente" (click)="navegarGerencia ()">
+    <ion-card *ngIf="isGerente === true" (click)="navegarGerencia ()">
       <img src="assets/imgs/qzhbZO.png" class="img-icon-altura">
       <h6 class="h6-card">Gerencia</h6>
       <p class="p-book">Gerencia</p>
     </ion-card>
   </div>
 </ion-content>
-
-<!-- <ion-content class="card-background-page">
-    <ion-grid>
-      <ion-row> 
-        <ion-col *ngIf="isDoctor" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
-          <ion-card (click)="navegarDoctor()">
-            <img src="assets/imgs/doctorok.jpg"/>
-            <div class="card-title">Doctor</div>
-            <div class="card-subtitle">ver pacientes</div>
-          </ion-card>
-        </ion-col>
-        <ion-col *ngIf="isCliente" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
-          <ion-card (click)="navegarCliente()">
-            <img src="assets/imgs/clientesok.jpg"/>
-            <div class="card-title">Cliente</div>
-            <div class="card-subtitle">ver placas</div>
-          </ion-card>
-        </ion-col>
-        <ion-col *ngIf="isGerente" size="12" size-sm="12" size-md="6" size-lg="4" size-xl="4">
-          <ion-card (click)="navegarGerencia()">
-            <img src="assets/imgs/gerenciaok.jpg"/>
-            <div class="card-title">Gerencia</div>
-            <div class="card-subtitle">ver resumen</div>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-</ion-content> -->
