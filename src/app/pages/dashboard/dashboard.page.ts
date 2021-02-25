@@ -33,7 +33,9 @@ export class DashboardPage implements OnInit {
   }
 
   cargar () {
+    console.log ('Iniciando dashboard');
     if (this.database.apple_test === true) {
+      console.log ('Apple Test como True');
       this.database.estaLogueado ().then (async (data)=>{
         if (!data) this.navCtrl.navigateRoot("login");
         else{
@@ -76,6 +78,7 @@ export class DashboardPage implements OnInit {
         }
       });
     } else {
+      console.log ('Apple Test como false');
       this.database.estaLogueado ().then (async (data) => {
         if (!data) {
           this.navCtrl.navigateRoot ("login");
