@@ -32,7 +32,6 @@ export class DashboardPage implements OnInit {
   }
 
   cargar () {
-    console.log ('Iniciando dashboard');
     if (this.database.apple_test === true) {
       console.log ('Apple Test como True');
       this.database.estaLogueado ().then (async (data)=>{
@@ -77,7 +76,6 @@ export class DashboardPage implements OnInit {
         }
       });
     } else {
-      console.log ('Apple Test como false');
       this.database.estaLogueado ().then (async (data) => {
         if (!data) {
           this.navCtrl.navigateRoot ("login");
@@ -89,11 +87,9 @@ export class DashboardPage implements OnInit {
           await load.present ();
 
           this.database.traerDatosUsuarioLocal ().then (telefono => {
-            console.log ('Telefono: ' + telefono);
             if (telefono != null && telefono != undefined) {
               this.database.existeTelefonoRegistradoObservable (telefono).subscribe (async (dataUsuario: any) => {
                 if (dataUsuario) {
-                  console.log ('dataUsuario', dataUsuario);
                   load.dismiss ();
 
                   //verificamos que tenga roles
