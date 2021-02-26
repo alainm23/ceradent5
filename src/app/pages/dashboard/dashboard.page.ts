@@ -25,12 +25,13 @@ export class DashboardPage implements OnInit {
   }
 
   ngOnInit () {
+    this.cargar ();
     this.events.get_user_login ().subscribe (() => {
-      this.ionViewWillEnter ();
+      this.cargar ();
     });
   }
 
-  ionViewWillEnter () {
+  cargar () {
     console.log ('Iniciando dashboard');
     if (this.database.apple_test === true) {
       console.log ('Apple Test como True');
@@ -100,13 +101,6 @@ export class DashboardPage implements OnInit {
                   this.isDoctor = dataUsuario.isdoctor;
                   this.isCliente = dataUsuario.iscliente;
                   this.isGerente = dataUsuario.isgerente;
-
-                  let alert = await this.alertCtrl.create ({
-                    header: 'Permisos',
-                    message: 'Doctor: ' + dataUsuario.isdoctor + 'Cliente: ' + dataUsuario.iscliente + 'Gerente: ' + dataUsuario.isgerente
-                  });
-
-                  await alert.present ();
                 } else {
                   load.dismiss().then(async _=>{
                     let alert = await this.alertCtrl.create ({

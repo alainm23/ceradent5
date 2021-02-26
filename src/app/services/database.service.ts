@@ -28,9 +28,7 @@ export class DatabaseService {
     private fb: FirebaseApp,
     ) {
       this.db.collection ('Tipo_ingreso').doc ('valor').valueChanges ().subscribe ((valor: any) => {
-        console.log ('Apple test', valor.valor);
         this.apple_test = valor.valor;
-        // this.events.publish ('apple_test');
       });
   }
 
