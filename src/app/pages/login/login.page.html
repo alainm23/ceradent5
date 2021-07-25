@@ -27,11 +27,11 @@
 
             <form *ngIf="database.apple_test === true" class="ion-no-padding" [formGroup]="codigoForm">
               <ion-item class="item-input" lines="none">
-                <ion-input formControlName="email" clearInput type="tel" placeholder="Correo" class="input-from"></ion-input>
+                <ion-input formControlName="email" clearInput type="email" placeholder="Correo" class="input-from"></ion-input>
               </ion-item>
 
               <ion-item style="margin-top: 1rem;" class="item-input" lines="none">
-                <ion-input formControlName="password" clearInput type="tel" placeholder="Contraseña" class="input-from"></ion-input>
+                <ion-input formControlName="password" clearInput type="password" placeholder="Contraseña" class="input-from"></ion-input>
               </ion-item>
             </form>
           </ion-col>
