@@ -19,7 +19,7 @@ import { of, combineLatest } from "rxjs/index";
 })
 export class DatabaseService {
   usuario: Observable<any>;
-  apple_test: boolean = false;
+  apple_test: boolean = true;
   constructor(
     private db: AngularFirestore,
     // public events: Events,
